@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesiones Navideñas 2025 - Reserva Exclusiva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        /* Paleta de colores inspirada en el diseño de referencia */
+        :root {
+            --color-primary: #3c524f; /* Un verde bosque oscuro y elegante */
+            --color-background: #f4f3f1; /* Un beige muy claro, casi blanco roto */
+            --color-text: #3d403d; /* Un gris oscuro, casi negro */
+            --color-accent: #c7b282; /* Un dorado/bronce sutil */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Estilos para el carrusel Hero */
+        .hero-swiper {
+            height: 100%;
+        }
+        .hero-slide {
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Animación de Zoom (Ken Burns Effect) */
+        @keyframes kenburns-effect {
+          0% {
+            transform: scale(1);
+          }
+          100% {
+            transform: scale(1.1);
+          }
+        }
+        .swiper-slide-active .hero-slide-animated {
+            animation: kenburns-effect 10s ease-in-out infinite alternate;
+        }
+
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.7);
+            opacity: 1;
+            transition: background-color 0.3s;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: #ffffff;
+        }
+
+        /* Estilos elegantes para el calendario */
+        .calendar-header {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+        .calendar-day {
+            transition: all 0.2s ease-in-out;
+        }
+        .calendar-day.available:not(.selected):hover {
+            background-color: #e5e0d9;
+            color: var(--color-primary);
+            transform: scale(1.1);
+        }
+        .calendar-day.selected {
+            background-color: var(--color-primary);
+            color: white;
+            font-weight: bold;
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .calendar-day.full {
+            background-color: #e5e7eb;
+            color: #9ca3af;
+            text-decoration: line-through;
+            cursor: not-allowed;
+        }
+         .calendar-day.unavailable {
+            color: #d1d5db;
+            cursor: not-allowed;
+        }
+        .time-slot {
+            transition: all 0.2s ease-in-out;
+        }
+         .time-slot.available:not(.selected):hover {
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+         .time-slot.selected {
+            background-color: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+            font-weight: bold;
+        }
+        .section-bg-alt {
+            background-color: #ffffff;
+        }
+
+        /* Botón estilo "Ghost" inspirado en la referencia */
+        .btn-ghost {
+            background-color: transparent;
+            border: 2px solid;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em; /* Espaciado de letras clave */
+            font-size: 0.875rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+        }
+        .btn-ghost-light {
+            border-color: white;
+            color: white;
+        }
+        .btn-ghost-light:hover {
+            background-color: white;
+            color: var(--color-primary);
+        }
+        .btn-ghost-dark {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+        .btn-ghost-dark:hover {
+            background-color: var(--color-primary);
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <!-- Barra de Navegación -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold" style="color: var(--color-primary);">Tu Nombre</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#experiencia" class="text-gray-600 hover:text-black transition duration-300 uppercase text-xs tracking-widest">Experiencia</a>
+                <a href="#paquetes" class="text-gray-600 hover:text-black transition duration-300 uppercase text-xs tracking-widest">Paquetes</a>
+                <a href="#portafolio" class="text-gray-600 hover:text-black transition duration-300 uppercase text-xs tracking-widest">Galería</a>
+                <a href="#reserva" class="font-bold btn-ghost btn-ghost-dark">Reservar</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i data-lucide="menu" class="h-6 w-6"></i>
+            </button>
+        </nav>
+        <!-- Menú Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+             <a href="#experiencia" class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Experiencia</a>
+             <a href="#paquetes" class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Paquetes</a>
+             <a href="#portafolio" class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Galería</a>
+             <a href="#reserva" class="block mt-2 text-center font-bold btn-ghost btn-ghost-dark">Reservar</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección Principal (Hero) con Carrusel -->
+        <section id="hero" class="relative text-white min-h-[90vh] flex items-center overflow-hidden">
+            <!-- Swiper -->
+            <div class="swiper-container hero-swiper absolute inset-0 w-full h-full">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide hero-slide">
+                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero1.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="absolute inset-0 bg-black/40"></div>
+                    </div>
+                    <div class="swiper-slide hero-slide">
+                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero2.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="absolute inset-0 bg-black/40"></div>
+                    </div>
+                    <div class="swiper-slide hero-slide">
+                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero3.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="absolute inset-0 bg-black/40"></div>
+                    </div>
+                    <div class="swiper-slide hero-slide">
+                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero4.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="absolute inset-0 bg-black/40"></div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <!-- Contenido superpuesto -->
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <p class="uppercase tracking-widest text-sm mb-4">sesiones navideñas 2025</p>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">El Arte de Crear Recuerdos</h1>
+                <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto text-gray-200">Una experiencia fotográfica exclusiva para celebrar la magia de la navidad.</p>
+                <a href="#paquetes" class="btn-ghost btn-ghost-light font-bold">Descubrir Paquetes</a>
+                
+                <!-- Contador de Preventa -->
+                <div id="countdown" class="mt-16 bg-black/20 backdrop-blur-sm p-4 rounded-lg inline-block">
+                    <h3 class="text-sm uppercase tracking-widest mb-2">La preventa termina en:</h3>
+                    <div class="grid grid-cols-4 gap-4 text-center">
+                        <div><span id="days" class="text-3xl font-bold"></span><span class="block text-xs uppercase tracking-widest">Días</span></div>
+                        <div><span id="hours" class="text-3xl font-bold"></span><span class="block text-xs uppercase tracking-widest">Horas</span></div>
+                        <div><span id="minutes" class="text-3xl font-bold"></span><span class="block text-xs uppercase tracking-widest">Minutos</span></div>
+                        <div><span id="seconds" class="text-3xl font-bold"></span><span class="block text-xs uppercase tracking-widest">Segundos</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Sección de Introducción y Experiencia -->
+        <section id="experiencia" class="py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 max-w-3xl mx-auto">
+                    <h2 class="text-4xl font-bold mb-6">Una Experiencia Inolvidable</h2>
+                    <p class="text-lg text-gray-600">Con 3 años de trayectoria, he perfeccionado cada detalle para que tú y tu familia solo se preocupen por disfrutar. Mi meta es entregarte no solo fotos, sino tesoros familiares.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="text-center">
+                        <div class="inline-block p-4 rounded-full mb-4 bg-white"><i data-lucide="camera" class="h-8 w-8" style="color: var(--color-primary)"></i></div>
+                        <h3 class="text-2xl font-bold mb-2">Sets Mágicos</h3>
+                        <p class="text-gray-600">Cada año diseño sets únicos y detallados para crear una atmósfera verdaderamente navideña que encantará a grandes y pequeños.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="inline-block p-4 rounded-full mb-4 bg-white"><i data-lucide="smile" class="h-8 w-8" style="color: var(--color-primary)"></i></div>
+                        <h3 class="text-2xl font-bold mb-2">Diversión Garantizada</h3>
+                        <p class="text-gray-600">Mi enfoque es capturar sonrisas y momentos espontáneos. La sesión será una actividad divertida para toda la familia, ¡no una pose forzada!</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="inline-block p-4 rounded-full mb-4 bg-white"><i data-lucide="award" class="h-8 w-8" style="color: var(--color-primary)"></i></div>
+                        <h3 class="text-2xl font-bold mb-2">Calidad Profesional</h3>
+                        <p class="text-gray-600">Recibirás fotografías editadas con la más alta calidad, listas para imprimir, compartir y atesorar por generaciones.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Paquetes -->
+        <section id="paquetes" class="py-24 section-bg-alt">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 max-w-3xl mx-auto">
+                     <h2 class="text-4xl font-bold mb-6">Paquetes de Preventa</h2>
+                     <p class="text-lg text-gray-600">Elige la experiencia perfecta para tu familia. Precios especiales válidos solo durante la preventa.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 items-center">
+                    <!-- Paquete 1 -->
+                    <div class="border border-gray-200 p-8 rounded-lg text-center">
+                        <h3 class="text-2xl font-bold mb-2">Copo de Nieve</h3>
+                        <p class="text-gray-500 mb-6">Ideal para una postal navideña</p>
+                        <div class="mb-6"><span class="text-4xl font-black" style="color: var(--color-primary)">$1,500</span> <span class="line-through text-gray-400">$1,950</span></div>
+                        <ul class="space-y-4 text-gray-600 mb-8 text-left">
+                            <li class="flex items-center"><i data-lucide="users" class="h-5 w-5 mr-3" style="color: var(--color-accent)"></i> Máximo 3 personas</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 mr-3 text-green-600"></i> 20 min de sesión</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 mr-3 text-green-600"></i> 5 fotos digitales editadas</li>
+                        </ul>
+                        <a href="#reserva" class="w-full block btn-ghost btn-ghost-dark font-bold">Seleccionar</a>
+                    </div>
+                    <!-- Paquete 2 (Popular) -->
+                    <div class="border-2 p-10 rounded-lg text-center relative" style="border-color: var(--color-primary);">
+                        <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold px-4 py-1 rounded-full text-sm uppercase tracking-widest" style="background-color: var(--color-primary); color: white;">Popular</span>
+                        <h3 class="text-3xl font-bold mb-2">Reno Radiante</h3>
+                        <p class="text-gray-500 mb-6">La experiencia completa</p>
+                        <div class="mb-6"><span class="text-5xl font-black" style="color: var(--color-primary)">$2,800</span> <span class="line-through text-gray-400">$3,200</span></div>
+                        <ul class="space-y-4 text-gray-600 mb-8 text-left">
+                            <li class="flex items-center"><i data-lucide="users" class="h-5 w-5 mr-3" style="color: var(--color-accent)"></i> Máximo 5 personas</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 mr-3 text-green-600"></i> 45 min de sesión</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 mr-3 text-green-600"></i> 15 fotos digitales editadas</li>
+                        </ul>
+                        <a href="#reserva" class="w-full block font-bold text-white rounded-full py-3 px-6 transition duration-300 hover:opacity-90" style="background-color: var(--color-primary);">Seleccionar</a>
+                    </div>
+                    <!-- Paquete 3 -->
+                    <div class="border border-gray-200 p-8 rounded-lg text-center">
+                        <h3 class="text-2xl font-bold mb-2">Estrella Polar</h3>
+                        <p class="text-gray-500 mb-6">Recuerdos para toda la vida</p>
+                        <div class="mb-6"><span class="text-4xl font-black" style="color: var(--color-primary)">$3,800</span> <span class="line-through text-gray-400">$4,500</span></div>
+                        <ul class="space-y-4 text-gray-600 mb-8 text-left">
+                             <li class="flex items-center"><i data-lucide="users" class="h-5 w-5 mr-3" style="color: var(--color-accent)"></i> Máximo 7 personas</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 mr-3 text-green-600"></i> 60 min de sesión</li>
+                            <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 mr-3 text-green-600"></i> 15 fotos editadas</li>
+                            <li class="flex items-center"><i data-lucide="plus" class="h-5 w-5 mr-3 text-green-600"></i> Archivos sin edición</li>
+                            <li class="flex items-center"><i data-lucide="image" class="h-5 w-5 mr-3 text-green-600"></i> 1 impresión 8x10</li>
+                        </ul>
+                        <a href="#reserva" class="w-full block btn-ghost btn-ghost-dark font-bold">Seleccionar</a>
+                    </div>
+                </div>
+                <!-- Información Importante -->
+                <div class="mt-16 text-center max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-8">Información Importante</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-gray-700">
+                        <div class="border border-gray-200 p-4 rounded-lg"><p><strong>Persona extra:</strong> $250</p></div>
+                        <div class="border border-gray-200 p-4 rounded-lg"><p>Somos <strong>100% Pet Friendly</strong> 🐾</p></div>
+                        <div class="border border-gray-200 p-4 rounded-lg"><p><strong>Entrega:</strong> 2 a 3 días hábiles</p></div>
+                    </div>
+                    <p class="mt-8 text-lg text-gray-600">Para poder brindarte la atención que mereces, el cupo es limitado. ¡Agenda con tiempo para garantizar tu fecha y horario ideal y no te quedes sin tu recuerdo navideño de este año!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Portafolio -->
+        <section id="portafolio" class="py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 max-w-3xl mx-auto">
+                    <h2 class="text-4xl font-bold mb-6">Galería de Momentos</h2>
+                    <p class="text-lg text-gray-600">Un vistazo a la magia que hemos creado en años anteriores. Imagina a tu familia aquí.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="group relative overflow-hidden rounded-lg"><img src="familia-g.jpg" alt="Foto navideña 1" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
+                    <div class="group relative overflow-hidden rounded-lg col-span-1 md:col-span-2"><img src="ninos-jugando-g.jpg" alt="Foto navideña 2" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
+                    <div class="group relative overflow-hidden rounded-lg"><img src="bebe-g.jpg" alt="Foto navideña 3" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
+                    <div class="group relative overflow-hidden rounded-lg col-span-1 md:col-span-2"><img src="familia-luces-g.jpg" alt="Foto navideña 4" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
+                    <div class="group relative overflow-hidden rounded-lg"><img src="detalle-g.jpg" alt="Foto navideña 5" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
+                    <div class="group relative overflow-hidden rounded-lg"><img src="pareja-g.jpg" alt="Foto navideña 6" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección Testimonios -->
+        <section class="py-24 section-bg-alt">
+             <div class="container mx-auto px-6">
+                 <div class="text-center mb-16 max-w-3xl mx-auto"><h2 class="text-4xl font-bold mb-6">Lo que dicen mis clientes</h2><p class="text-lg text-gray-600">Tu satisfacción es mi mayor recompensa. Familias felices que repiten cada año.</p></div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50/50 p-8 rounded-lg"><p class="text-gray-600 italic mb-4">"¡La mejor experiencia! Las fotos quedaron espectaculares y los niños se divirtieron muchísimo. Es nuestra tradición navideña favorita. ¡Ya reservamos para este año!"</p><p class="font-bold text-gray-900">- Familia Pérez (Cliente desde 2023)</p></div>
+                    <div class="bg-gray-50/50 p-8 rounded-lg"><p class="text-gray-600 italic mb-4">"El profesionalismo y la paciencia que tienes con los niños es increíble. Capturaste la esencia de mi familia a la perfección. ¡Mil gracias por estos recuerdos!"</p><p class="font-bold text-gray-900">- Ana y Roberto G. (Clientes desde 2022)</p></div>
+                </div>
+             </div>
+        </section>
+
+        <!-- Sección de Reserva (CTA) -->
+        <section id="reserva" class="py-24">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-16 max-w-3xl mx-auto">
+                    <h2 class="text-4xl font-bold mb-6">Reserva tu Experiencia</h2>
+                    <p class="text-lg text-gray-600">Selecciona un día y horario disponible. Los espacios son limitados para garantizar una atención personalizada.</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-8 md:p-12 flex flex-col lg:flex-row gap-12">
+                    <!-- Calendario y Horarios -->
+                    <div class="w-full lg:w-1/2">
+                        <div class="p-4 sm:p-6 rounded-lg border border-gray-200">
+                            <div class="calendar-header flex justify-between items-center mb-4">
+                                <button id="prev-month" class="p-2 rounded-full hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed"><i data-lucide="chevron-left" class="h-6 w-6"></i></button>
+                                <h3 id="month-year" class="text-xl font-bold"></h3>
+                                <button id="next-month" class="p-2 rounded-full hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed"><i data-lucide="chevron-right" class="h-6 w-6"></i></button>
+                            </div>
+                            <div id="calendar-grid" class="grid grid-cols-7 gap-1 text-center"></div>
+                        </div>
+                        <div id="time-slots-container" class="mt-6 hidden">
+                            <h4 class="font-bold text-lg mb-4">Horarios para <span id="selected-date-info" style="color: var(--color-primary)"></span>:</h4>
+                            <div id="time-slots" class="grid grid-cols-3 sm:grid-cols-4 gap-2"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Formulario de Reserva -->
+                    <div class="w-full lg:w-1/2">
+                        <h3 class="text-2xl font-bold mb-6">Completa tu Pre-reserva</h3>
+                        <form id="booking-form">
+                            <input type="hidden" id="selected-datetime" name="selected-datetime">
+                            <div class="mb-4"><label for="name" class="block text-gray-700 font-bold mb-2">Nombre</label><input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" style="--tw-ring-color: var(--color-primary)" required></div>
+                            <div class="mb-4"><label for="email" class="block text-gray-700 font-bold mb-2">Correo</label><input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" style="--tw-ring-color: var(--color-primary)" required></div>
+                            <div class="mb-4"><label for="phone" class="block text-gray-700 font-bold mb-2">Teléfono (WhatsApp)</label><input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" style="--tw-ring-color: var(--color-primary)" required></div>
+                            <div class="mb-6"><label for="package" class="block text-gray-700 font-bold mb-2">Paquete</label><select id="package" name="package" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2" style="--tw-ring-color: var(--color-primary)" required><option value="">Selecciona un paquete</option><option value="Copo de Nieve">Copo de Nieve - $1,500</option><option value="Reno Radiante">Reno Radiante - $2,800</option><option value="Estrella Polar">Estrella Polar - $3,800</option></select></div>
+                            <button type="submit" id="submit-button" class="w-full font-bold text-white rounded-full py-4 px-6 transition duration-300 disabled:opacity-50" style="background-color: var(--color-primary);" disabled>Confirmar Pre-reserva</button>
+                        </form>
+                        <div id="form-success" class="hidden mt-4 p-4 rounded-lg text-center" style="background-color: #e5e0d9;"><p>¡Gracias! Hemos recibido tu solicitud. Te contactaremos muy pronto para finalizar tu reserva.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-white py-12" style="background-color: var(--color-text);">
+        <div class="container mx-auto px-6 text-center">
+            <a href="#" class="text-2xl font-bold mb-4 inline-block">Tu Nombre</a>
+            <p class="text-sm text-gray-400 mb-6">Capturando la magia de tus momentos más preciados.</p>
+            <div class="flex justify-center space-x-4"><a href="#" class="text-gray-400 hover:text-white"><i data-lucide="instagram" class="h-6 w-6"></i></a><a href="#" class="text-gray-400 hover:text-white"><i data-lucide="facebook" class="h-6 w-6"></i></a></div>
+             <p class="text-xs text-gray-500 mt-8">&copy; 2025 Tu Nombre Fotografía. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Swiper.js JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Iconos Lucide
+        lucide.createIcons();
+
+        // Menú Móvil
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        document.querySelectorAll('#mobile-menu a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+
+        // Countdown Timer
+        const countdownDate = new Date("Oct 1, 2025 00:00:00").getTime();
+        const countdownFunction = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "<h3 class='text-lg font-bold'>La preventa ha terminado</h3>";
+                return;
+            }
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        }, 1000);
+        
+        // --- Swiper Hero Carousel ---
+        const heroSwiper = new Swiper('.hero-swiper', {
+            loop: true,
+            effect: 'fade',
+            fadeEffect: { crossFade: true },
+            autoplay: { delay: 5000, disableOnInteraction: false, },
+            pagination: { el: '.swiper-pagination', clickable: true, },
+            keyboard: true,
+        });
+
+        // --- Lógica del Calendario y Formulario ---
+        const monthYearEl = document.getElementById('month-year');
+        const calendarGridEl = document.getElementById('calendar-grid');
+        const prevMonthBtn = document.getElementById('prev-month');
+        const nextMonthBtn = document.getElementById('next-month');
+        const timeSlotsContainer = document.getElementById('time-slots-container');
+        const timeSlotsEl = document.getElementById('time-slots');
+        const selectedDateInfoEl = document.getElementById('selected-date-info');
+        const bookingForm = document.getElementById('booking-form');
+        const formSuccess = document.getElementById('form-success');
+        const submitButton = document.getElementById('submit-button');
+        const selectedDateTimeField = document.getElementById('selected-datetime');
+        
+        let currentDate = new Date(2025, 9, 1);
+        let selectedDate = null;
+        let selectedTime = null;
+
+        const bookedSessions = {}; 
+        const dailyTimeSlots = ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
+        const SESSIONS_PER_DAY = 4;
+
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            prevMonthBtn.disabled = (month <= 9);
+            nextMonthBtn.disabled = (month >= 11);
+            const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            monthYearEl.textContent = `${monthNames[month]} ${year}`;
+            calendarGridEl.innerHTML = '';
+            ['D', 'L', 'M', 'M', 'J', 'V', 'S'].forEach(day => {
+                calendarGridEl.innerHTML += `<div class="font-bold text-gray-500 text-sm py-2">${day}</div>`;
+            });
+            const firstDayOfMonth = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            for (let i = 0; i < firstDayOfMonth; i++) { calendarGridEl.innerHTML += `<div></div>`; }
+            for (let day = 1; day <= daysInMonth; day++) {
+                const loopDate = new Date(year, month, day);
+                const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+                const startDate = new Date(2025, 9, 20);
+                const endDate = new Date(2025, 11, 15);
+                const isWithinRange = loopDate >= startDate && loopDate <= endDate;
+                const bookedCount = bookedSessions[dateStr] ? bookedSessions[dateStr].length : 0;
+                const isFull = bookedCount >= SESSIONS_PER_DAY;
+                const isAvailable = isWithinRange && !isFull;
+                const isSelected = selectedDate && selectedDate.toDateString() === loopDate.toDateString();
+                let dayClasses = 'calendar-day h-10 w-10 flex items-center justify-center rounded-full';
+                if (isAvailable) dayClasses += ' available cursor-pointer';
+                else if (isFull) dayClasses += ' full';
+                else dayClasses += ' unavailable';
+                if (isSelected) dayClasses += ' selected';
+                const dayEl = document.createElement('div');
+                dayEl.textContent = day;
+                dayEl.className = dayClasses;
+                if (isAvailable) {
+                    dayEl.addEventListener('click', () => handleDateClick(year, month, day));
+                }
+                calendarGridEl.appendChild(dayEl);
+            }
+        }
+        
+        function handleDateClick(year, month, day) {
+            selectedDate = new Date(year, month, day);
+            selectedTime = null;
+            updateSubmitButton();
+            renderCalendar(); 
+            const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+            const bookedTimes = bookedSessions[dateStr] || [];
+            const availableTimes = dailyTimeSlots.filter(time => !bookedTimes.includes(time));
+            selectedDateInfoEl.textContent = selectedDate.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+            timeSlotsEl.innerHTML = '';
+            if (availableTimes.length > 0) {
+                availableTimes.forEach(time => {
+                    const slotEl = document.createElement('button');
+                    slotEl.type = 'button'; 
+                    slotEl.textContent = time;
+                    slotEl.className = 'time-slot available border-2 border-gray-300 rounded-lg py-2 px-1 text-sm font-medium';
+                    slotEl.addEventListener('click', () => handleTimeClick(time, slotEl));
+                    timeSlotsEl.appendChild(slotEl);
+                });
+            } else { 
+                timeSlotsEl.innerHTML = '<p class="text-center col-span-full text-gray-500">No hay más horarios para este día.</p>';
+            }
+            timeSlotsContainer.classList.remove('hidden');
+        }
+
+        function handleTimeClick(time, clickedEl) {
+            selectedTime = time;
+            document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
+            clickedEl.classList.add('selected');
+            updateSubmitButton();
+        }
+
+        function updateSubmitButton() {
+            if (selectedDate && selectedTime) {
+                const dateTimeStr = `${selectedDate.toISOString().split('T')[0]} ${selectedTime}`;
+                selectedDateTimeField.value = dateTimeStr;
+                submitButton.disabled = false;
+                submitButton.textContent = 'Confirmar Pre-reserva';
+            } else {
+                selectedDateTimeField.value = '';
+                submitButton.disabled = true;
+                submitButton.textContent = 'Selecciona fecha y hora';
+            }
+        }
+        
+        prevMonthBtn.addEventListener('click', () => { if (currentDate.getMonth() > 9) { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); } });
+        nextMonthBtn.addEventListener('click', () => { if (currentDate.getMonth() < 11) { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(); } });
+
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if(!e.target.checkValidity() || !selectedDate || !selectedTime) {
+                alert('Por favor, completa todos los campos y selecciona una fecha y hora.');
+                return;
+            }
+            submitButton.disabled = true;
+            submitButton.textContent = 'Enviando...';
+            const dateStr = selectedDate.toISOString().split('T')[0];
+            if (!bookedSessions[dateStr]) { bookedSessions[dateStr] = []; }
+            bookedSessions[dateStr].push(selectedTime);
+            const formData = new FormData(bookingForm);
+            const data = Object.fromEntries(formData.entries());
+            const webhookUrl = 'https://n8n-n8n.a8ipup.easypanel.host/webhook-test/ac6275b3-a8bb-4522-b102-edd18c01df8d';
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            })
+            .then(response => {
+                if (response.ok) {
+                    bookingForm.classList.add('hidden');
+                    formSuccess.classList.remove('hidden');
+                    selectedDate = null;
+                    selectedTime = null;
+                    timeSlotsContainer.classList.add('hidden');
+                    renderCalendar();
+                } else {
+                    const index = bookedSessions[dateStr].indexOf(selectedTime);
+                    if (index > -1) { bookedSessions[dateStr].splice(index, 1); }
+                    alert('Hubo un problema al enviar tu solicitud. Por favor, intenta de nuevo.');
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Confirmar Pre-reserva';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const index = bookedSessions[dateStr].indexOf(selectedTime);
+                if (index > -1) { bookedSessions[dateStr].splice(index, 1); }
+                alert('Hubo un problema de conexión. Por favor, revisa tu conexión a internet e intenta de nuevo.');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Confirmar Pre-reserva';
+            });
+        });
+
+        renderCalendar();
+        updateSubmitButton();
+    </script>
+</body>
+</html>
+
