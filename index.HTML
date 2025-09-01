@@ -660,7 +660,7 @@
             bookedSessions[dateStr].push(selectedTime);
             const formData = new FormData(bookingForm);
             const data = Object.fromEntries(formData.entries());
-            const webhookUrl = 'https://n8n-n8n.a8ipup.easypanel.host/webhook-test/ac6275b3-a8bb-4522-b102-edd18c01df8d';
+            const webhookUrl = 'https://n8n-n8n.a8ipup.easypanel.host/webhook/ac6275b3-a8bb-4522-b102-edd18c01df8d';
 
             fetch(webhookUrl, {
                 method: 'POST',
