@@ -323,7 +323,7 @@
             </div>
         </section>
         
-        <!-- Sección Testimonios con Reseñas de Google en formato Slider -->
+        <!-- Sección Testimonios con Reseñas de Google en formato Slider con Animación Fade -->
 <section class="py-24 section-bg-alt overflow-hidden">
      <div class="container mx-auto px-6">
          <div class="text-center mb-16 max-w-3xl mx-auto"><h2 class="text-4xl font-bold mb-6">Lo que dicen mis clientes</h2><p class="text-lg text-gray-600">Tu satisfacción es mi mayor recompensa. Familias felices que repiten cada año.</p></div>
@@ -347,7 +347,7 @@
                         <p class="font-bold text-gray-900">- Familia González (Reseña de Google)</p>
                     </div>
                 </div>
-                <!-- Reseña 3 (Nueva) -->
+                <!-- Reseña 3 -->
                 <div class="swiper-slide">
                     <div class="bg-gray-50/50 p-8 rounded-lg text-center max-w-2xl mx-auto">
                         <div class="flex items-center justify-center mb-2">⭐⭐⭐⭐⭐</div>
@@ -355,7 +355,7 @@
                         <p class="font-bold text-gray-900">- Familia Rodríguez (Reseña de Google)</p>
                     </div>
                 </div>
-                <!-- Reseña 4 (Nueva) -->
+                <!-- Reseña 4 -->
                 <div class="swiper-slide">
                     <div class="bg-gray-50/50 p-8 rounded-lg text-center max-w-2xl mx-auto">
                         <div class="flex items-center justify-center mb-2">⭐⭐⭐⭐⭐</div>
@@ -476,13 +476,21 @@
         // --- Swiper Testimonial Carousel ---
 const testimonialSwiper = new Swiper('.testimonial-swiper', {
     loop: true,
-    autoplay: { delay: 6000, disableOnInteraction: false, },
+    effect: 'fade', // <-- Esta es la línea mágica para la animación
+    fadeEffect: {
+        crossFade: true
+    },
+    autoplay: { 
+        delay: 6000, 
+        disableOnInteraction: false, 
+    },
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
     },
     keyboard: true,
 });
+
 
 
         // --- Lógica del Calendario y Formulario ---
