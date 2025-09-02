@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesiones Navideñas 2025 - Reserva Exclusiva</title>
+    <title>Sesiones Navideñas 2025 - CreaFilms</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,6 +62,37 @@
         }
         .swiper-pagination-bullet-active {
             background-color: #ffffff;
+        }
+        
+        /* Estilos para las tarjetas de Paquetes y Sets */
+        .package-card {
+            transition: all 0.3s ease-in-out;
+        }
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .set-card {
+            border: 4px solid transparent;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .set-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .set-card.selected {
+            border-color: var(--color-primary);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+        }
+        .set-card .overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .set-card.selected .overlay {
+            opacity: 1;
         }
 
         /* Estilos elegantes para el calendario */
@@ -121,7 +152,7 @@
             border: 2px solid;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 0.1em; /* Espaciado de letras clave */
+            letter-spacing: 0.1em;
             font-size: 0.875rem;
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
@@ -177,19 +208,19 @@
             <div class="swiper-container hero-swiper absolute inset-0 w-full h-full">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide hero-slide">
-                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero1.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero1.jpg');"></div>
                         <div class="absolute inset-0 bg-black/40"></div>
                     </div>
                     <div class="swiper-slide hero-slide">
-                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero2.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero2.jpg');"></div>
                         <div class="absolute inset-0 bg-black/40"></div>
                     </div>
                     <div class="swiper-slide hero-slide">
-                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero3.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero3.jpg');"></div>
                         <div class="absolute inset-0 bg-black/40"></div>
                     </div>
                     <div class="swiper-slide hero-slide">
-                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero4.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero4.jpg');"></div>
                         <div class="absolute inset-0 bg-black/40"></div>
                     </div>
                 </div>
@@ -244,16 +275,16 @@
             </div>
         </section>
 
-        <!-- Sección de Paquetes -->
+        <!-- Sección de Paquetes (AHORA INTERACTIVA) -->
         <section id="paquetes" class="py-24 section-bg-alt">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 max-w-3xl mx-auto">
-                      <h2 class="text-4xl font-bold mb-6">Paquetes de Preventa</h2>
-                      <p class="text-lg text-gray-600">Elige la experiencia perfecta para tu familia. Precios especiales válidos solo durante la preventa.</p>
+                      <h2 class="text-4xl font-bold mb-6">1. Elige tu Paquete Ideal</h2>
+                      <p class="text-lg text-gray-600">Comienza seleccionando la experiencia perfecta para tu familia. Precios especiales válidos solo durante la preventa.</p>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8 items-center">
                     <!-- Paquete 1 -->
-                    <div class="border border-gray-200 p-8 rounded-lg text-center">
+                    <div class="package-card border border-gray-200 p-8 rounded-lg text-center bg-white cursor-pointer" data-package-value="Copo de Nieve - $1,500">
                         <h3 class="text-2xl font-bold mb-2">Copo de Nieve</h3>
                         <p class="text-gray-500 mb-6">Ideal para una postal navideña</p>
                         <div class="mb-6"><span class="text-4xl font-black" style="color: var(--color-primary)">$1,500</span> <span class="line-through text-gray-400">$1,950</span></div>
@@ -262,10 +293,10 @@
                             <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 mr-3 text-green-600"></i> 20 min de sesión</li>
                             <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 mr-3 text-green-600"></i> 5 fotos digitales editadas</li>
                         </ul>
-                        <a href="#reserva" class="w-full block btn-ghost btn-ghost-dark font-bold">Seleccionar</a>
+                        <span class="w-full block btn-ghost btn-ghost-dark font-bold pointer-events-none">Seleccionar</span>
                     </div>
                     <!-- Paquete 2 (Popular) -->
-                    <div class="border-2 p-10 rounded-lg text-center relative" style="border-color: var(--color-primary);">
+                    <div class="package-card border-2 p-10 rounded-lg text-center relative bg-white cursor-pointer" style="border-color: var(--color-primary);" data-package-value="Reno Radiante - $2,800">
                         <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold px-4 py-1 rounded-full text-sm uppercase tracking-widest" style="background-color: var(--color-primary); color: white;">Popular</span>
                         <h3 class="text-3xl font-bold mb-2">Reno Radiante</h3>
                         <p class="text-gray-500 mb-6">La experiencia completa</p>
@@ -275,10 +306,10 @@
                             <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 mr-3 text-green-600"></i> 45 min de sesión</li>
                             <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 mr-3 text-green-600"></i> 15 fotos digitales editadas</li>
                         </ul>
-                        <a href="#reserva" class="w-full block font-bold text-white rounded-full py-3 px-6 transition duration-300 hover:opacity-90" style="background-color: var(--color-primary);">Seleccionar</a>
+                        <span class="w-full block font-bold text-white rounded-full py-3 px-6 transition duration-300 pointer-events-none" style="background-color: var(--color-primary);">Seleccionar</span>
                     </div>
                     <!-- Paquete 3 -->
-                    <div class="border border-gray-200 p-8 rounded-lg text-center">
+                    <div class="package-card border border-gray-200 p-8 rounded-lg text-center bg-white cursor-pointer" data-package-value="Estrella Polar - $3,800">
                         <h3 class="text-2xl font-bold mb-2">Estrella Polar</h3>
                         <p class="text-gray-500 mb-6">Recuerdos para toda la vida</p>
                         <div class="mb-6"><span class="text-4xl font-black" style="color: var(--color-primary)">$3,800</span> <span class="line-through text-gray-400">$4,500</span></div>
@@ -289,18 +320,48 @@
                             <li class="flex items-center"><i data-lucide="plus" class="h-5 w-5 mr-3 text-green-600"></i> Archivos sin edición</li>
                             <li class="flex items-center"><i data-lucide="image" class="h-5 w-5 mr-3 text-green-600"></i> 1 impresión 8x10</li>
                         </ul>
-                        <a href="#reserva" class="w-full block btn-ghost btn-ghost-dark font-bold">Seleccionar</a>
+                        <span class="w-full block btn-ghost btn-ghost-dark font-bold pointer-events-none">Seleccionar</span>
                     </div>
                 </div>
-                <!-- Información Importante -->
-                <div class="mt-16 text-center max-w-4xl mx-auto">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-8">Información Importante</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-gray-700">
-                        <div class="border border-gray-200 p-4 rounded-lg"><p><strong>Persona extra:</strong> $250</p></div>
-                        <div class="border border-gray-200 p-4 rounded-lg"><p>Somos <strong>100% Pet Friendly</strong> 🐾</p></div>
-                        <div class="border border-gray-200 p-4 rounded-lg"><p><strong>Entrega:</strong> 2 a 3 días hábiles</p></div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- ============== NUEVA SECCIÓN DE SELECCIÓN DE SET (PASO 2) ============= -->
+        <!-- ================================================================= -->
+        <section id="elige-set" class="py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 max-w-3xl mx-auto">
+                    <h2 class="text-4xl font-bold mb-6">2. Elige tu Escenario Preferido</h2>
+                    <p class="text-lg text-gray-600">Cada set ofrece una atmósfera única. Selecciona el que más te guste para continuar.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                    <!-- Card para Set Rústico -->
+                    <div class="set-card bg-white rounded-lg shadow-lg overflow-hidden group" data-set-name="Set Rústico">
+                        <div class="relative">
+                            <img src="set1.jpg" alt="Boceto del Set Rústico" class="w-full h-auto object-cover">
+                            <div class="absolute inset-0 bg-black/50 flex items-center justify-center overlay">
+                                <i data-lucide="check-circle" class="h-24 w-24 text-white/80"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">Set Rústico</h3>
+                            <p class="text-gray-600">Una atmósfera cálida y tradicional con toques de madera, pino y el clásico rojo navideño. Ideal para un recuerdo acogedor.</p>
+                        </div>
                     </div>
-                    <p class="mt-8 text-lg text-gray-600">Para poder brindarte la atención que mereces, el cupo es limitado. ¡Agenda con tiempo para garantizar tu fecha y horario ideal y no te quedes sin tu recuerdo navideño de este año!</p>
+                    <!-- Card para Set Elegante -->
+                    <div class="set-card bg-white rounded-lg shadow-lg overflow-hidden group" data-set-name="Set Elegante">
+                         <div class="relative">
+                            <img src="set2.jpg" alt="Boceto del Set Elegante" class="w-full h-auto object-cover">
+                            <div class="absolute inset-0 bg-black/50 flex items-center justify-center overlay">
+                                <i data-lucide="check-circle" class="h-24 w-24 text-white/80"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">Set Elegante</h3>
+                            <p class="text-gray-600">Un escenario luminoso y minimalista con tonos blancos, neutros y una vista invernal. Perfecto para un retrato sofisticado.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -382,8 +443,8 @@
         <section id="reserva" class="py-24">
             <div class="container mx-auto px-6">
                    <div class="text-center mb-16 max-w-3xl mx-auto">
-                       <h2 class="text-4xl font-bold mb-6">Reserva tu Experiencia</h2>
-                       <p class="text-lg text-gray-600">Selecciona un día y horario disponible. Los espacios son limitados para garantizar una atención personalizada.</p>
+                       <h2 class="text-4xl font-bold mb-6">3. Agenda tu Fecha y Completa tus Datos</h2>
+                       <p class="text-lg text-gray-600">Ya casi terminas. Asegura tu lugar en nuestro calendario y proporciona tus datos para la pre-reserva.</p>
                    </div>
 
                 <div class="bg-white rounded-lg shadow-xl p-8 md:p-12 flex flex-col lg:flex-row gap-12">
@@ -405,13 +466,16 @@
                     
                     <!-- Formulario de Reserva -->
                     <div class="w-full lg:w-1/2">
-                        <h3 class="text-2xl font-bold mb-6">Completa tu Pre-reserva</h3>
                         <form id="booking-form">
+                            <!-- CAMPO OCULTO PARA EL SET -->
+                            <input type="hidden" id="selected-set" name="selected-set" value="">
                             <input type="hidden" id="selected-datetime" name="selected-datetime">
+                            
+                            <div class="mb-4"><label for="package" class="block text-gray-700 font-bold mb-2">Paquete Seleccionado</label><select id="package" name="package" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2" style="--tw-ring-color: var(--color-primary)" required><option value="">Selecciona un paquete primero</option><option value="Copo de Nieve - $1,500">Copo de Nieve - $1,500</option><option value="Reno Radiante - $2,800">Reno Radiante - $2,800</option><option value="Estrella Polar - $3,800">Estrella Polar - $3,800</option></select></div>
                             <div class="mb-4"><label for="name" class="block text-gray-700 font-bold mb-2">Nombre</label><input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" style="--tw-ring-color: var(--color-primary)" required></div>
                             <div class="mb-4"><label for="email" class="block text-gray-700 font-bold mb-2">Correo</label><input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" style="--tw-ring-color: var(--color-primary)" required></div>
                             <div class="mb-4"><label for="phone" class="block text-gray-700 font-bold mb-2">Teléfono (WhatsApp)</label><input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" style="--tw-ring-color: var(--color-primary)" required></div>
-                            <div class="mb-6"><label for="package" class="block text-gray-700 font-bold mb-2">Paquete</label><select id="package" name="package" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2" style="--tw-ring-color: var(--color-primary)" required><option value="">Selecciona un paquete</option><option value="Copo de Nieve">Copo de Nieve - $1,500</option><option value="Reno Radiante">Reno Radiante - $2,800</option><option value="Estrella Polar">Estrella Polar - $3,800</option></select></div>
+                            
                             <button type="submit" id="submit-button" class="w-full font-bold text-white rounded-full py-4 px-6 transition duration-300 disabled:opacity-50" style="background-color: var(--color-primary);" disabled>Confirmar Pre-reserva</button>
                         </form>
                     </div>
@@ -456,277 +520,320 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         // Iconos Lucide
-        lucide.createIcons();
+lucide.createIcons();
 
-        // Menú Móvil
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-        document.querySelectorAll('#mobile-menu a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+// Menú Móvil
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+document.querySelectorAll('#mobile-menu a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
 
-        // Countdown Timer
-        const countdownDate = new Date("Oct 1, 2025 00:00:00").getTime();
-        const countdownFunction = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-            if (distance < 0) {
-                clearInterval(countdownFunction);
-                document.getElementById("countdown").innerHTML = "<h3 class='text-lg font-bold'>La preventa ha terminado</h3>";
-                return;
-            }
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("days").innerText = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
-        }, 1000);
-        
-        // --- Swiper Hero Carousel ---
-        const heroSwiper = new Swiper('.hero-swiper', {
-            loop: true,
-            effect: 'fade',
-            fadeEffect: { crossFade: true },
-            autoplay: { delay: 5000, disableOnInteraction: false, },
-            pagination: { el: '.swiper-pagination', clickable: true, },
-            keyboard: true,
-        });
+// Countdown Timer
+const countdownDate = new Date("Oct 1, 2025 00:00:00").getTime();
+const countdownFunction = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+    if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").innerHTML = "<h3 class='text-lg font-bold'>La preventa ha terminado</h3>";
+        return;
+    }
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("days").innerText = days.toString().padStart(2, '0');
+    document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+    document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+    document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+}, 1000);
 
-        // --- Swiper Testimonial Carousel ---
-        const testimonialSwiper = new Swiper('.testimonial-swiper', {
-            loop: true,
-            effect: 'fade', // <-- Esta es la línea mágica para la animación
-            fadeEffect: {
-                crossFade: true
-            },
-            autoplay: { 
-                delay: 6000, 
-                disableOnInteraction: false, 
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            keyboard: true,
-        });
-        
-        // --- Lógica del Calendario y Formulario ---
-        const monthYearEl = document.getElementById('month-year');
-        const calendarGridEl = document.getElementById('calendar-grid');
-        const prevMonthBtn = document.getElementById('prev-month');
-        const nextMonthBtn = document.getElementById('next-month');
-        const timeSlotsContainer = document.getElementById('time-slots-container');
-        const timeSlotsEl = document.getElementById('time-slots');
-        const selectedDateInfoEl = document.getElementById('selected-date-info');
-        const bookingForm = document.getElementById('booking-form');
-        const submitButton = document.getElementById('submit-button');
-        const selectedDateTimeField = document.getElementById('selected-datetime');
-        
-        let currentDate = new Date(2025, 9, 1);
-        let selectedDate = null;
-        let selectedTime = null;
+// --- Swiper Hero Carousel ---
+const heroSwiper = new Swiper('.hero-swiper', {
+    loop: true,
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
+    autoplay: { delay: 5000, disableOnInteraction: false, },
+    pagination: { el: '.swiper-pagination', clickable: true, },
+    keyboard: true,
+});
 
-        const bookedSessions = {}; 
-        const dailyTimeSlots = ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
-        const SESSIONS_PER_DAY = 4;
+// --- Swiper Testimonial Carousel ---
+const testimonialSwiper = new Swiper('.testimonial-swiper', {
+    loop: true,
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
+    autoplay: { delay: 6000, disableOnInteraction: false, },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    keyboard: true,
+});
 
-        function renderCalendar() {
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-            prevMonthBtn.disabled = (year === 2025 && month <= 9);
-            nextMonthBtn.disabled = (year === 2025 && month >= 11);
-            const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-            monthYearEl.textContent = `${monthNames[month]} ${year}`;
-            calendarGridEl.innerHTML = '';
-            ['D', 'L', 'M', 'M', 'J', 'V', 'S'].forEach(day => {
-                calendarGridEl.innerHTML += `<div class="font-bold text-gray-500 text-sm py-2">${day}</div>`;
-            });
-            const firstDayOfMonth = new Date(year, month, 1).getDay();
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-            for (let i = 0; i < firstDayOfMonth; i++) { calendarGridEl.innerHTML += `<div></div>`; }
-            for (let day = 1; day <= daysInMonth; day++) {
-                const loopDate = new Date(year, month, day);
-                const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-                const startDate = new Date(2025, 9, 20);
-                const endDate = new Date(2025, 11, 15);
-                const isWithinRange = loopDate >= startDate && loopDate <= endDate;
-                const bookedCount = bookedSessions[dateStr] ? bookedSessions[dateStr].length : 0;
-                const isFull = bookedCount >= SESSIONS_PER_DAY;
-                const isAvailable = isWithinRange && !isFull;
-                const isSelected = selectedDate && selectedDate.toDateString() === loopDate.toDateString();
-                let dayClasses = 'calendar-day h-10 w-10 flex items-center justify-center rounded-full';
-                if (isAvailable) dayClasses += ' available cursor-pointer';
-                else if (isFull) dayClasses += ' full';
-                else dayClasses += ' unavailable';
-                if (isSelected) dayClasses += ' selected';
-                const dayEl = document.createElement('div');
-                dayEl.textContent = day;
-                dayEl.className = dayClasses;
-                if (isAvailable) {
-                    dayEl.addEventListener('click', () => handleDateClick(year, month, day));
-                }
-                calendarGridEl.appendChild(dayEl);
-            }
-        }
-        
-        function handleDateClick(year, month, day) {
-            selectedDate = new Date(year, month, day);
-            selectedTime = null;
-            updateSubmitButton();
-            renderCalendar(); 
-            const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-            const bookedTimes = bookedSessions[dateStr] || [];
-            const availableTimes = dailyTimeSlots.filter(time => !bookedTimes.includes(time));
-            selectedDateInfoEl.textContent = selectedDate.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
-            timeSlotsEl.innerHTML = '';
-            if (availableTimes.length > 0) {
-                availableTimes.forEach(time => {
-                    const slotEl = document.createElement('button');
-                    slotEl.type = 'button'; 
-                    slotEl.textContent = time;
-                    slotEl.className = 'time-slot available border-2 border-gray-300 rounded-lg py-2 px-1 text-sm font-medium';
-                    slotEl.addEventListener('click', () => handleTimeClick(time, slotEl));
-                    timeSlotsEl.appendChild(slotEl);
-                });
-            } else { 
-                timeSlotsEl.innerHTML = '<p class="text-center col-span-full text-gray-500">No hay más horarios para este día.</p>';
-            }
-            timeSlotsContainer.classList.remove('hidden');
-        }
+// --- LÓGICA PARA LA SELECCIÓN DE PAQUETES Y SETS (NUEVO) ---
+const packageCards = document.querySelectorAll('.package-card');
+const setCards = document.querySelectorAll('.set-card');
+const packageSelectField = document.getElementById('package');
+const selectedSetField = document.getElementById('selected-set');
+const eligeSetSection = document.getElementById('elige-set');
 
-        function handleTimeClick(time, clickedEl) {
-            selectedTime = time;
-            document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
-            clickedEl.classList.add('selected');
-            updateSubmitButton();
-        }
-
-        function updateSubmitButton() {
-            if (selectedDate && selectedTime) {
-                const dateTimeStr = `${selectedDate.toISOString().split('T')[0]} ${selectedTime}`;
-                selectedDateTimeField.value = dateTimeStr;
-                submitButton.disabled = false;
-                submitButton.textContent = 'Confirmar Pre-reserva';
-            } else {
-                selectedDateTimeField.value = '';
-                submitButton.disabled = true;
-                submitButton.textContent = 'Selecciona fecha y hora';
-            }
-        }
-        
-        prevMonthBtn.addEventListener('click', () => { if (currentDate.getFullYear() > 2025 || (currentDate.getFullYear() === 2025 && currentDate.getMonth() > 9)) { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); } });
-        nextMonthBtn.addEventListener('click', () => { if (currentDate.getFullYear() < 2025 || (currentDate.getFullYear() === 2025 && currentDate.getMonth() < 11)) { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(); } });
-
-        // --- Lógica del Lightbox de la Galería ---
-        const lightboxModal = document.getElementById('lightbox-modal');
-        const lightboxContent = document.getElementById('lightbox-content');
-        const lightboxImage = document.getElementById('lightbox-image');
-        const closeLightboxBtn = document.getElementById('close-lightbox');
-        const galleryImages = document.querySelectorAll('.gallery-image');
-
-        galleryImages.forEach(image => {
-            const parentContainer = image.parentElement;
-            if (parentContainer) {
-                 parentContainer.classList.add('cursor-pointer');
-                 parentContainer.addEventListener('click', () => {
-                    lightboxImage.src = image.src;
-                    lightboxModal.classList.remove('opacity-0', 'pointer-events-none');
-                    lightboxContent.classList.remove('scale-95');
-                    lucide.createIcons();
-                });
-            }
-        });
-
-        const closeLightbox = () => {
-            lightboxModal.classList.add('opacity-0');
-            lightboxContent.classList.add('scale-95');
-            setTimeout(() => {
-                lightboxModal.classList.add('pointer-events-none');
-            }, 300);
-        };
-
-        closeLightboxBtn.addEventListener('click', closeLightbox);
-        lightboxModal.addEventListener('click', (e) => {
-            if (e.target === lightboxModal) {
-                closeLightbox();
-            }
-        });
-
-        // --- Lógica del Formulario y Conexión con n8n ---
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (!e.target.checkValidity() || !selectedDate || !selectedTime) {
-                console.error('Formulario inválido');
-                return;
-            }
-            submitButton.disabled = true;
-            submitButton.innerHTML = '<div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white mx-auto"></div>';
-
-            const dateStr = selectedDate.toISOString().split('T')[0];
-            if (!bookedSessions[dateStr]) { bookedSessions[dateStr] = []; }
-            bookedSessions[dateStr].push(selectedTime);
-
-            const formData = new FormData(bookingForm);
-            const data = Object.fromEntries(formData.entries());
-            const webhookUrl = 'https://n8n-n8n.a8ipup.easypanel.host/webhook-test/ac6275b3-a8bb-4522-b102-edd18c01df8d';
-
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-            })
-            .then(response => {
-                if (response.ok) {
-                    showThankYouModal();
-                    bookingForm.reset();
-                    selectedDate = null;
-                    selectedTime = null;
-                    timeSlotsContainer.classList.add('hidden');
-                    renderCalendar();
-                    updateSubmitButton();
-                } else {
-                    throw new Error('Error en la respuesta del servidor');
-                }
-            })
-            .catch(error => {
-                console.error('Error en fetch:', error);
-                const index = bookedSessions[dateStr].indexOf(selectedTime);
-                if (index > -1) { bookedSessions[dateStr].splice(index, 1); }
-                alert('Hubo un problema de conexión. Por favor, intenta de nuevo.');
-            })
-            .finally(() => {
-                submitButton.disabled = false;
-                submitButton.innerHTML = 'Confirmar Pre-reserva';
-            });
-        });
-
-        // --- Controladores para la Ventana de Agradecimiento ---
-        const thankYouModal = document.getElementById('thank-you-modal');
-        const thankYouContent = document.getElementById('thank-you-content');
-        const closeThankYouModalBtn = document.getElementById('close-thank-you-modal');
-
-        function showThankYouModal() {
-            thankYouModal.classList.remove('opacity-0', 'pointer-events-none');
-            thankYouContent.classList.remove('scale-95');
-            lucide.createIcons();
-        }
-
-        function hideThankYouModal() {
-            thankYouModal.classList.add('opacity-0', 'pointer-events-none');
-            thankYouContent.classList.add('scale-95');
-        }
-
-        closeThankYouModalBtn.addEventListener('click', hideThankYouModal);
-        thankYouModal.addEventListener('click', (e) => {
-            if (e.target === thankYouModal) {
-                hideThankYouModal();
-            }
-        });
-
-        renderCalendar();
+packageCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+         e.preventDefault(); 
+        const packageValue = card.dataset.packageValue;
+        packageSelectField.value = packageValue;
         updateSubmitButton();
+        if (eligeSetSection) {
+            eligeSetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+
+setCards.forEach(card => {
+    card.addEventListener('click', () => {
+        setCards.forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        const setName = card.dataset.setName;
+        selectedSetField.value = setName;
+        updateSubmitButton();
+        document.getElementById('reserva').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
+
+// --- LÓGICA DEL FORMULARIO Y CALENDARIO (ACTUALIZADO) ---
+const bookingForm = document.getElementById('booking-form');
+const submitButton = document.getElementById('submit-button');
+const selectedDateTimeField = document.getElementById('selected-datetime');
+const monthYearEl = document.getElementById('month-year');
+const calendarGridEl = document.getElementById('calendar-grid');
+const prevMonthBtn = document.getElementById('prev-month');
+const nextMonthBtn = document.getElementById('next-month');
+const timeSlotsContainer = document.getElementById('time-slots-container');
+const timeSlotsEl = document.getElementById('time-slots');
+const selectedDateInfoEl = document.getElementById('selected-date-info');
+
+let currentDate = new Date(2025, 9, 1);
+let selectedDate = null;
+let selectedTime = null;
+const bookedSessions = {}; 
+const dailyTimeSlots = ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
+const SESSIONS_PER_DAY = 4;
+
+// FUNCIÓN DE BOTÓN ACTUALIZADA
+function updateSubmitButton() {
+    if (packageSelectField.value && selectedSetField.value && selectedDate && selectedTime) {
+        const dateTimeStr = `${selectedDate.toISOString().split('T')[0]} ${selectedTime}`;
+        selectedDateTimeField.value = dateTimeStr;
+        submitButton.disabled = false;
+        submitButton.textContent = 'Confirmar Pre-reserva';
+    } else {
+        selectedDateTimeField.value = '';
+        submitButton.disabled = true;
+        if (!packageSelectField.value) {
+            submitButton.textContent = '1. Elige tu paquete';
+        } else if (!selectedSetField.value) {
+            submitButton.textContent = '2. Ahora elige tu escenario';
+        } else {
+            submitButton.textContent = '3. Selecciona fecha y hora';
+        }
+    }
+}
+
+function handleDateClick(year, month, day) {
+    selectedDate = new Date(year, month, day);
+    selectedTime = null;
+    renderCalendar(); 
+    const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+    const bookedTimes = bookedSessions[dateStr] || [];
+    const availableTimes = dailyTimeSlots.filter(time => !bookedTimes.includes(time));
+    selectedDateInfoEl.textContent = selectedDate.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+    timeSlotsEl.innerHTML = '';
+    if (availableTimes.length > 0) {
+        availableTimes.forEach(time => {
+            const slotEl = document.createElement('button');
+            slotEl.type = 'button'; 
+            slotEl.textContent = time;
+            slotEl.className = 'time-slot available border-2 border-gray-300 rounded-lg py-2 px-1 text-sm font-medium';
+            slotEl.addEventListener('click', () => handleTimeClick(time, slotEl));
+            timeSlotsEl.appendChild(slotEl);
+        });
+    } else { 
+        timeSlotsEl.innerHTML = '<p class="text-center col-span-full text-gray-500">No hay más horarios para este día.</p>';
+    }
+    timeSlotsContainer.classList.remove('hidden');
+    updateSubmitButton();
+}
+
+function handleTimeClick(time, clickedEl) {
+    selectedTime = time;
+    document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
+    clickedEl.classList.add('selected');
+    updateSubmitButton();
+}
+
+function renderCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    
+    prevMonthBtn.disabled = (year === 2025 && month <= 9);
+    nextMonthBtn.disabled = (year === 2025 && month >= 11);
+
+    const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    monthYearEl.textContent = `${monthNames[month]} ${year}`;
+    calendarGridEl.innerHTML = '';
+    ['D', 'L', 'M', 'M', 'J', 'V', 'S'].forEach(day => {
+        calendarGridEl.innerHTML += `<div class="font-bold text-gray-500 text-sm py-2">${day}</div>`;
+    });
+    
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    for (let i = 0; i < firstDayOfMonth; i++) { calendarGridEl.innerHTML += `<div></div>`; }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+        const loopDate = new Date(year, month, day);
+        const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+        const startDate = new Date(2025, 9, 20);
+        const endDate = new Date(2025, 11, 15);
+        
+        const isWithinRange = loopDate >= startDate && loopDate <= endDate;
+        const bookedCount = bookedSessions[dateStr] ? bookedSessions[dateStr].length : 0;
+        const isFull = bookedCount >= SESSIONS_PER_DAY;
+        const isAvailable = isWithinRange && !isFull;
+        const isSelected = selectedDate && selectedDate.toDateString() === loopDate.toDateString();
+        
+        let dayClasses = 'calendar-day h-10 w-10 flex items-center justify-center rounded-full';
+        if (isAvailable) dayClasses += ' available cursor-pointer';
+        else if (isFull) dayClasses += ' full';
+        else dayClasses += ' unavailable';
+        if (isSelected) dayClasses += ' selected';
+        
+        const dayEl = document.createElement('div');
+        dayEl.textContent = day;
+        dayEl.className = dayClasses;
+        if (isAvailable) {
+            dayEl.addEventListener('click', () => handleDateClick(year, month, day));
+        }
+        calendarGridEl.appendChild(dayEl);
+    }
+}
+
+prevMonthBtn.addEventListener('click', () => { if (!(currentDate.getFullYear() === 2025 && currentDate.getMonth() <= 9)) { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); } });
+nextMonthBtn.addEventListener('click', () => { if (!(currentDate.getFullYear() === 2025 && currentDate.getMonth() >= 11)) { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(); } });
+
+packageSelectField.addEventListener('change', updateSubmitButton);
+document.addEventListener('DOMContentLoaded', () => {
+    renderCalendar();
+    updateSubmitButton();
+});
+
+// --- LÓGICA DE MODALES Y FORM SUBMISSION (PRESERVADA) ---
+const lightboxModal = document.getElementById('lightbox-modal');
+const lightboxContent = document.getElementById('lightbox-content');
+const lightboxImage = document.getElementById('lightbox-image');
+const closeLightboxBtn = document.getElementById('close-lightbox');
+const galleryImages = document.querySelectorAll('.gallery-image');
+
+galleryImages.forEach(image => {
+    const parentContainer = image.parentElement;
+    if (parentContainer) {
+         parentContainer.classList.add('cursor-pointer');
+         parentContainer.addEventListener('click', () => {
+            lightboxImage.src = image.src;
+            lightboxModal.classList.remove('opacity-0', 'pointer-events-none');
+            lightboxContent.classList.remove('scale-95');
+            lucide.createIcons();
+        });
+    }
+});
+
+const closeLightbox = () => {
+    lightboxModal.classList.add('opacity-0');
+    lightboxContent.classList.add('scale-95');
+    setTimeout(() => {
+        lightboxModal.classList.add('pointer-events-none');
+    }, 300);
+};
+
+closeLightboxBtn.addEventListener('click', closeLightbox);
+lightboxModal.addEventListener('click', (e) => {
+    if (e.target === lightboxModal) {
+        closeLightbox();
+    }
+});
+
+const thankYouModal = document.getElementById('thank-you-modal');
+const thankYouContent = document.getElementById('thank-you-content');
+const closeThankYouModalBtn = document.getElementById('close-thank-you-modal');
+
+function showThankYouModal() {
+    thankYouModal.classList.remove('opacity-0', 'pointer-events-none');
+    thankYouContent.classList.remove('scale-95');
+    lucide.createIcons();
+}
+
+function hideThankYouModal() {
+    thankYouModal.classList.add('opacity-0', 'pointer-events-none');
+    thankYouContent.classList.add('scale-95');
+}
+
+closeThankYouModalBtn.addEventListener('click', hideThankYouModal);
+thankYouModal.addEventListener('click', (e) => {
+    if (e.target === thankYouModal) {
+        hideThankYouModal();
+    }
+});
+
+bookingForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (!e.target.checkValidity() || !selectedDate || !selectedTime || !packageSelectField.value || !selectedSetField.value) {
+        console.error('Formulario inválido o incompleto');
+        return;
+    }
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white mx-auto"></div>';
+
+    const dateStr = selectedDate.toISOString().split('T')[0];
+    if (!bookedSessions[dateStr]) { bookedSessions[dateStr] = []; }
+    bookedSessions[dateStr].push(selectedTime);
+
+    const formData = new FormData(bookingForm);
+    const data = Object.fromEntries(formData.entries());
+    const webhookUrl = 'https://n8n-n8n.a8ipup.easypanel.host/webhook/ac6275b3-a8bb-4522-b102-edd18c01df8d'; // URL DE PRODUCCIÓN
+
+    fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (response.ok) {
+            showThankYouModal();
+            bookingForm.reset();
+            selectedDate = null;
+            selectedTime = null;
+            selectedSetField.value = '';
+            setCards.forEach(c => c.classList.remove('selected'));
+            timeSlotsContainer.classList.add('hidden');
+            renderCalendar();
+            updateSubmitButton();
+        } else {
+            throw new Error('Error en la respuesta del servidor');
+        }
+    })
+    .catch(error => {
+        console.error('Error en fetch:', error);
+        const index = bookedSessions[dateStr].indexOf(selectedTime);
+        if (index > -1) { bookedSessions[dateStr].splice(index, 1); }
+        alert('Hubo un problema de conexión. Por favor, intenta de nuevo.');
+    })
+    .finally(() => {
+        submitButton.disabled = false;
+        submitButton.innerHTML = 'Confirmar Pre-reserva';
+    });
+});
     </script>
 </body>
 </html>
