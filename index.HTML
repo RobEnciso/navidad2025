@@ -4,7 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesiones Navideñas 2025 - CreaFilms</title>
+    <meta name="description" content="Sesiones fotográficas navideñas 2025 en México. Paquetes desde $1,500. Sets únicos, 15 años de experiencia. Reserva tu fecha ahora.">
+<meta name="keywords" content="sesiones navideñas, fotografía navidad, fotos familiares navidad, CreaFilms, sesiones fotográficas México">
+<meta name="author" content="CreaFilms">
+
+<!-- Open Graph para Facebook -->
+<meta property="og:title" content="Sesiones Fotográficas Navideñas 2025 | CreaFilms">
+<meta property="og:description" content="Captura la magia navideña con sesiones profesionales. Sets únicos, 15 años de experiencia. Paquetes desde $1,500.">
+<meta property="og:image" content="hero1.jpg">
+<meta property="og:url" content="https://tudominio.com">
+<meta property="og:type" content="website">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sesiones Fotográficas Navideñas 2025 | CreaFilms">
+<meta name="twitter:description" content="Captura la magia navideña con sesiones profesionales. Paquetes desde $1,500.">
+<meta name="twitter:image" content="hero1.jpg">
+
+    <title>Sesiones Fotográficas Navideñas 2025 | CreaFilms México - Desde $1,500</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,15 +47,43 @@
         h1, h2, h3 {
             font-family: 'Playfair Display', serif;
         }
+        /* Tipografía responsive mejorada */
+h1 {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.25;
+}
+
+/* Contenedor responsive mejorado */
+.container {
+max-width: 1400px;
+}
+
+/* Hero responsive */
+#hero {
+min-height: clamp(70vh, 100vh, 100vh);
+}
+
+/* Espaciado responsive */
+.py-24 {
+padding-top: clamp(3rem, 8vw, 6rem);
+padding-bottom: clamp(3rem, 8vw, 6rem);
+}
         
         /* Estilos para el carrusel Hero */
         .hero-swiper {
             height: 100%;
         }
         .hero-slide {
-            background-size: cover;
-            background-position: center;
-        }
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+min-height: 100vh;
+}
         
         /* Animación de Zoom (Ken Burns Effect) */
         @keyframes kenburns-effect {
@@ -173,7 +218,202 @@
             background-color: var(--color-primary);
             color: white;
         }
+        /* Sección de Ubicación */
+.location-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.location-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.location-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.map-container {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    height: 400px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.info-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info-card h3 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.info-card p {
+    color: #6c757d;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.contact-details {
+    margin-bottom: 25px;
+}
+
+.contact-item {
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.contact-item strong {
+    color: #2c3e50;
+    display: inline-block;
+    width: 100px;
+}
+
+.contact-item a {
+    color: #e74c3c;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: #c0392b;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-location, .btn-whatsapp {
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+    flex: 1;
+    min-width: 140px;
+}
+
+.btn-location {
+    background: #3498db;
+    color: white;
+}
+
+.btn-location:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.btn-whatsapp {
+    background: #25d366;
+    color: white;
+}
+
+.btn-whatsapp:hover {
+    background: #20b954;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .location-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .location-section {
+        padding: 60px 0;
+    }
+    
+    .location-section h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .info-card {
+        padding: 30px;
+        height: auto;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-location, .btn-whatsapp {
+        flex: none;
+    }
+}
     </style>
+    <!-- Schema Markup para CreaFilms -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "CreaFilms",
+  "description": "Estudio de fotografía especializado en sesiones familiares en Puerto Vallarta",
+  "url": "https://tudominio.com",
+  "email": "creafilmsvallarta@gmail.com",
+  "telephone": "+52-322-405-2668",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+52-322-405-2668",
+      "contactType": "customer service",
+      "areaServed": "MX",
+      "availableLanguage": "es"
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "+52-322-355-0795",
+      "contactType": "WhatsApp",
+      "areaServed": "MX",
+      "availableLanguage": "es"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Puerto Vallarta",
+    "addressRegion": "Jalisco",
+    "addressCountry": "MX"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "20.6534",
+    "longitude": "-105.2253"
+  },
+  "openingHours": "Mo-Su 11:00-20:00",
+  "priceRange": "$1500-$3800",
+  "sameAs": [
+    "https://www.instagram.com/creafilms",
+    "https://www.facebook.com/Creafilms"
+  ]
+}
+</script>
+
 </head>
 
 <body class="text-gray-800">
@@ -208,19 +448,19 @@
             <div class="swiper-container hero-swiper absolute inset-0 w-full h-full">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide hero-slide">
-                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero1.jpg');"></div>
+                        <div class="hero-slide-animated w-full h-full bg-center bg-cover bg-no-repeat" style="background-image: url('hero1.jpg');"></div>
                         <div class="absolute inset-0 bg-black/40"></div>
                     </div>
                     <div class="swiper-slide hero-slide">
-                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero2.jpg');"></div>
+                        <div class="hero-slide-animated w-full h-full bg-center bg-cover bg-no-repeat" style="background-image: url('hero2.jpg');"></div>
                         <div class="absolute inset-0 bg-black/40"></div>
                     </div>
                     <div class="swiper-slide hero-slide">
-                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero3.jpg');"></div>
+                        <div class="hero-slide-animated w-full h-full bg-center bg-cover bg-no-repeat" style="background-image: url('hero3.jpg');"></div>
                         <div class="absolute inset-0 bg-black/40"></div>
                     </div>
                     <div class="swiper-slide hero-slide">
-                        <div class="hero-slide-animated w-full h-full" style="background-image: url('hero4.jpg');"></div>
+                        <div class="hero-slide-animated w-full h-full bg-center bg-cover bg-no-repeat" style="background-image: url('hero4.jpg');"></div>
                         <div class="absolute inset-0 bg-black/40"></div>
                     </div>
                 </div>
@@ -230,7 +470,9 @@
             <!-- Contenido superpuesto -->
             <div class="container mx-auto px-6 text-center relative z-10">
                 <p class="uppercase tracking-widest text-sm mb-4">sesiones navideñas 2025</p>
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">El Arte de Crear Recuerdos</h1>
+                <h1 class="font-bold leading-tight mb-6 text-4xl sm:text-5xl lg:text-7xl">
+  El Arte de Crear Recuerdos
+</h1>
                 <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto text-gray-200">Una experiencia fotográfica exclusiva para celebrar la magia de la navidad.</p>
                 <a href="#paquetes" class="btn-ghost btn-ghost-light font-bold">Descubrir Paquetes</a>
                 
@@ -339,7 +581,7 @@
                     <!-- Card para Set Rústico -->
                     <div class="set-card bg-white rounded-lg shadow-lg overflow-hidden group" data-set-name="Set Rústico">
                         <div class="relative">
-                            <img src="set1.jpg" alt="Boceto del Set Rústico" class="w-full h-auto object-cover">
+                            <img src="set1.jpg" alt="Set rústico navideño con decoración de madera y pino para sesiones fotográficas familiares" class="w-full h-auto object-cover">
                             <div class="absolute inset-0 bg-black/50 flex items-center justify-center overlay">
                                 <i data-lucide="check-circle" class="h-24 w-24 text-white/80"></i>
                             </div>
@@ -352,7 +594,7 @@
                     <!-- Card para Set Elegante -->
                     <div class="set-card bg-white rounded-lg shadow-lg overflow-hidden group" data-set-name="Set Elegante">
                          <div class="relative">
-                            <img src="set2.jpg" alt="Boceto del Set Elegante" class="w-full h-auto object-cover">
+                            <img src="set2.jpg" alt="Set elegante navideño minimalista con tonos blancos para fotografías familiares profesionales" class="w-full h-auto object-cover">
                             <div class="absolute inset-0 bg-black/50 flex items-center justify-center overlay">
                                 <i data-lucide="check-circle" class="h-24 w-24 text-white/80"></i>
                             </div>
@@ -374,12 +616,12 @@
                     <p class="text-lg text-gray-600">Un vistazo a la magia que hemos creado en años anteriores. Imagina a tu familia aquí.</p>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="group relative overflow-hidden rounded-lg"><img src="familia-g.jpg" alt="Foto navideña 1" class="gallery-image w-full h-full object-cover transform group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
-                    <div class="group relative overflow-hidden rounded-lg col-span-1 md:col-span-2"><img src="ninos-jugando-g.jpg" alt="Foto navideña 2" class="gallery-image w-full h-full object-cover transform group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
-                    <div class="group relative overflow-hidden rounded-lg"><img src="bebe-g.jpg" alt="Foto navideña 3" class="gallery-image w-full h-full object-cover transform group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
-                    <div class="group relative overflow-hidden rounded-lg col-span-1 md:col-span-2"><img src="familia-luces-g.jpg" alt="Foto navideña 4" class="gallery-image w-full h-full object-cover transform group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
-                    <div class="group relative overflow-hidden rounded-lg"><img src="detalle-g.jpg" alt="Foto navideña 5" class="gallery-image w-full h-full object-cover transform group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
-                    <div class="group relative overflow-hidden rounded-lg"><img src="pareja-g.jpg" alt="Foto navideña 6" class="gallery-image w-full h-full object-cover transform group-hover:scale-110 transition duration-500"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
+                    <div class="group relative overflow-hidden rounded-lg"><img data-src="familia-g.jpg" alt="Familia feliz en sesión fotográfica navideña profesional CreaFilms" class="gallery-image w-full h-full object-cover transform group-hover:scale-110 transition duration-500" loading="lazy"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
+                    <div class="group relative overflow-hidden rounded-lg col-span-1 md:col-span-2"><img data-src="ninos-jugando-g.jpg" alt="Niños jugando en sesión navideña con decoración rústica" class="gallery-image w-full h-full object-cover transform group-hover:scale-110 transition duration-500" loading="lazy"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
+                    <div class="group relative overflow-hidden rounded-lg"><img data-src="bebe-g.jpg" alt="Bebé en sesión fotográfica navideña con set elegante" class="gallery-image w-full h-full object-cover transform group-hover:scale-110 transition duration-500"loading="lazy"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
+                    <div class="group relative overflow-hidden rounded-lg col-span-1 md:col-span-2"><img data-src="familia-luces-g.jpg" alt="Familia con luces navideñas en sesión fotográfica profesional" class="gallery-image w-full h-full object-cover transform group-hover:scale-110 transition duration-500" loading="lazy"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
+                    <div class="group relative overflow-hidden rounded-lg"><img data-src="detalle-g.jpg" alt="Detalles decorativos navideños en sesión fotográfica CreaFilms" class="gallery-image w-full h-full object-cover transform group-hover:scale-110 transition duration-500" loading="lazy"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
+                    <div class="group relative overflow-hidden rounded-lg"><img data-src="pareja-g.jpg" alt="Pareja en sesión fotográfica navideña romántica" class="gallery-image w-full h-full object-cover transform group-hover:scale-110 transition duration-500" loading="lazy"><div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div></div>
                 </div>
             </div>
         </section>
@@ -482,6 +724,79 @@
                 </div>
             </div>
         </section>
+        <!-- Sección de Ubicación (ACTUALIZADA) -->
+<section id="ubicacion" class="py-24 section-bg-alt">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-12 max-w-3xl mx-auto">
+      <h2 class="text-4xl font-bold mb-4">Nuestra Ubicación</h2>
+      <p class="text-lg text-gray-600">Estamos en Puerto Vallarta, listos para capturar tus momentos más especiales.</p>
+    </div>
+
+    <!-- Grid responsivo -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+      <!-- MAPA -->
+      <div class="rounded-xl overflow-hidden shadow-lg bg-white">
+        <div class="aspect-[16/10] md:aspect-[16/9]">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.5053561072664!2d-105.2253!3d20.6534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8421455026658b2d%3A0xf4720f7a65732d1f!2sPuerto%20Vallarta%2C%20Jal.!5e0!3m2!1ses!2smx!4v1693703912345!5m2!1ses!2smx"
+            class="w-full h-full"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- TARJETA INFO -->
+      <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col">
+        <h3 class="text-2xl font-bold mb-2" style="color: var(--color-primary);">📍 Visítanos</h3>
+        <p class="text-gray-600 mb-6">
+          Estamos ubicados en Puerto Vallarta, listos para capturar tus momentos más especiales.
+        </p>
+
+        <div class="space-y-3 text-gray-700">
+          <div class="flex items-start">
+            <span class="w-32 font-semibold text-gray-900">📧 Email:</span>
+            <a href="mailto:creafilmsvallarta@gmail.com" class="text-red-500 hover:text-red-600">
+              creafilmsvallarta@gmail.com
+            </a>
+          </div>
+          <div class="flex items-start">
+            <span class="w-32 font-semibold text-gray-900">☎️ Estudio:</span>
+            <a href="tel:+523224052668" class="hover:underline">+52 322 405 2668</a>
+          </div>
+          <div class="flex items-start">
+            <span class="w-32 font-semibold text-gray-900">💬 WhatsApp:</span>
+            <a href="https://wa.me/523223550795?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios%20de%20fotografía%20navideña"
+               target="_blank"
+               class="hover:underline">
+              +52 322 355 0795
+            </a>
+          </div>
+          <div class="flex items-start">
+            <span class="w-32 font-semibold text-gray-900">🕒 Horarios:</span>
+            <span>Lun - Dom: 11:00 AM - 8:00 PM</span>
+          </div>
+        </div>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="https://maps.app.goo.gl/JMSwrkHoVHaDYAnA9" target="_blank"
+             class="btn-ghost btn-ghost-dark text-center w-full sm:w-auto">
+            Ver en Google Maps
+          </a>
+          <a href="https://wa.me/523223550795?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios%20de%20fotografía%20navideña"
+             target="_blank"
+             class="font-bold text-white rounded-full py-3 px-6 transition duration-300 w-full sm:w-auto text-center"
+             style="background-color:#25d366;">
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     </main>
 
     <!-- Footer -->
@@ -801,7 +1116,7 @@ bookingForm.addEventListener('submit', function(e) {
 
     const formData = new FormData(bookingForm);
     const data = Object.fromEntries(formData.entries());
-    const webhookUrl = 'https://n8n-n8n.a8ipup.easypanel.host/webhook-test/ac6275b3-a8bb-4522-b102-edd18c01df8d'; // URL DE PRODUCCIÓN
+    const webhookUrl = 'https://n8n-n8n.a8ipup.easypanel.host/webhook-test/ac6275b3-a8bb-4522-b102-edd18c01df8d'; 
 
     fetch(webhookUrl, {
         method: 'POST',
@@ -834,6 +1149,24 @@ bookingForm.addEventListener('submit', function(e) {
         submitButton.innerHTML = 'Confirmar Pre-reserva';
     });
 });
+// Lazy Loading para imágenes de la galería
+const lazyImages = document.querySelectorAll('img[data-src]');
+const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.classList.remove('lazy');
+            imageObserver.unobserve(img);
+        }
+    });
+});
+
+lazyImages.forEach(img => {
+    img.classList.add('lazy');
+    imageObserver.observe(img);
+});
     </script>
+    
 </body>
 </html>
