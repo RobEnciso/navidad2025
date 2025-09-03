@@ -1125,6 +1125,7 @@
                 e.preventDefault();
                 const packageValue = card.dataset.packageValue;
                 packageSelectField.value = packageValue;
+                updatePackageDetails();
                 updateSubmitButton();
                 if (eligeSetSection) {
                     eligeSetSection.scrollIntoView({
@@ -1463,21 +1464,57 @@ document.querySelectorAll('.faq-toggle').forEach(button => {
     }
   });
 });
+// PEGA ESTE NUEVO BLOQUE DE CÓDIGO
+// --- Lógica para actualizar costo y límite de personas por paquete ---
+const extraPersonsInput = document.getElementById('extra-persons');
+const totalCostDisplay = document.getElementById('total-cost');
+const extraCostPerPerson = 250;
 
-        // Actualizar costo total según personas extra
-        const baseCost = 1500; // Ajusta según tu paquete base o hazlo dinámico si quieres
-        const extraCostPerPerson = 250;
-        const extraPersonsInput = document.getElementById('extra-persons');
-        const totalCostDisplay = document.getElementById('total-cost');
+function updatePackageDetails() {
+    const selectedPackage = packageSelectField.value;
+    let baseCost = 0;
+    let maxExtras = 0;
+    
+    // Asignar costo y máximo de personas extra según el paquete
+    if (selectedPackage.includes('Copo de Nieve')) {
+        baseCost = 1500;
+        maxExtras = 6; // Límite para llegar a 9 (3 incluidos + 6 extra)
+    } else if (selectedPackage.includes('Reno Radiante')) {
+        baseCost = 2800;
+        maxExtras = 4; // Límite para llegar a 9 (5 incluidos + 4 extra)
+    } else if (selectedPackage.includes('Estrella Polar')) {
+        baseCost = 3800;
+        maxExtras = 2; // Límite para llegar a 9 (7 incluidos + 2 extra)
+    }
+    
+    // Actualizar el atributo 'max' del campo de personas extra
+    extraPersonsInput.max = maxExtras;
 
-        function updateTotalCost() {
-            const extraPersons = parseInt(extraPersonsInput.value) || 0;
-            const total = baseCost + extraPersons * extraCostPerPerson;
-            totalCostDisplay.textContent = `Costo total: $${total.toLocaleString()} MXN`;
-        }
+    // Si el valor actual excede el nuevo máximo, ajustarlo
+    if (parseInt(extraPersonsInput.value) > maxExtras) {
+        extraPersonsInput.value = maxExtras;
+    }
+    
+    // Calcular el costo total
+    const extraPersons = parseInt(extraPersonsInput.value) || 0;
+    const total = baseCost + (extraPersons * extraCostPerPerson);
 
-        extraPersonsInput.addEventListener('input', updateTotalCost);
-        updateTotalCost();
+    // Mostrar el costo total o un mensaje inicial
+    if (baseCost > 0) {
+        totalCostDisplay.textContent = `Costo total: $${total.toLocaleString()} MXN`;
+    } else {
+        totalCostDisplay.textContent = 'Selecciona un paquete para ver el costo.';
+        extraPersonsInput.value = 0; // Limpiar personas extra si no hay paquete
+    }
+}
+
+// Escuchar cambios en los dos campos para ejecutar la función
+packageSelectField.addEventListener('change', updatePackageDetails);
+extraPersonsInput.addEventListener('input', updatePackageDetails);
+
+// Ejecutar la función una vez al cargar la página
+updatePackageDetails();
+
     // --- Lógica para mostrar la burbuja de FAQ al pasar los paquetes ---
 const faqBubble = document.getElementById('open-faq-btn');
 const packagesSection = document.getElementById('paquetes');
