@@ -1169,6 +1169,39 @@
     const bookedSessions = {};
     const dailyTimeSlots = ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
     const SESSIONS_PER_DAY = 4;
+    // --- FUNCIÓN PARA CARGAR SESIONES PAGADAS DESDE N8N ---
+async function loadBookedSessions() {
+    // ▼▼▼ PEGA AQUÍ LA URL DE PRODUCCIÓN DE TU WEBHOOK ▼▼▼
+    const webhookUrl = 'https://n8n-n8n.a8ipup.easypanel.host/webhook/fechasBloqueads'; 
+    // ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲
+
+    try {
+        const response = await fetch(webhookUrl);
+        if (!response.ok) {
+            console.error('Error al cargar fechas desde n8n.');
+            return; 
+        }
+
+        const confirmedSessions = await response.json();
+
+        confirmedSessions.forEach(session => {
+            const dateStr = session.fecha;
+            const timeStr = session.hora;
+
+            if (dateStr && timeStr) {
+                if (!bookedSessions[dateStr]) {
+                    bookedSessions[dateStr] = []; 
+                }
+                bookedSessions[dateStr].push(timeStr); 
+            }
+        });
+
+        console.log('Sesiones pagadas y cargadas:', bookedSessions);
+
+    } catch (error) {
+        console.error('Error de conexión con el webhook de n8n:', error);
+    }
+}
 
     // FUNCIÓN DE BOTÓN ACTUALIZADA
     function updateSubmitButton() {
@@ -1289,10 +1322,15 @@
     });
 
     packageSelectField.addEventListener('change', updateSubmitButton);
-    document.addEventListener('DOMContentLoaded', () => {
-    renderCalendar();
+
+
+    // MODIFICADO: Ahora carga las fechas de n8n antes de dibujar el calendario
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadBookedSessions(); // 1. Espera a que se carguen las fechas pagadas
+    renderCalendar();           // 2. Dibuja el calendario con los datos ya actualizados
     updateSubmitButton();
-    });
+    updatePackageDetails();     
+});
 
     // --- LÓGICA DE MODALES Y FORM SUBMISSION (PRESERVADA) ---
     const lightboxModal = document.getElementById('lightbox-modal');
@@ -1356,8 +1394,8 @@
     
     // Validación del formulario (mantener código existente)
     if (!e.target.checkValidity() || !selectedDate || !selectedTime || !packageSelectField.value || !selectedSetField.value) {
-        console.error('Formulario inválido o incompleto');
-        return;
+    console.error('Formulario inválido o incompleto');
+    return;
     }
     
     // Mostrar indicador de carga
@@ -1367,7 +1405,7 @@
     // Registrar la sesión como reservada (mantener código existente)
     const dateStr = selectedDate.toISOString().split('T')[0];
     if (!bookedSessions[dateStr]) {
-        bookedSessions[dateStr] = [];
+    bookedSessions[dateStr] = [];
     }
     bookedSessions[dateStr].push(selectedTime);
 
@@ -1381,73 +1419,73 @@
     
     // Función para manejar el éxito (independientemente de si es por respuesta o por timeout)
     const handleSuccess = () => {
-        clearTimeout(timeoutId);
-        showThankYouModal();
-        bookingForm.reset();
-        selectedDate = null;
-        selectedTime = null;
-        selectedSetField.value = '';
-        setCards.forEach(c => c.classList.remove('selected'));
-        timeSlotsContainer.classList.add('hidden');
-        renderCalendar();
-        updateSubmitButton();
-        updatePackageDetails(); // Usar updatePackageDetails en lugar de updateTotalCost
+    clearTimeout(timeoutId);
+    showThankYouModal();
+    bookingForm.reset();
+    selectedDate = null;
+    selectedTime = null;
+    selectedSetField.value = '';
+    setCards.forEach(c => c.classList.remove('selected'));
+    timeSlotsContainer.classList.add('hidden');
+    renderCalendar();
+    updateSubmitButton();
+    updatePackageDetails(); // Usar updatePackageDetails en lugar de updateTotalCost
     };
 
     // Configurar timeout para considerar éxito después de 3 segundos
     // (asumiendo que el webhook recibe los datos aunque el navegador no reciba respuesta)
     timeoutId = setTimeout(() => {
-        console.log('Asumiendo éxito por timeout');
-        handleSuccess();
+    console.log('Asumiendo éxito por timeout');
+    handleSuccess();
     }, 3000);
 
     // Enviar datos al webhook
     fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
     })
     .then(response => {
-        // Si la respuesta es exitosa, manejar normalmente
-        if (response.ok) {
-            handleSuccess();
-        } else {
-            // Si hay error en la respuesta pero no es CORS, lanzar error
-            throw new Error('Error en la respuesta del servidor');
-        }
+    // Si la respuesta es exitosa, manejar normalmente
+    if (response.ok) {
+    handleSuccess();
+    } else {
+    // Si hay error en la respuesta pero no es CORS, lanzar error
+    throw new Error('Error en la respuesta del servidor');
+    }
     })
     .catch(error => {
-        console.error('Error en fetch:', error);
-        
-        // CAMBIO CLAVE: Verificar si el error es de CORS o conexión
-        if (error.message && (
-            error.message.includes('CORS') || 
-            error.message.includes('Failed to fetch') ||
-            error.message.includes('Network Error') ||
-            error.message.includes('NetworkError')
-        )) {
-            // Si es error CORS, asumimos que la solicitud llegó correctamente
-            console.log('Error CORS detectado, asumiendo éxito');
-            // No cancelamos el timeout, dejamos que maneje el éxito
-        } else {
-            // Si es otro tipo de error, cancelamos el timeout y mostramos error
-            clearTimeout(timeoutId);
-            
-            // Eliminar la sesión de las reservadas
-            const index = bookedSessions[dateStr].indexOf(selectedTime);
-            if (index > -1) {
-                bookedSessions[dateStr].splice(index, 1);
-            }
-            
-            // Mostrar mensaje de error
-            alert('Hubo un problema al procesar tu solicitud. Por favor, intenta de nuevo.');
-            
-            // Restaurar botón
-            submitButton.disabled = false;
-            submitButton.innerHTML = 'Confirmar Pre-reserva';
-        }
+    console.error('Error en fetch:', error);
+    
+    // CAMBIO CLAVE: Verificar si el error es de CORS o conexión
+    if (error.message && (
+    error.message.includes('CORS') || 
+    error.message.includes('Failed to fetch') ||
+    error.message.includes('Network Error') ||
+    error.message.includes('NetworkError')
+    )) {
+    // Si es error CORS, asumimos que la solicitud llegó correctamente
+    console.log('Error CORS detectado, asumiendo éxito');
+    // No cancelamos el timeout, dejamos que maneje el éxito
+    } else {
+    // Si es otro tipo de error, cancelamos el timeout y mostramos error
+    clearTimeout(timeoutId);
+    
+    // Eliminar la sesión de las reservadas
+    const index = bookedSessions[dateStr].indexOf(selectedTime);
+    if (index > -1) {
+    bookedSessions[dateStr].splice(index, 1);
+    }
+    
+    // Mostrar mensaje de error
+    alert('Hubo un problema al procesar tu solicitud. Por favor, intenta de nuevo.');
+    
+    // Restaurar botón
+    submitButton.disabled = false;
+    submitButton.innerHTML = 'Confirmar Pre-reserva';
+    }
     });
 });
     // Lazy Loading para imágenes de la galería
