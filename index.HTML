@@ -1169,11 +1169,9 @@
     const bookedSessions = {};
     const dailyTimeSlots = ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
     const SESSIONS_PER_DAY = 4;
-    // --- FUNCIÓN PARA CARGAR SESIONES PAGADAS DESDE N8N ---
+    // --- FUNCIÓN CORREGIDA PARA CARGAR SESIONES PAGADAS DESDE N8N ---
 async function loadBookedSessions() {
-    // ▼▼▼ PEGA AQUÍ LA URL DE PRODUCCIÓN DE TU WEBHOOK ▼▼▼
     const webhookUrl = 'https://n8n-n8n.a8ipup.easypanel.host/webhook/fechasBloqueads'; 
-    // ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲ ▲▲▲
 
     try {
         const response = await fetch(webhookUrl);
@@ -1182,7 +1180,15 @@ async function loadBookedSessions() {
             return; 
         }
 
-        const confirmedSessions = await response.json();
+        let confirmedSessions = await response.json();
+
+        // ----- INICIO DE LA CORRECCIÓN -----
+        // Si n8n devuelve un solo objeto (en lugar de un array), 
+        // lo convertimos en un array que contiene ese único objeto.
+        if (!Array.isArray(confirmedSessions)) {
+            confirmedSessions = [confirmedSessions];
+        }
+        // ----- FIN DE LA CORRECCIÓN -----
 
         confirmedSessions.forEach(session => {
             const dateStr = session.fecha;
