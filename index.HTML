@@ -1173,25 +1173,35 @@
     const SESSIONS_PER_DAY = 4;
 
     // Esta función "llama" a tu robot en N8N para pedirle los horarios ocupados
+// Esta nueva función lee el CSV público de Google Sheets
 async function fetchBookedSessions() {
-    // ▼▼▼ ¡IMPORTANTE! PEGA AQUÍ LA URL DE PRODUCCIÓN DE TU WEBHOOK ▼▼▼
-    const webhookUrl = 'https://n8n-n8n.a8ipup.easypanel.host/webhook/fechasBloqueadsD'; 
+    // ▼▼▼ ¡IMPORTANTE! PEGA AQUÍ LA URL PÚBLICA DE TU ARCHIVO .CSV ▼▼▼
+    const publicCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQgsOVBIoPxnL5jCNjguA0VR942SG5FdPpJJDFzNxkgRaRgs50k49yE9KpyTdwH-1eKiFLgztllD9n-/pub?gid=253208685&single=true&output=csv';
 
     try {
-        const response = await fetch(webhookUrl);
+        const response = await fetch(publicCsvUrl);
         if (!response.ok) {
-            console.error('La respuesta del servidor no fue exitosa.');
+            console.error('No se pudo cargar el archivo de disponibilidad.');
             return;
         }
-        const data = await response.json();
-        if (Array.isArray(data) && data.length > 0 && data[0].json) {
-            bookedSessions = data[0].json;
-        } else {
-            bookedSessions = data;
+        const csvText = await response.text();
+        const lines = csvText.trim().split('\n');
+        const tempBooked = {};
+
+        // Empezamos en 1 para saltarnos la fila de encabezados (Fecha,Hora)
+        for (let i = 1; i < lines.length; i++) {
+            const [date, time] = lines[i].split(',');
+            if (date && time) {
+                if (!tempBooked[date]) {
+                    tempBooked[date] = [];
+                }
+                tempBooked[date].push(time);
+            }
         }
-        console.log('Disponibilidad actualizada desde N8N:', bookedSessions);
+        bookedSessions = tempBooked;
+        console.log('Disponibilidad actualizada desde Google Sheets:', bookedSessions);
     } catch (error) {
-        console.error('Error al cargar la disponibilidad desde N8N:', error);
+        console.error('Error al procesar la disponibilidad:', error);
     }
 }
 
