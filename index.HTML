@@ -1321,17 +1321,25 @@ function handleTimeClick(time, clickedEl) {
     updateSubmitButton();
 }
 
-function updateSubmitButton() {
+// FUNCIÓN DE BOTÓN ACTUALIZADA
+    function updateSubmitButton() {
     if (packageSelectField.value && selectedSetField.value && selectedDate && selectedTime) {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Confirmar Pre-reserva';
+    const dateTimeStr = `${selectedDate.toISOString().split('T')[0]} ${selectedTime}`;
+    selectedDateTimeField.value = dateTimeStr;
+    submitButton.disabled = false;
+    submitButton.textContent = 'Confirmar Pre-reserva';
     } else {
-        submitButton.disabled = true;
-        if (!packageSelectField.value) { submitButton.textContent = '1. Elige tu paquete'; }
-        else if (!selectedSetField.value) { submitButton.textContent = '2. Ahora elige tu escenario'; }
-        else { submitButton.textContent = '3. Selecciona fecha y hora'; }
+    selectedDateTimeField.value = '';
+    submitButton.disabled = true;
+    if (!packageSelectField.value) {
+    submitButton.textContent = '1. Elige tu paquete';
+    } else if (!selectedSetField.value) {
+    submitButton.textContent = '2. Ahora elige tu escenario';
+    } else {
+    submitButton.textContent = '3. Selecciona fecha y hora';
     }
-}
+    }
+    }
 
 prevMonthBtn.addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); });
 nextMonthBtn.addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(); });
