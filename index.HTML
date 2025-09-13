@@ -442,7 +442,7 @@
     "@type": "LocalBusiness",
     "name": "CreaFilms",
     "description": "Estudio de fotografía especializado en sesiones familiares en Puerto Vallarta",
-    "url": "https://tudominio.com",
+    "url": "https://estudiocreafilms.com",
     "email": "creafilmsvallarta@gmail.com",
     "telephone": "+52-322-405-2668",
     "contactPoint": [{
@@ -1166,15 +1166,36 @@
     let currentDate = new Date(2025, 9, 1);
     let selectedDate = null;
     let selectedTime = null;
-    const bookedSessions = {
-        "2025-10-25": ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'],
-        "2025-11-13": ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'],
-        "2025-11-16": ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'],
-        "2025-11-18": ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'],
-        "2025-11-22": ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'],
-        "2025-11-29": ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'],
-        "2025-12-12": ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00']
-        };
+    // Estas son las nuevas instrucciones para leer la hoja de cálculo
+let bookedSessions = {}; // Empezamos con una lista vacía
+const googleSheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQgsOVBIoPxnL5jCNjguA0VR942SG5FdPpJJDFzNxkgRaRgs50k49yE9KpyTdwH-1eKiFLgztllD9n-/pub?gid=253208685&single=true&output=csv';
+
+async function fetchBookedSessions() {
+    try {
+        const response = await fetch(googleSheetURL);
+        const csvText = await response.text();
+        const newBookedSessions = {};
+        const rows = csvText.trim().split('\n');
+
+        // Esto lee cada fila de tu hoja (asumiendo Fecha en Columna A, Hora en Columna B)
+        rows.forEach(row => {
+            const columns = row.split(',');
+            if (columns.length < 2) return;
+            const date = columns[0].trim();
+            const time = columns[1].trim();
+            if (!newBookedSessions[date]) {
+                newBookedSessions[date] = [];
+            }
+            newBookedSessions[date].push(time);
+        });
+
+        bookedSessions = newBookedSessions;
+        console.log('Fechas ocupadas cargadas desde Google Sheets:', bookedSessions);
+    } catch (error) {
+        console.error('No se pudieron cargar las fechas:', error);
+    }
+}
+    
 
     const dailyTimeSlots = ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
     const SESSIONS_PER_DAY = 4;
@@ -1298,10 +1319,11 @@
     });
 
     packageSelectField.addEventListener('change', updateSubmitButton);
-    document.addEventListener('DOMContentLoaded', () => {
-    renderCalendar();
+    document.addEventListener('DOMContentLoaded', async () => {
+    await fetchBookedSessions(); // 1. Primero, lee la lista de Google Sheets
+    renderCalendar();            // 2. Después, dibuja el calendario con las fechas actualizadas
     updateSubmitButton();
-    });
+});
 
     // --- LÓGICA DE MODALES Y FORM SUBMISSION (PRESERVADA) ---
     const lightboxModal = document.getElementById('lightbox-modal');
