@@ -453,6 +453,39 @@
     opacity: 1;
 }
 
+/* New Summary Styles */
+#summary-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.summary-label {
+    font-weight: bold;
+    color: var(--color-text);
+    font-size: 0.875rem; /* text-sm */
+}
+.summary-value {
+    text-align: right;
+    color: #4b5563; /* gray-600 */
+    font-size: 0.875rem;
+}
+.summary-item.summary-total {
+    border-top: 1px solid #e5e7eb; /* gray-200 */
+    padding-top: 0.5rem;
+    margin-top: 0.25rem;
+}
+.summary-total .summary-label,
+.summary-total .summary-value {
+    font-size: 1rem; /* text-base */
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
 @media (max-width: 768px) {
     #booking-summary {
         bottom: auto;
@@ -464,6 +497,50 @@
         border-radius: 0;
         border-bottom: 1px solid #e2e8f0;
         box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        padding: 0.75rem; /* 12px */
+    }
+    #booking-summary h3 {
+        display: none; /* Hide title on mobile */
+    }
+    #summary-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: auto auto;
+        gap: 0.125rem 0.5rem; /* 2px 8px */
+        align-items: center;
+        text-align: center;
+    }
+    .summary-item {
+        display: contents; /* Makes the item's children part of the grid */
+    }
+    .summary-label {
+        grid-row: 1;
+        font-size: 0.65rem; /* 10px */
+        font-weight: normal;
+        text-transform: uppercase;
+        color: #6b7280; /* gray-500 */
+        letter-spacing: 0.05em;
+    }
+    .summary-value {
+        grid-row: 2;
+        font-size: 0.75rem; /* 12px */
+        font-weight: 600;
+        text-align: center;
+        color: var(--color-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .summary-item.summary-total {
+        border-top: none;
+        padding-top: 0;
+        margin-top: 0;
+    }
+    .summary-total .summary-label,
+    .summary-total .summary-value {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--color-primary);
     }
 }
     </style>
@@ -1043,12 +1120,27 @@
             </svg>
         </button>
         <h3 class="text-xl font-bold mb-4" style="color: var(--color-primary);">Tu Reserva</h3>
-        <div class="space-y-2 text-sm text-gray-700">
-            <div><strong>Paquete:</strong> <span id="summary-package">--</span></div>
-            <div><strong>Set:</strong> <span id="summary-set">--</span></div>
-            <div><strong>Fecha:</strong> <span id="summary-date">--</span></div>
-            <div><strong>Hora:</strong> <span id="summary-time">--</span></div>
-            <div class="mt-3 pt-3 border-t border-gray-200 font-bold text-base"><strong>Costo Total:</strong> <span id="summary-cost">--</span></div>
+        <div id="summary-container">
+            <div class="summary-item">
+                <div class="summary-label">Paquete</div>
+                <div id="summary-package" class="summary-value">--</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Set</div>
+                <div id="summary-set" class="summary-value">--</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Fecha</div>
+                <div id="summary-date" class="summary-value">--</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Hora</div>
+                <div id="summary-time" class="summary-value">--</div>
+            </div>
+            <div class="summary-item summary-total">
+                <div class="summary-label">Total</div>
+                <div id="summary-cost" class="summary-value">--</div>
+            </div>
         </div>
     </div>
 
@@ -1269,15 +1361,28 @@ async function fetchBookedSessions() {
             return;
         }
 
-        const selectedPackageText = packageSelectField.value ? packageSelectField.options[packageSelectField.selectedIndex].text : '--';
-        summaryPackage.textContent = selectedPackageText;
+        const isMobile = window.innerWidth <= 768;
+
+        const fullPackageText = packageSelectField.value ? packageSelectField.options[packageSelectField.selectedIndex].text : '--';
+        // On mobile, show only package name, not price.
+        summaryPackage.textContent = isMobile ? fullPackageText.split(' - ')[0] : fullPackageText;
+
         summarySet.textContent = selectedSetField.value || '--';
-        summaryDate.textContent = selectedDate ? selectedDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }) : '--';
+
+        // Use a shorter date format on mobile
+        let dateText = '--';
+        if (selectedDate) {
+            dateText = selectedDate.toLocaleDateString('es-ES', {
+                day: 'numeric',
+                month: isMobile ? 'short' : 'long',
+            });
+        }
+        summaryDate.textContent = dateText;
         summaryTime.textContent = selectedTime || '--';
 
         const costText = totalCostDisplay.textContent;
         if (costText.includes('$')) {
-            summaryCost.textContent = costText.split(': ')[1] || '--';
+            summaryCost.textContent = costText.split('total: ')[1] || '--';
         } else {
             summaryCost.textContent = '--';
         }
