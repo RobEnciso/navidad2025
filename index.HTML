@@ -434,6 +434,38 @@
   transform: translateY(0);
   pointer-events: auto;
 }
+
+/* Floating Booking Summary */
+#booking-summary.hidden {
+    transform: translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+}
+#booking-summary {
+    /* Desktop */
+    position: fixed;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    max-width: 320px;
+    z-index: 40;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    #booking-summary {
+        bottom: auto;
+        top: 68px; /* Approx height of sticky header */
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        border-bottom: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+}
     </style>
     <!-- Schema Markup para CreaFilms -->
     <script type="application/ld+json">
@@ -593,7 +625,7 @@
     <a href="#experiencia" class="text-gray-600 hover:text-black transition duration-300 uppercase text-xs tracking-widest">Experiencia</a>
     <a href="#paquetes" class="text-gray-600 hover:text-black transition duration-300 uppercase text-xs tracking-widest">Paquetes</a>
     <a href="#portafolio" class="text-gray-600 hover:text-black transition duration-300 uppercase text-xs tracking-widest">Galería</a>
-    <a href="#reserva" class="font-bold btn-ghost btn-ghost-dark">Reservar</a>
+    <a href="#paquetes" class="font-bold btn-ghost btn-ghost-dark">Reservar</a>
     </div>
     <button id="mobile-menu-button" class="md:hidden">
     <i data-lucide="menu" class="h-6 w-6"></i>
@@ -604,7 +636,7 @@
     <a href="#experiencia" class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Experiencia</a>
     <a href="#paquetes" class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Paquetes</a>
     <a href="#portafolio" class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Galería</a>
-    <a href="#reserva" class="block mt-2 text-center font-bold btn-ghost btn-ghost-dark">Reservar</a>
+    <a href="#paquetes" class="block mt-2 text-center font-bold btn-ghost btn-ghost-dark">Reservar</a>
     </div>
     </header>
 
@@ -641,7 +673,7 @@
     El Arte de Crear Recuerdos
     </h1>
     <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto text-gray-200">Una experiencia fotográfica exclusiva para celebrar la magia de la navidad.</p>
-    <a href="#paquetes" class="btn-ghost btn-ghost-light font-bold">Descubrir Paquetes</a>
+    <a href="#paquetes" class="btn-ghost btn-ghost-light font-bold">Agenda tu sesión</a>
 
     <!-- Contador de Preventa -->
     <div id="countdown" class="mt-16 bg-black/20 backdrop-blur-sm p-4 rounded-lg inline-block">
@@ -1003,6 +1035,23 @@
     </section>
     </main>
 
+    <!-- Floating Booking Summary -->
+    <div id="booking-summary" class="hidden bg-white p-5 rounded-xl shadow-2xl">
+        <button id="close-summary" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <h3 class="text-xl font-bold mb-4" style="color: var(--color-primary);">Tu Reserva</h3>
+        <div class="space-y-2 text-sm text-gray-700">
+            <div><strong>Paquete:</strong> <span id="summary-package">--</span></div>
+            <div><strong>Set:</strong> <span id="summary-set">--</span></div>
+            <div><strong>Fecha:</strong> <span id="summary-date">--</span></div>
+            <div><strong>Hora:</strong> <span id="summary-time">--</span></div>
+            <div class="mt-3 pt-3 border-t border-gray-200 font-bold text-base"><strong>Costo Total:</strong> <span id="summary-cost">--</span></div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="text-white py-12" style="background-color: var(--color-text);">
     <div class="container mx-auto px-6 text-center">
@@ -1142,6 +1191,7 @@
     const setName = card.dataset.setName;
     selectedSetField.value = setName;
     updateSubmitButton();
+    updateBookingSummary();
     document.getElementById('reserva').scrollIntoView({
     behavior: 'smooth',
     block: 'start'
@@ -1161,6 +1211,15 @@
     const timeSlotsContainer = document.getElementById('time-slots-container');
     const timeSlotsEl = document.getElementById('time-slots');
     const selectedDateInfoEl = document.getElementById('selected-date-info');
+    
+    // --- Floating Summary Elements ---
+    const bookingSummary = document.getElementById('booking-summary');
+    const closeSummaryBtn = document.getElementById('close-summary');
+    const summaryPackage = document.getElementById('summary-package');
+    const summarySet = document.getElementById('summary-set');
+    const summaryDate = document.getElementById('summary-date');
+    const summaryTime = document.getElementById('summary-time');
+    const summaryCost = document.getElementById('summary-cost');
 
     let currentDate = new Date(2025, 9, 1);
     let selectedDate = null;
@@ -1198,6 +1257,37 @@ async function fetchBookedSessions() {
 
     const dailyTimeSlots = ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
     const SESSIONS_PER_DAY = 4;
+
+    // --- Floating Summary Logic ---
+    function updateBookingSummary() {
+        if (!bookingSummary) return;
+
+        if (packageSelectField.value && selectedSetField.value) {
+            bookingSummary.classList.remove('hidden');
+        } else {
+            bookingSummary.classList.add('hidden');
+            return;
+        }
+
+        const selectedPackageText = packageSelectField.value ? packageSelectField.options[packageSelectField.selectedIndex].text : '--';
+        summaryPackage.textContent = selectedPackageText;
+        summarySet.textContent = selectedSetField.value || '--';
+        summaryDate.textContent = selectedDate ? selectedDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }) : '--';
+        summaryTime.textContent = selectedTime || '--';
+        
+        const costText = totalCostDisplay.textContent;
+        if (costText.includes('$')) {
+            summaryCost.textContent = costText.split(': ')[1] || '--';
+        } else {
+            summaryCost.textContent = '--';
+        }
+    }
+
+    if (closeSummaryBtn) {
+        closeSummaryBtn.addEventListener('click', () => {
+            bookingSummary.classList.add('hidden');
+        });
+    }
 
     // FUNCIÓN DE BOTÓN ACTUALIZADA
     function updateSubmitButton() {
@@ -1246,6 +1336,7 @@ async function fetchBookedSessions() {
     }
     timeSlotsContainer.classList.remove('hidden');
     updateSubmitButton();
+    updateBookingSummary();
     }
 
     function handleTimeClick(time, clickedEl) {
@@ -1253,6 +1344,7 @@ async function fetchBookedSessions() {
     document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
     clickedEl.classList.add('selected');
     updateSubmitButton();
+    updateBookingSummary();
     }
 
     function renderCalendar() {
@@ -1422,6 +1514,7 @@ async function fetchBookedSessions() {
         renderCalendar();
         updateSubmitButton();
         updatePackageDetails(); // Usar updatePackageDetails en lugar de updateTotalCost
+        updateBookingSummary();
     };
 
     // Configurar timeout para considerar éxito después de 3 segundos
@@ -1579,6 +1672,7 @@ function updatePackageDetails() {
     totalCostDisplay.textContent = 'Selecciona un paquete para ver el costo.';
     extraPersonsInput.value = 0; // Limpiar personas extra si no hay paquete
     }
+    updateBookingSummary();
 }
 
 // Escuchar cambios en los dos campos para ejecutar la función
