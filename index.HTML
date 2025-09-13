@@ -30,6 +30,16 @@
     <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
+        /* --- Estilos para la ventana de resumen --- */
+#booking-summary.is-visible {
+    transform: translateY(0);
+    top: 60px; /* JS lo ajustará */
+}
+@media (min-width: 768px) {
+    #booking-summary.is-visible { transform: translateX(0) translateY(0);bottom: 1.5rem; /* 24px */ top: auto; }
+}
+.summary-change-link { color: #3B82F6; text-decoration: none; font-size: 0.75rem; font-weight: 600; }
+.summary-change-link:hover { text-decoration: underline; }
     /* Paleta de colores inspirada en el diseño de referencia */
     :root {
     --color-primary: #3c524f;
@@ -935,7 +945,6 @@
     <input type="number" id="extra-persons" name="extra-persons" min="0" value="0" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" style="--tw-ring-color: var(--color-primary)" />
     <p id="total-cost" class="mt-2 text-gray-600 font-semibold">Costo base: $1,500 MXN</p>
     </div>
-
     <button type="submit" id="submit-button" class="w-full font-bold text-white rounded-full py-4 px-6 transition duration-300 disabled:opacity-50" style="background-color: var(--color-primary);" disabled>Confirmar Pre-reserva</button>
     </form>
     </div>
@@ -1013,7 +1022,10 @@
     <a href="https://www.instagram.com/creafilms" class="text-gray-400 hover:text-white"><i data-lucide="instagram" class="h-6 w-6"></i></a>
     <a href="https://www.facebook.com/Creafilms" class="text-gray-400 hover:text-white"><i data-lucide="facebook" class="h-6 w-6"></i></a>
     </div>
-    <p class="text-xs text-gray-500 mt-8">&copy; 2025 Creafilms Fotografía. Todos los derechos reservados.</p>
+    <p class="text-xs text-gray-500 mt-8">© 2025 Creafilms Fotografía. Todos los derechos reservados.</p>
+    </div>
+    <div id="booking-summary" class="fixed top-0 left-0 right-0 bg-white shadow-md p-2 z-40 transition-transform duration-300 ease-in-out -translate-y-full md:w-80 md:bottom-6 md:left-6 md:top-auto md:right-auto md:rounded-lg md:p-5 md:shadow-2xl md:-translate-x-full md:translate-y-0">
+        <div id="summary-content-container"></div>
     </div>
     </footer>
 
@@ -1042,119 +1054,24 @@
     <!-- Swiper.js JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-    // Iconos Lucide
+        // =======================================================
+//   SCRIPT FINAL CORREGIDO Y UNIFICADO
+// =======================================================
+
+window.addEventListener('load', async () => {
+    // --- 1. INICIALIZACIÓN Y ELEMENTOS DE LA PÁGINA ---
     lucide.createIcons();
 
-    // Menú Móvil
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-    });
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-    mobileMenu.classList.add('hidden');
-    });
-    });
-
-    // Countdown Timer
-    const countdownDate = new Date("Oct 1, 2025 00:00:00").getTime();
-    const countdownFunction = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = countdownDate - now;
-    if (distance < 0) {
-    clearInterval(countdownFunction);
-    document.getElementById("countdown").innerHTML = "<h3 class='text-lg font-bold'>La preventa ha terminado</h3>";
-    return;
-    }
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    document.getElementById("days").innerText = days.toString().padStart(2, '0');
-    document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-    document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-    document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
-    }, 1000);
-
-    // --- Swiper Hero Carousel ---
-    const heroSwiper = new Swiper('.hero-swiper', {
-    loop: true,
-    effect: 'fade',
-    fadeEffect: {
-    crossFade: true
-    },
-    autoplay: {
-    delay: 5000,
-    disableOnInteraction: false,
-    },
-    pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-    },
-    keyboard: true,
-    });
-
-    // --- Swiper Testimonial Carousel ---
-    const testimonialSwiper = new Swiper('.testimonial-swiper', {
-    loop: true,
-    effect: 'fade',
-    fadeEffect: {
-    crossFade: true
-    },
-    autoplay: {
-    delay: 6000,
-    disableOnInteraction: false,
-    },
-    navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-    },
-    keyboard: true,
-    });
-
-    // --- LÓGICA PARA LA SELECCIÓN DE PAQUETES Y SETS (NUEVO) ---
-    const packageCards = document.querySelectorAll('.package-card');
-    const setCards = document.querySelectorAll('.set-card');
-    const packageSelectField = document.getElementById('package');
-    const selectedSetField = document.getElementById('selected-set');
-    const eligeSetSection = document.getElementById('elige-set');
-
-    packageCards.forEach(card => {
-    card.addEventListener('click', (e) => {
-    e.preventDefault();
-    const packageValue = card.dataset.packageValue;
-    packageSelectField.value = packageValue;
-    updatePackageDetails();
-    updateSubmitButton();
-    if (eligeSetSection) {
-    eligeSetSection.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
-    });
-    }
-    });
-    });
-
-    setCards.forEach(card => {
-    card.addEventListener('click', () => {
-    setCards.forEach(c => c.classList.remove('selected'));
-    card.classList.add('selected');
-    const setName = card.dataset.setName;
-    selectedSetField.value = setName;
-    updateSubmitButton();
-    document.getElementById('reserva').scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
-    });
-    });
-    });
-
-
-    // --- LÓGICA DEL FORMULARIO Y CALENDARIO (ACTUALIZADO) ---
+    // Elementos de la página
     const bookingForm = document.getElementById('booking-form');
     const submitButton = document.getElementById('submit-button');
+    const packageSelectField = document.getElementById('package');
+    const selectedSetField = document.getElementById('selected-set');
     const selectedDateTimeField = document.getElementById('selected-datetime');
+    const packageCards = document.querySelectorAll('.package-card');
+    const setCards = document.querySelectorAll('.set-card');
+    const extraPersonsInput = document.getElementById('extra-persons');
+    const totalCostDisplay = document.getElementById('total-cost');
     const monthYearEl = document.getElementById('month-year');
     const calendarGridEl = document.getElementById('calendar-grid');
     const prevMonthBtn = document.getElementById('prev-month');
@@ -1162,453 +1079,221 @@
     const timeSlotsContainer = document.getElementById('time-slots-container');
     const timeSlotsEl = document.getElementById('time-slots');
     const selectedDateInfoEl = document.getElementById('selected-date-info');
+    const bookingSummary = document.getElementById('booking-summary');
+    const summaryContentContainer = document.getElementById('summary-content-container');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-    let currentDate = new Date(2025, 9, 1);
+    // --- 2. ESTADO Y CONFIGURACIÓN ---
     let selectedDate = null;
     let selectedTime = null;
-    // Estas son las nuevas instrucciones para leer la hoja de cálculo
-let bookedSessions = {}; // Empezamos con una lista vacía
-const googleSheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQgsOVBIoPxnL5jCNjguA0VR942SG5FdPpJJDFzNxkgRaRgs50k49yE9KpyTdwH-1eKiFLgztllD9n-/pub?gid=253208685&single=true&output=csv';
-
-async function fetchBookedSessions() {
-    try {
-        const response = await fetch(googleSheetURL);
-        const csvText = await response.text();
-        const newBookedSessions = {};
-        const rows = csvText.trim().split('\n');
-
-        // Esto lee cada fila de tu hoja (asumiendo Fecha en Columna A, Hora en Columna B)
-        rows.forEach(row => {
-            const columns = row.split(',');
-            if (columns.length < 2) return;
-            const date = columns[0].trim();
-            const time = columns[1].trim();
-            if (!newBookedSessions[date]) {
-                newBookedSessions[date] = [];
-            }
-            newBookedSessions[date].push(time);
-        });
-
-        bookedSessions = newBookedSessions;
-        console.log('Fechas ocupadas cargadas desde Google Sheets:', bookedSessions);
-    } catch (error) {
-        console.error('No se pudieron cargar las fechas:', error);
-    }
-}
-    
-
+    const selections = { paquete: null, set: null, fecha: null, hora: null, costoTotal: 0 };
+    let currentDate = new Date(2025, 9, 1);
+    let bookedSessions = {};
     const dailyTimeSlots = ['11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
-    const SESSIONS_PER_DAY = 4;
+    const googleSheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQgsOVBIoPxnL5jCNjguA0VR942SG5FdPpJJDFzNxkgRaRgs50k49yE9KpyTdwH-1eKiFLgztllD9n-/pub?gid=253208685&single=true&output=csv';
+    
+    // --- 3. FUNCIONES PRINCIPALES ---
 
-    // FUNCIÓN DE BOTÓN ACTUALIZADA
-    function updateSubmitButton() {
-    if (packageSelectField.value && selectedSetField.value && selectedDate && selectedTime) {
-    const dateTimeStr = `${selectedDate.toISOString().split('T')[0]} ${selectedTime}`;
-    selectedDateTimeField.value = dateTimeStr;
-    submitButton.disabled = false;
-    submitButton.textContent = 'Confirmar Pre-reserva';
-    } else {
-    selectedDateTimeField.value = '';
-    submitButton.disabled = true;
-    if (!packageSelectField.value) {
-    submitButton.textContent = '1. Elige tu paquete';
-    } else if (!selectedSetField.value) {
-    submitButton.textContent = '2. Ahora elige tu escenario';
-    } else {
-    submitButton.textContent = '3. Selecciona fecha y hora';
-    }
-    }
-    }
-
-    function handleDateClick(year, month, day) {
-    selectedDate = new Date(year, month, day);
-    selectedTime = null;
-    renderCalendar();
-    const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-    const bookedTimes = bookedSessions[dateStr] || [];
-    const availableTimes = dailyTimeSlots.filter(time => !bookedTimes.includes(time));
-    selectedDateInfoEl.textContent = selectedDate.toLocaleDateString('es-ES', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long'
-    });
-    timeSlotsEl.innerHTML = '';
-    if (availableTimes.length > 0) {
-    availableTimes.forEach(time => {
-    const slotEl = document.createElement('button');
-    slotEl.type = 'button';
-    slotEl.textContent = time;
-    slotEl.className = 'time-slot available border-2 border-gray-300 rounded-lg py-2 px-1 text-sm font-medium';
-    slotEl.addEventListener('click', () => handleTimeClick(time, slotEl));
-    timeSlotsEl.appendChild(slotEl);
-    });
-    } else {
-    timeSlotsEl.innerHTML = '<p class="text-center col-span-full text-gray-500">No hay más horarios para este día.</p>';
-    }
-    timeSlotsContainer.classList.remove('hidden');
-    updateSubmitButton();
+    async function fetchBookedSessions() {
+        try {
+            const response = await fetch(googleSheetURL);
+            if (!response.ok) throw new Error('Respuesta de red no fue ok');
+            const csvText = await response.text();
+            const newBookedSessions = {};
+            csvText.trim().split('\n').forEach(row => {
+                const [date, time] = row.split(',').map(s => s.trim());
+                if (date && time) {
+                    if (!newBookedSessions[date]) newBookedSessions[date] = [];
+                    newBookedSessions[date].push(time);
+                }
+            });
+            bookedSessions = newBookedSessions;
+            console.log('Fechas ocupadas cargadas:', bookedSessions);
+        } catch (error) {
+            console.error('No se pudieron cargar las fechas de Google Sheets:', error);
+        }
     }
 
-    function handleTimeClick(time, clickedEl) {
-    selectedTime = time;
-    document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
-    clickedEl.classList.add('selected');
-    updateSubmitButton();
-    }
+    const updateBookingSummary = () => {
+        if (!selections.paquete || !selections.set) {
+            bookingSummary.classList.remove('is-visible');
+            return;
+        }
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.offsetHeight : 60;
+        bookingSummary.style.top = `${headerHeight}px`;
+        bookingSummary.classList.add('is-visible');
 
-    function renderCalendar() {
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
-
-    prevMonthBtn.disabled = (year === 2025 && month <= 9);
-    nextMonthBtn.disabled = (year === 2025 && month >= 11);
-
-    const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-    monthYearEl.textContent = `${monthNames[month]} ${year}`;
-    calendarGridEl.innerHTML = '';
-    ['D', 'L', 'M', 'M', 'J', 'V', 'S'].forEach(day => {
-    calendarGridEl.innerHTML += `<div class="font-bold text-gray-500 text-sm py-2">${day}</div>`;
-    });
-
-    const firstDayOfMonth = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    for (let i = 0; i < firstDayOfMonth; i++) {
-    calendarGridEl.innerHTML += `<div></div>`;
-    }
-
-    for (let day = 1; day <= daysInMonth; day++) {
-    const loopDate = new Date(year, month, day);
-    const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-    const startDate = new Date(2025, 9, 20);
-    const endDate = new Date(2025, 11, 15);
-
-    const isWithinRange = loopDate >= startDate && loopDate <= endDate;
-    const bookedCount = bookedSessions[dateStr] ? bookedSessions[dateStr].length : 0;
-    const isFull = bookedCount >= SESSIONS_PER_DAY;
-    const isAvailable = isWithinRange && !isFull;
-    const isSelected = selectedDate && selectedDate.toDateString() === loopDate.toDateString();
-
-    let dayClasses = 'calendar-day h-10 w-10 flex items-center justify-center rounded-full';
-    if (isAvailable) dayClasses += ' available cursor-pointer';
-    else if (isFull) dayClasses += ' full';
-    else dayClasses += ' unavailable';
-    if (isSelected) dayClasses += ' selected';
-
-    const dayEl = document.createElement('div');
-    dayEl.textContent = day;
-    dayEl.className = dayClasses;
-    if (isAvailable) {
-    dayEl.addEventListener('click', () => handleDateClick(year, month, day));
-    }
-    calendarGridEl.appendChild(dayEl);
-    }
-    }
-
-    prevMonthBtn.addEventListener('click', () => {
-    if (!(currentDate.getFullYear() === 2025 && currentDate.getMonth() <= 9)) {
-    currentDate.setMonth(currentDate.getMonth() - 1);
-    renderCalendar();
-    }
-    });
-    nextMonthBtn.addEventListener('click', () => {
-    if (!(currentDate.getFullYear() === 2025 && currentDate.getMonth() >= 11)) {
-    currentDate.setMonth(currentDate.getMonth() + 1);
-    renderCalendar();
-    }
-    });
-
-    packageSelectField.addEventListener('change', updateSubmitButton);
-    document.addEventListener('DOMContentLoaded', async () => {
-    await fetchBookedSessions(); // 1. Primero, lee la lista de Google Sheets
-    renderCalendar();            // 2. Después, dibuja el calendario con las fechas actualizadas
-    updateSubmitButton();
-});
-
-    // --- LÓGICA DE MODALES Y FORM SUBMISSION (PRESERVADA) ---
-    const lightboxModal = document.getElementById('lightbox-modal');
-    const lightboxContent = document.getElementById('lightbox-content');
-    const lightboxImage = document.getElementById('lightbox-image');
-    const closeLightboxBtn = document.getElementById('close-lightbox');
-    const galleryImages = document.querySelectorAll('.gallery-image');
-
-    galleryImages.forEach(image => {
-    const parentContainer = image.parentElement;
-    if (parentContainer) {
-    parentContainer.classList.add('cursor-pointer');
-    parentContainer.addEventListener('click', () => {
-    lightboxImage.src = image.src;
-    lightboxModal.classList.remove('opacity-0', 'pointer-events-none');
-    lightboxContent.classList.remove('scale-95');
-    lucide.createIcons();
-    });
-    }
-    });
-
-    const closeLightbox = () => {
-    lightboxModal.classList.add('opacity-0');
-    lightboxContent.classList.add('scale-95');
-    setTimeout(() => {
-    lightboxModal.classList.add('pointer-events-none');
-    }, 300);
+        const paqueteNombre = selections.paquete ? selections.paquete.split(' - ')[0] : '';
+        const isMobile = window.innerWidth < 768;
+        let summaryHTML = '';
+        if (isMobile) {
+            summaryHTML = `<div class="relative flex justify-between items-start text-xs w-full text-center px-1"><div class="flex-1"><strong>Paquete</strong><span class="block mt-1">${paqueteNombre}</span></div><div class="flex-1 border-x mx-2 px-2"><strong>Set</strong><span class="block mt-1">${selections.set}</span></div><div class="flex-1"><strong>Total</strong><span class="block mt-1 font-black">$${selections.costoTotal.toLocaleString()}</span></div><button id="close-summary-mobile" class="absolute -top-1 -right-1 text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>`;
+        } else {
+            let fechaHTML = selections.fecha && selections.hora ? `<div class="flex justify-between items-center"><span>Fecha: <strong>${selections.fecha.toLocaleDateString('es-ES', { day: 'numeric', month: 'long' })}, ${selections.hora}</strong></span><a href="#reserva" class="summary-change-link">Cambiar</a></div>` : `<div class="text-gray-400"><span>Fecha: <em>Elige una</em></span></div>`;
+            summaryHTML = `<h4 class="font-bold text-lg mb-3 border-b pb-2">Tu Sesión Navideña</h4><div class="space-y-3 text-sm"><div class="flex justify-between items-center"><span>Paquete: <strong>${paqueteNombre}</strong></span><a href="#paquetes" class="summary-change-link">Cambiar</a></div><div class="flex justify-between items-center"><span>Set: <strong>${selections.set}</strong></span><a href="#elige-set" class="summary-change-link">Cambiar</a></div>${fechaHTML}</div><div class="mt-4 pt-4 border-t font-bold text-lg">Total: $${selections.costoTotal.toLocaleString()} MXN</div><button id="close-summary" class="absolute top-2 right-2 text-gray-400 hover:text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>`;
+        }
+        summaryContentContainer.innerHTML = summaryHTML;
+        const closeButton = document.getElementById('close-summary') || document.getElementById('close-summary-mobile');
+        if (closeButton) { closeButton.addEventListener('click', () => bookingSummary.classList.remove('is-visible')); }
     };
 
-    closeLightboxBtn.addEventListener('click', closeLightbox);
-    lightboxModal.addEventListener('click', (e) => {
-    if (e.target === lightboxModal) {
-    closeLightbox();
-    }
+    const updatePackageDetails = () => {
+        const selectedPackage = packageSelectField.value;
+        selections.paquete = selectedPackage;
+        let baseCost = 0;
+        if (selectedPackage.includes('Copo de Nieve')) baseCost = 1500;
+        else if (selectedPackage.includes('Reno Radiante')) baseCost = 2800;
+        else if (selectedPackage.includes('Estrella Polar')) baseCost = 3800;
+        const extraPersons = parseInt(extraPersonsInput.value) || 0;
+        const total = baseCost + (extraPersons * 250);
+        selections.costoTotal = total;
+        totalCostDisplay.textContent = baseCost > 0 ? `Costo total: $${total.toLocaleString()} MXN` : 'Selecciona un paquete para ver el costo.';
+        updateBookingSummary();
+        updateSubmitButton();
+    };
+
+    const updateSubmitButton = () => {
+        if (packageSelectField.value && selectedSetField.value && selectedDate && selectedTime) {
+            selectedDateTimeField.value = `${selectedDate.toISOString().split('T')[0]} ${selectedTime}`;
+            submitButton.disabled = false;
+            submitButton.textContent = 'Confirmar Pre-reserva';
+        } else {
+            selectedDateTimeField.value = '';
+            submitButton.disabled = true;
+            let reason = "Completa los pasos";
+            if (!packageSelectField.value) reason = "1. Elige un paquete";
+            else if (!selectedSetField.value) reason = "2. Elige un escenario";
+            else if (!selectedDate || !selectedTime) reason = "3. Elige fecha y hora";
+            submitButton.textContent = reason;
+        }
+    };
+    
+    const handleDateClick = (year, month, day) => {
+        selectedDate = new Date(year, month, day);
+        selectedTime = null;
+        selections.fecha = selectedDate;
+        selections.hora = null;
+        renderCalendar();
+        const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+        const bookedTimes = bookedSessions[dateStr] || [];
+        const availableTimes = dailyTimeSlots.filter(time => !bookedTimes.includes(time));
+        selectedDateInfoEl.textContent = selectedDate.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+        timeSlotsEl.innerHTML = '';
+        availableTimes.forEach(time => {
+            const slotEl = document.createElement('button');
+            slotEl.type = 'button';
+            slotEl.textContent = time;
+            slotEl.className = 'time-slot available border-2 border-gray-300 rounded-lg py-2';
+            slotEl.addEventListener('click', () => handleTimeClick(time, slotEl));
+            timeSlotsEl.appendChild(slotEl);
+        });
+        timeSlotsContainer.classList.remove('hidden');
+        updateBookingSummary();
+        updateSubmitButton();
+    };
+
+    const handleTimeClick = (time, clickedEl) => {
+        selectedTime = time;
+        selections.hora = time;
+        document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
+        clickedEl.classList.add('selected');
+        updateBookingSummary();
+        updateSubmitButton();
+    };
+
+    const renderCalendar = () => {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        prevMonthBtn.disabled = (year === 2025 && month <= 9);
+        nextMonthBtn.disabled = (year === 2025 && month >= 11);
+        monthYearEl.textContent = new Date(year, month).toLocaleString('es-ES', { month: 'long', year: 'numeric' });
+        calendarGridEl.innerHTML = '';
+        ['D', 'L', 'M', 'M', 'J', 'V', 'S'].forEach(day => { calendarGridEl.innerHTML += `<div class="font-bold text-gray-500 text-sm py-2">${day}</div>`; });
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        for (let i = 0; i < firstDayOfMonth; i++) { calendarGridEl.innerHTML += `<div></div>`; }
+        for (let day = 1; day <= daysInMonth; day++) {
+            const loopDate = new Date(year, month, day);
+            const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+            const isWithinRange = loopDate >= new Date(2025, 9, 20) && loopDate <= new Date(2025, 11, 15);
+            const isFull = (bookedSessions[dateStr] || []).length >= dailyTimeSlots.length;
+            const isAvailable = isWithinRange && !isFull;
+            const isSelected = selectedDate && selectedDate.toDateString() === loopDate.toDateString();
+            const dayEl = document.createElement('div');
+            dayEl.textContent = day;
+            dayEl.className = `calendar-day h-10 w-10 flex items-center justify-center rounded-full ${isAvailable ? 'available cursor-pointer' : 'unavailable'} ${isSelected ? 'selected' : ''}`;
+            if (isAvailable) { dayEl.addEventListener('click', () => handleDateClick(year, month, day)); }
+            calendarGridEl.appendChild(dayEl);
+        }
+    };
+    
+    // --- 5. EVENTOS ---
+    packageCards.forEach(card => card.addEventListener('click', (e) => { e.preventDefault(); packageSelectField.value = card.dataset.packageValue; updatePackageDetails(); document.getElementById('elige-set').scrollIntoView({ behavior: 'smooth' }); }));
+    setCards.forEach(card => card.addEventListener('click', () => { setCards.forEach(c => c.classList.remove('selected')); card.classList.add('selected'); const setName = card.dataset.setName; selectedSetField.value = setName; selections.set = setName; updateBookingSummary(); updateSubmitButton(); document.getElementById('reserva').scrollIntoView({ behavior: 'smooth' }); }));
+    packageSelectField.addEventListener('change', updatePackageDetails);
+    extraPersonsInput.addEventListener('input', updatePackageDetails);
+    prevMonthBtn.addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); });
+    nextMonthBtn.addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(); });
+    window.addEventListener('resize', updateBookingSummary);
+    mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    document.querySelectorAll('#mobile-menu a').forEach(link => { link.addEventListener('click', () => mobileMenu.classList.add('hidden')); });
+
+    // --- 6. LÓGICA DE ENVÍO Y MODALES ---
+    bookingForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (submitButton.disabled) return;
+        submitButton.disabled = true;
+        submitButton.innerHTML = `<div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white mx-auto"></div>`;
+        const webhookUrl = 'https://n8n-n8n.a8ipup.easypanel.host/webhook/ac6275b3-a8bb-4522-b102-edd18c01df8d';
+        const handleSuccess = () => {
+            clearTimeout(timeoutId);
+            document.getElementById('thank-you-modal').classList.remove('opacity-0', 'pointer-events-none');
+            bookingSummary.classList.remove('is-visible');
+            bookingForm.reset();
+            selectedDate = null;
+            selectedTime = null;
+            Object.keys(selections).forEach(key => selections[key] = null);
+            selections.costoTotal = 0;
+            setCards.forEach(c => c.classList.remove('selected'));
+            timeSlotsContainer.classList.add('hidden');
+            fetchBookedSessions().then(() => {
+                renderCalendar();
+                updatePackageDetails();
+            });
+        };
+        const timeoutId = setTimeout(handleSuccess, 4000);
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(Object.fromEntries(new FormData(bookingForm)))
+        })
+        .then(response => { if (response.ok) handleSuccess(); else throw new Error('Respuesta no exitosa'); })
+        .catch(error => {
+            if (!error.message.includes('CORS') && !error.message.includes('Failed to fetch')) {
+                clearTimeout(timeoutId);
+                alert('Hubo un problema. Intenta de nuevo.');
+                updateSubmitButton();
+            } else {
+                handleSuccess();
+            }
+        });
     });
 
     const thankYouModal = document.getElementById('thank-you-modal');
-    const thankYouContent = document.getElementById('thank-you-content');
     const closeThankYouModalBtn = document.getElementById('close-thank-you-modal');
-
-    function showThankYouModal() {
-    thankYouModal.classList.remove('opacity-0', 'pointer-events-none');
-    thankYouContent.classList.remove('scale-95');
-    lucide.createIcons();
-    }
-
-    function hideThankYouModal() {
-    thankYouModal.classList.add('opacity-0', 'pointer-events-none');
-    thankYouContent.classList.add('scale-95');
-    }
-
+    const hideThankYouModal = () => { thankYouModal.classList.add('opacity-0', 'pointer-events-none'); bookingSummary.classList.remove('is-visible'); };
     closeThankYouModalBtn.addEventListener('click', hideThankYouModal);
-    thankYouModal.addEventListener('click', (e) => {
-    if (e.target === thankYouModal) {
-    hideThankYouModal();
-    }
-    });
+    thankYouModal.addEventListener('click', (e) => { if (e.target === thankYouModal) hideThankYouModal(); });
+    new Swiper('.hero-swiper', { loop: true, effect: 'fade', autoplay: { delay: 5000 }, pagination: { el: '.swiper-pagination', clickable: true } });
+    new Swiper('.testimonial-swiper', { loop: true, effect: 'fade', autoplay: { delay: 6000 }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' } });
 
-    bookingForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Validación del formulario (mantener código existente)
-    if (!e.target.checkValidity() || !selectedDate || !selectedTime || !packageSelectField.value || !selectedSetField.value) {
-        console.error('Formulario inválido o incompleto');
-        return;
-    }
-    
-    // Mostrar indicador de carga
-    submitButton.disabled = true;
-    submitButton.innerHTML = '<div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white mx-auto"></div>';
-
-    // Registrar la sesión como reservada (mantener código existente)
-    const dateStr = selectedDate.toISOString().split('T')[0];
-    if (!bookedSessions[dateStr]) {
-        bookedSessions[dateStr] = [];
-    }
-    bookedSessions[dateStr].push(selectedTime);
-
-    // Preparar datos del formulario
-    const formData = new FormData(bookingForm);
-    const data = Object.fromEntries(formData.entries());
-    const webhookUrl = 'https://n8n-n8n.a8ipup.easypanel.host/webhook/ac6275b3-a8bb-4522-b102-edd18c01df8d';
-
-    // Variable para controlar el tiempo máximo de espera
-    let timeoutId;
-    
-    // Función para manejar el éxito (independientemente de si es por respuesta o por timeout)
-    const handleSuccess = () => {
-        clearTimeout(timeoutId);
-        showThankYouModal();
-        bookingForm.reset();
-        selectedDate = null;
-        selectedTime = null;
-        selectedSetField.value = '';
-        setCards.forEach(c => c.classList.remove('selected'));
-        timeSlotsContainer.classList.add('hidden');
-        renderCalendar();
-        updateSubmitButton();
-        updatePackageDetails(); // Usar updatePackageDetails en lugar de updateTotalCost
-    };
-
-    // Configurar timeout para considerar éxito después de 3 segundos
-    // (asumiendo que el webhook recibe los datos aunque el navegador no reciba respuesta)
-    timeoutId = setTimeout(() => {
-        console.log('Asumiendo éxito por timeout');
-        handleSuccess();
-    }, 3000);
-
-    // Enviar datos al webhook
-    fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => {
-        // Si la respuesta es exitosa, manejar normalmente
-        if (response.ok) {
-            handleSuccess();
-        } else {
-            // Si hay error en la respuesta pero no es CORS, lanzar error
-            throw new Error('Error en la respuesta del servidor');
-        }
-    })
-    .catch(error => {
-        console.error('Error en fetch:', error);
-        
-        // CAMBIO CLAVE: Verificar si el error es de CORS o conexión
-        if (error.message && (
-            error.message.includes('CORS') || 
-            error.message.includes('Failed to fetch') ||
-            error.message.includes('Network Error') ||
-            error.message.includes('NetworkError')
-        )) {
-            // Si es error CORS, asumimos que la solicitud llegó correctamente
-            console.log('Error CORS detectado, asumiendo éxito');
-            // No cancelamos el timeout, dejamos que maneje el éxito
-        } else {
-            // Si es otro tipo de error, cancelamos el timeout y mostramos error
-            clearTimeout(timeoutId);
-            
-            // Eliminar la sesión de las reservadas
-            const index = bookedSessions[dateStr].indexOf(selectedTime);
-            if (index > -1) {
-                bookedSessions[dateStr].splice(index, 1);
-            }
-            
-            // Mostrar mensaje de error
-            alert('Hubo un problema al procesar tu solicitud. Por favor, intenta de nuevo.');
-            
-            // Restaurar botón
-            submitButton.disabled = false;
-            submitButton.innerHTML = 'Confirmar Pre-reserva';
-        }
-    });
+    // --- 7. INICIALIZACIÓN DE LA PÁGINA ---
+    await fetchBookedSessions();
+    renderCalendar();
+    updatePackageDetails();
 });
-    // Lazy Loading para imágenes de la galería
-    const lazyImages = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-    if (entry.isIntersecting) {
-    const img = entry.target;
-    img.src = img.dataset.src;
-    img.classList.remove('lazy');
-    imageObserver.unobserve(img);
-    }
-    });
-    });
-
-    lazyImages.forEach(img => {
-    img.classList.add('lazy');
-    imageObserver.observe(img);
-    });
-
-    // FAQ Modal
-    const openFaqBtn = document.getElementById('open-faq-btn');
-    const faqModal = document.getElementById('faq-modal');
-    const closeFaqBtn = document.getElementById('close-faq-btn');
-
-    openFaqBtn.addEventListener('click', () => {
-    faqModal.classList.remove('opacity-0', 'pointer-events-none');
-    });
-
-    closeFaqBtn.addEventListener('click', () => {
-    faqModal.classList.add('opacity-0', 'pointer-events-none');
-    });
-
-    faqModal.addEventListener('click', (e) => {
-    if (e.target === faqModal) {
-    faqModal.classList.add('opacity-0', 'pointer-events-none');
-    }
-    });
-
-    // Toggle acordeón FAQ con clase 'active' para animar max-height
-document.querySelectorAll('.faq-toggle').forEach(button => {
-  button.addEventListener('click', () => {
-    const isActive = button.classList.contains('active');
-
-    // Cerrar todos los toggles
-    document.querySelectorAll('.faq-toggle').forEach(btn => {
-    btn.classList.remove('active');
-    btn.querySelector('svg').style.transform = 'rotate(0deg)';
-    btn.nextElementSibling.style.maxHeight = null;
-    });
-
-    // Si no estaba activo, abrir este
-    if (!isActive) {
-    button.classList.add('active');
-    button.querySelector('svg').style.transform = 'rotate(180deg)';
-    button.nextElementSibling.style.maxHeight = button.nextElementSibling.scrollHeight + 'px';
-    }
-  });
-});
-// PEGA ESTE NUEVO BLOQUE DE CÓDIGO
-// --- Lógica para actualizar costo y límite de personas por paquete ---
-const extraPersonsInput = document.getElementById('extra-persons');
-const totalCostDisplay = document.getElementById('total-cost');
-const extraCostPerPerson = 250;
-
-function updatePackageDetails() {
-    const selectedPackage = packageSelectField.value;
-    let baseCost = 0;
-    let maxExtras = 0;
-    
-    // Asignar costo y máximo de personas extra según el paquete
-    if (selectedPackage.includes('Copo de Nieve')) {
-    baseCost = 1500;
-    maxExtras = 6; // Límite para llegar a 9 (3 incluidos + 6 extra)
-    } else if (selectedPackage.includes('Reno Radiante')) {
-    baseCost = 2800;
-    maxExtras = 4; // Límite para llegar a 9 (5 incluidos + 4 extra)
-    } else if (selectedPackage.includes('Estrella Polar')) {
-    baseCost = 3800;
-    maxExtras = 2; // Límite para llegar a 9 (7 incluidos + 2 extra)
-    }
-    
-    // Actualizar el atributo 'max' del campo de personas extra
-    extraPersonsInput.max = maxExtras;
-
-    // Si el valor actual excede el nuevo máximo, ajustarlo
-    if (parseInt(extraPersonsInput.value) > maxExtras) {
-    extraPersonsInput.value = maxExtras;
-    }
-    
-    // Calcular el costo total
-    const extraPersons = parseInt(extraPersonsInput.value) || 0;
-    const total = baseCost + (extraPersons * extraCostPerPerson);
-
-    // Mostrar el costo total o un mensaje inicial
-    if (baseCost > 0) {
-    totalCostDisplay.textContent = `Costo total: $${total.toLocaleString()} MXN`;
-    } else {
-    totalCostDisplay.textContent = 'Selecciona un paquete para ver el costo.';
-    extraPersonsInput.value = 0; // Limpiar personas extra si no hay paquete
-    }
-}
-
-// Escuchar cambios en los dos campos para ejecutar la función
-packageSelectField.addEventListener('change', updatePackageDetails);
-extraPersonsInput.addEventListener('input', updatePackageDetails);
-
-// Ejecutar la función una vez al cargar la página
-updatePackageDetails();
-
-    // --- Lógica para mostrar la burbuja de FAQ al pasar los paquetes ---
-const faqBubble = document.getElementById('open-faq-btn');
-const packagesSection = document.getElementById('paquetes');
-
-if (faqBubble && packagesSection) {
-    const checkBubbleVisibility = () => {
-    const packagesRect = packagesSection.getBoundingClientRect();
-    
-    // Si la parte inferior de la sección de paquetes ya está visible en la pantalla
-    if (packagesRect.bottom < window.innerHeight) {
-    faqBubble.classList.add('visible');
-    } else {
-    faqBubble.classList.remove('visible');
-    }
-    };
-
-    window.addEventListener('scroll', checkBubbleVisibility);
-    // Ejecutar una vez al cargar la página por si acaso
-    checkBubbleVisibility();
-}
     </script>
     
 </body>
