@@ -420,6 +420,13 @@
                 flex: none;
             }
         }
+        @media (max-width: 768px) {
+    .calendar-day {
+        height: 3rem;
+        width: 3rem;
+        font-size: 1rem;
+    }
+}
 
         @media (max-width: 768px) {
             /* Cambia .boton-dudas-flotante por la clase o id que tenga tu botón */
@@ -594,6 +601,96 @@
                 color: var(--color-primary);
             }
         }
+        /* NUEVO: Estilos para el menú móvil de pantalla completa */
+#mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-background);
+    z-index: 9999;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#mobile-menu-overlay.active {
+    transform: translateX(0);
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    background-color: white;
+}
+
+.mobile-menu-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    font-family: 'Playfair Display', serif;
+}
+
+.mobile-menu-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--color-text);
+}
+
+.mobile-menu-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+}
+
+.mobile-menu-links {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.mobile-menu-link {
+    display: block;
+    padding: 1.25rem 0;
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.mobile-menu-link:hover {
+    color: var(--color-primary);
+}
+
+.mobile-menu-footer {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.mobile-menu-cta {
+    width: 100%;
+    max-width: 300px;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
     </style>
     <script type="application/ld+json">
     {
@@ -795,17 +892,29 @@
                 <i data-lucide="menu" class="h-6 w-6"></i>
             </button>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#experiencia"
-                class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Experiencia</a>
-            <a href="#paquetes"
-                class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Paquetes</a>
-            <a href="#sets"
-                class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Sets</a>
-            <a href="#blog"
-                class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Blog</a>
-            <a href="#paquetes" class="block mt-2 text-center font-bold btn-ghost btn-ghost-dark">Reservar</a>
+      <!-- NUEVO: Menú móvil de pantalla completa -->
+<div id="mobile-menu-overlay">
+    <div class="mobile-menu-header">
+        <span class="mobile-menu-logo">CreaFilms</span>
+        <button id="mobile-menu-close" class="mobile-menu-close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+    <div class="mobile-menu-content">
+        <div class="mobile-menu-links">
+            <a href="#experiencia" class="mobile-menu-link">Experiencia</a>
+            <a href="#paquetes" class="mobile-menu-link">Paquetes</a>
+            <a href="#sets" class="mobile-menu-link">Sets</a>
+            <a href="#blog" class="mobile-menu-link">Blog</a>
         </div>
+        <div class="mobile-menu-footer">
+            <a href="#paquetes" class="mobile-menu-cta btn-ghost btn-ghost-dark">Reservar</a>
+        </div>
+    </div>
+</div>
     </header>
 
     <main>
@@ -1458,17 +1567,31 @@
         // Iconos Lucide
         lucide.createIcons();
 
-        // Menú Móvil
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
+        // NUEVO: Menú Móvil de Pantalla Completa
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+const mobileMenuClose = document.getElementById('mobile-menu-close');
+const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link, .mobile-menu-cta');
+
+// Abrir menú
+mobileMenuButton.addEventListener('click', () => {
+    mobileMenuOverlay.classList.add('active');
+    document.body.classList.add('menu-open');
+});
+
+// Cerrar menú con botón X
+mobileMenuClose.addEventListener('click', () => {
+    mobileMenuOverlay.classList.remove('active');
+    document.body.classList.remove('menu-open');
+});
+
+// Cerrar menú al hacer clic en un enlace
+mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenuOverlay.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    });
+});
 
         // Countdown Timer - Eliminado según la solicitud, pero el código se mantiene por si acaso
         const countdownElement = document.getElementById("countdown");
