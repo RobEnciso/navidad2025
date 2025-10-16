@@ -420,13 +420,6 @@
                 flex: none;
             }
         }
-        @media (max-width: 768px) {
-    .calendar-day {
-        height: 3rem;
-        width: 3rem;
-        font-size: 1rem;
-    }
-}
 
         @media (max-width: 768px) {
             /* Cambia .boton-dudas-flotante por la clase o id que tenga tu botón */
@@ -601,104 +594,6 @@
                 color: var(--color-primary);
             }
         }
-/* NUEVO: Estilos para el menú móvil de pantalla completa */
-#mobile-menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    height: 100dvh; /* Altura dinámica del viewport */
-    background-color: var(--color-background);
-    z-index: 9999;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-}
-
-#mobile-menu-overlay.active {
-    transform: translateX(0);
-}
-
-.mobile-menu-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 1.5rem;
-    border-bottom: 1px solid #e5e7eb;
-    background-color: white;
-    flex-shrink: 0;
-}
-
-.mobile-menu-logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--color-primary);
-    font-family: 'Playfair Display', serif;
-}
-
-.mobile-menu-close {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    color: var(--color-text);
-}
-
-.mobile-menu-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    min-height: 0;
-}
-
-.mobile-menu-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.mobile-menu-link {
-    display: block;
-    padding: 1.25rem 0;
-    font-size: 1.75rem;
-    font-weight: 400;
-    color: var(--color-text);
-    text-decoration: none;
-    transition: color 0.2s ease;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.mobile-menu-link:hover {
-    color: var(--color-primary);
-}
-
-.mobile-menu-footer {
-    padding-top: 2rem;
-    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
-    display: flex;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.mobile-menu-cta {
-    width: 100%;
-    max-width: 300px;
-    display: inline-block;
-    text-align: center;
-    font-weight: bold;
-}
-
-body.menu-open {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-}
     </style>
     <script type="application/ld+json">
     {
@@ -736,7 +631,7 @@ body.menu-open {
     "longitude": "-105.2253"
     },
     "openingHours": "Mo-Su 11:00-20:00",
-    "priceRange": "$1500-$3800",
+    "priceRange": "$1950-$4500",
     "sameAs": [
     "https://www.instagram.com/creafilms",
     "https://www.facebook.com/Creafilms"
@@ -900,29 +795,17 @@ body.menu-open {
                 <i data-lucide="menu" class="h-6 w-6"></i>
             </button>
         </nav>
-      <!-- NUEVO: Menú móvil de pantalla completa -->
-<div id="mobile-menu-overlay">
-    <div class="mobile-menu-header">
-        <span class="mobile-menu-logo">CreaFilms</span>
-        <button id="mobile-menu-close" class="mobile-menu-close">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </button>
-    </div>
-    <div class="mobile-menu-content">
-        <div class="mobile-menu-links">
-            <a href="#experiencia" class="mobile-menu-link">Experiencia</a>
-            <a href="#paquetes" class="mobile-menu-link">Paquetes</a>
-            <a href="#sets" class="mobile-menu-link">Sets</a>
-            <a href="#blog" class="mobile-menu-link">Blog</a>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#experiencia"
+                class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Experiencia</a>
+            <a href="#paquetes"
+                class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Paquetes</a>
+            <a href="#sets"
+                class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Sets</a>
+            <a href="#blog"
+                class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Blog</a>
+            <a href="#paquetes" class="block mt-2 text-center font-bold btn-ghost btn-ghost-dark">Reservar</a>
         </div>
-        <div class="mobile-menu-footer">
-            <a href="#paquetes" class="mobile-menu-cta btn-ghost btn-ghost-dark">Reservar</a>
-        </div>
-    </div>
-</div>
     </header>
 
     <main>
@@ -1020,10 +903,10 @@ body.menu-open {
                 </div>
                 <div class="grid md:grid-cols-3 gap-8 items-center">
                     <div class="package-card border border-gray-200 p-8 rounded-lg text-center bg-white cursor-pointer"
-                        data-package-value="Copo de Nieve - $1,500">
+                        data-package-value="Copo de Nieve - $1,950">
                         <h3 class="text-2xl font-bold mb-2">Copo de Nieve</h3>
                         <p class="text-gray-500 mb-6">Ideal para una postal navideña</p>
-                        <div class="mb-6"><span class="text-4xl font-black" style="color: var(--color-primary)">$1,500</span>
+                        <div class="mb-6"><span class="text-4xl font-black" style="color: var(--color-primary)">$1,950</span>
                         </div>
                         <ul class="space-y-4 text-gray-600 mb-8 text-left">
                             <li class="flex items-center"><i data-lucide="users" class="h-5 w-5 mr-3"
@@ -1036,13 +919,13 @@ body.menu-open {
                         <span class="w-full block btn-ghost btn-ghost-dark font-bold pointer-events-none">Seleccionar</span>
                     </div>
                     <div class="package-card border-2 p-10 rounded-lg text-center relative bg-white cursor-pointer"
-                        style="border-color: var(--color-primary);" data-package-value="Reno Radiante - $2,800">
+                        style="border-color: var(--color-primary);" data-package-value="Reno Radiante - $3,200">
                         <span
                             class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold px-4 py-1 rounded-full text-sm uppercase tracking-widest"
                             style="background-color: var(--color-primary); color: white;">Popular</span>
                         <h3 class="text-3xl font-bold mb-2">Reno Radiante</h3>
                         <p class="text-gray-500 mb-6">La experiencia completa</p>
-                        <div class="mb-6"><span class="text-5xl font-black" style="color: var(--color-primary)">$2,800</span>
+                        <div class="mb-6"><span class="text-5xl font-black" style="color: var(--color-primary)">$3,200</span>
                         </div>
                         <ul class="space-y-4 text-gray-600 mb-8 text-left">
                             <li class="flex items-center"><i data-lucide="users" class="h-5 w-5 mr-3"
@@ -1057,10 +940,10 @@ body.menu-open {
                             style="background-color: var(--color-primary);">Seleccionar</span>
                     </div>
                     <div class="package-card border border-gray-200 p-8 rounded-lg text-center bg-white cursor-pointer"
-                        data-package-value="Estrella Polar - $3,800">
+                        data-package-value="Estrella Polar - $4,500">
                         <h3 class="text-2xl font-bold mb-2">Estrella Polar</h3>
                         <p class="text-gray-500 mb-6">Recuerdos para toda la vida</p>
-                        <div class="mb-6"><span class="text-4xl font-black" style="color: var(--color-primary)">$3,800</span>
+                        <div class="mb-6"><span class="text-4xl font-black" style="color: var(--color-primary)">$4,500</span>
                         </div>
                         <ul class="space-y-4 text-gray-600 mb-8 text-left">
                             <li class="flex items-center"><i data-lucide="users" class="h-5 w-5 mr-3"
@@ -1192,9 +1075,9 @@ body.menu-open {
                                         class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2"
                                         style="--tw-ring-color: var(--color-primary)" required>
                                         <option value="">Selecciona un paquete primero</option>
-                                        <option value="Copo de Nieve - $1,500">Copo de Nieve - $1,500</option>
-                                        <option value="Reno Radiante - $2,800">Reno Radiante - $2,800</option>
-                                        <option value="Estrella Polar - $3,800">Estrella Polar - $3,800</option>
+                                        <option value="Copo de Nieve - $1,950">Copo de Nieve - $1,950</option>
+                                        <option value="Reno Radiante - $3,200">Reno Radiante - $3,200</option>
+                                        <option value="Estrella Polar - $4,500">Estrella Polar - $4,500</option>
                                     </select>
                                 </div>
                                 <div class="mb-4">
@@ -1575,31 +1458,17 @@ body.menu-open {
         // Iconos Lucide
         lucide.createIcons();
 
-        // NUEVO: Menú Móvil de Pantalla Completa
-const mobileMenuButton = document.getElementById('mobile-menu-button');
-const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-const mobileMenuClose = document.getElementById('mobile-menu-close');
-const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link, .mobile-menu-cta');
-
-// Abrir menú
-mobileMenuButton.addEventListener('click', () => {
-    mobileMenuOverlay.classList.add('active');
-    document.body.classList.add('menu-open');
-});
-
-// Cerrar menú con botón X
-mobileMenuClose.addEventListener('click', () => {
-    mobileMenuOverlay.classList.remove('active');
-    document.body.classList.remove('menu-open');
-});
-
-// Cerrar menú al hacer clic en un enlace
-mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenuOverlay.classList.remove('active');
-        document.body.classList.remove('menu-open');
-    });
-});
+        // Menú Móvil
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
 
         // Countdown Timer - Eliminado según la solicitud, pero el código se mantiene por si acaso
         const countdownElement = document.getElementById("countdown");
@@ -2147,13 +2016,13 @@ mobileMenuLinks.forEach(link => {
 
             // Asignar costo y máximo de personas extra según el paquete
             if (selectedPackage.includes('Copo de Nieve')) {
-                baseCost = 1500;
+                baseCost = 1950;
                 maxExtras = 6; // Límite para llegar a 9 (3 incluidos + 6 extra)
             } else if (selectedPackage.includes('Reno Radiante')) {
-                baseCost = 2800;
+                baseCost = 3200;
                 maxExtras = 4; // Límite para llegar a 9 (5 incluidos + 4 extra)
             } else if (selectedPackage.includes('Estrella Polar')) {
-                baseCost = 3800;
+                baseCost = 4500;
                 maxExtras = 2; // Límite para llegar a 9 (7 incluidos + 2 extra)
             }
 
@@ -2207,7 +2076,6 @@ mobileMenuLinks.forEach(link => {
             checkBubbleVisibility();
         }
     </script>
-    
 
 </body>
 
