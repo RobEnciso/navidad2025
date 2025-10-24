@@ -46,7 +46,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:wght@700&display=swap"
         rel="stylesheet" />
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.294.0/dist/umd/lucide.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
         /* Paleta de colores inspirada en el diseño de referencia */
@@ -1925,11 +1925,20 @@
         });
 
         packageSelectField.addEventListener('change', updateSubmitButton);
-        document.addEventListener('DOMContentLoaded', async () => {
+
+        // Ejecutar después de que TODO esté completamente listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCalendar);
+        } else {
+            // DOM ya está listo, ejecutar inmediatamente
+            initCalendar();
+        }
+
+        async function initCalendar() {
             await fetchBookedSessions(); // 1. Primero, lee la lista de Google Sheets
             renderCalendar(); // 2. Después, dibuja el calendario con las fechas actualizadas
             updateSubmitButton();
-        });
+        }
 
         // --- LÓGICA DE MODALES Y FORM SUBMISSION (PRESERVADA) ---
         const lightboxModal = document.getElementById('lightbox-modal');
