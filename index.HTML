@@ -2090,6 +2090,32 @@
             // Función para manejar el éxito (independientemente de si es por respuesta o por timeout)
             const handleSuccess = () => {
                 clearTimeout(timeoutId);
+
+                // 🎯 TRACKING DE GOOGLE TAG MANAGER - EVENTO DE CONVERSIÓN
+                try {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'booking_complete',
+                        'package': packageSelectField.value,
+                        'set': selectedSetField.value,
+                        'date': selectedDate ? selectedDate.toISOString().split('T')[0] : '',
+                        'time': selectedTime || '',
+                        'packagePrice': getPackagePrice(packageSelectField.value),
+                        'currency': 'MXN'
+                    });
+                    console.log('✅ Evento booking_complete enviado a GTM:', {
+                        package: packageSelectField.value,
+                        set: selectedSetField.value,
+                        date: selectedDate ? selectedDate.toISOString().split('T')[0] : '',
+                        time: selectedTime,
+                        price: getPackagePrice(packageSelectField.value)
+                    });
+                } catch (error) {
+                    console.error('⚠️ Error al enviar evento a GTM:', error);
+                    // No afecta el flujo del formulario - continúa normalmente
+                }
+
+                // Continuar con el flujo normal del formulario
                 showThankYouModal();
                 bookingForm.reset();
                 selectedDate = null;
@@ -2222,6 +2248,18 @@
         const extraPersonsInput = document.getElementById('extra-persons');
         const totalCostDisplay = document.getElementById('total-cost');
         const extraCostPerPerson = 250;
+
+        // Función helper para obtener el precio base del paquete (para GTM tracking)
+        function getPackagePrice(packageName) {
+            if (packageName.includes('Copo de Nieve')) {
+                return 1950;
+            } else if (packageName.includes('Reno Radiante')) {
+                return 3200;
+            } else if (packageName.includes('Estrella Polar')) {
+                return 4500;
+            }
+            return 0; // Default si no se reconoce el paquete
+        }
 
         function updatePackageDetails() {
             const selectedPackage = packageSelectField.value;
