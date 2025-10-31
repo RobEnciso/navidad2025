@@ -1735,7 +1735,29 @@
             'https://docs.google.com/spreadsheets/d/e/2PACX-1vQgsOVBIoPxnL5jCNjguA0VR942SG5FdPpJJDFzNxkgRaRgs50k49yE9KpyTdwH-1eKiFLgztllD9n-/pub?gid=253208685&single=true&output=csv';
 
         async function fetchBookedSessions() {
+            // Optimización: implementar cache de 3 minutos para reducir llamadas a Google Sheets
+            const CACHE_KEY = 'bookedSessionsCache';
+            const CACHE_TIMESTAMP_KEY = 'bookedSessionsTimestamp';
+            const CACHE_DURATION = 3 * 60 * 1000; // 3 minutos en milisegundos
+
             try {
+                // Verificar si hay cache válido
+                const cachedData = sessionStorage.getItem(CACHE_KEY);
+                const cachedTimestamp = sessionStorage.getItem(CACHE_TIMESTAMP_KEY);
+
+                if (cachedData && cachedTimestamp) {
+                    const now = Date.now();
+                    const cacheAge = now - parseInt(cachedTimestamp);
+
+                    if (cacheAge < CACHE_DURATION) {
+                        // Cache válido, usar datos en cache
+                        bookedSessions = JSON.parse(cachedData);
+                        console.log('Fechas ocupadas cargadas desde cache:', bookedSessions);
+                        return;
+                    }
+                }
+
+                // Si no hay cache válido, hacer la petición a Google Sheets
                 const response = await fetch(googleSheetURL);
                 const csvText = await response.text();
                 const newBookedSessions = {};
@@ -1754,9 +1776,20 @@
                 });
 
                 bookedSessions = newBookedSessions;
+
+                // Guardar en cache
+                sessionStorage.setItem(CACHE_KEY, JSON.stringify(bookedSessions));
+                sessionStorage.setItem(CACHE_TIMESTAMP_KEY, Date.now().toString());
+
                 console.log('Fechas ocupadas cargadas desde Google Sheets:', bookedSessions);
             } catch (error) {
                 console.error('No se pudieron cargar las fechas:', error);
+                // Si hay error, intentar usar cache aunque esté expirado
+                const cachedData = sessionStorage.getItem(CACHE_KEY);
+                if (cachedData) {
+                    bookedSessions = JSON.parse(cachedData);
+                    console.log('Usando cache antiguo debido a error de red');
+                }
             }
         }
 
@@ -1880,18 +1913,29 @@
                 "Septiembre", "Octubre", "Noviembre", "Diciembre"
             ];
             monthYearEl.textContent = `${monthNames[month]} ${year}`;
-            calendarGridEl.innerHTML = '';
+
+            // Optimización: usar DocumentFragment para construir el DOM de una sola vez
+            const fragment = document.createDocumentFragment();
+
+            // Añadir encabezados de días de la semana
             ['D', 'L', 'M', 'M', 'J', 'V', 'S'].forEach(day => {
-                calendarGridEl.innerHTML += `<div class="font-bold text-gray-500 text-sm py-2">${day}</div>`;
+                const dayHeaderEl = document.createElement('div');
+                dayHeaderEl.className = 'font-bold text-gray-500 text-sm py-2';
+                
+                dayHeaderEl.textContent = day;
+                fragment.appendChild(dayHeaderEl);
             });
 
             const firstDayOfMonth = new Date(year, month, 1).getDay();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
 
+            // Añadir espacios vacíos antes del primer día del mes
             for (let i = 0; i < firstDayOfMonth; i++) {
-                calendarGridEl.innerHTML += `<div></div>`;
+                const emptyEl = document.createElement('div');
+                fragment.appendChild(emptyEl);
             }
 
+            // Añadir días del mes
             for (let day = 1; day <= daysInMonth; day++) {
                 const loopDate = new Date(year, month, day);
                 const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
@@ -1916,8 +1960,12 @@
                 if (isAvailable) {
                     dayEl.addEventListener('click', () => handleDateClick(year, month, day));
                 }
-                calendarGridEl.appendChild(dayEl);
+                fragment.appendChild(dayEl);
             }
+
+            // Limpiar y añadir todo de una sola vez (mucho más rápido)
+            calendarGridEl.innerHTML = '';
+            calendarGridEl.appendChild(fragment);
         }
 
         prevMonthBtn.addEventListener('click', () => {
@@ -1944,6 +1992,9 @@
         }
 
         async function initCalendar() {
+            // Mostrar indicador de carga mientras se cargan las fechas
+            calendarGridEl.innerHTML = '<div class="col-span-7 text-center py-8"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div><p class="text-gray-500 mt-2">Cargando disponibilidad...</p></div>';
+
             await fetchBookedSessions(); // 1. Primero, lee la lista de Google Sheets
             renderCalendar(); // 2. Después, dibuja el calendario con las fechas actualizadas
             updateSubmitButton();
