@@ -445,6 +445,48 @@
             /* un valor alto para que se muestre todo el contenido */
         }
 
+        /* Estilos para el pop-up de descuento */
+        #discount-popup {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #discount-popup.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #discount-popup.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Animación suave para el contenedor del pop-up */
+        #discount-popup .bg-white {
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        #discount-popup.show .bg-white {
+            transform: scale(1);
+        }
+
+        /* Responsive para móvil */
+        @media (max-width: 640px) {
+            #discount-popup .bg-white {
+                max-width: 90%;
+                margin: 0 auto;
+            }
+
+            #discount-popup h2 {
+                font-size: 1.75rem;
+            }
+
+            #discount-popup .text-center {
+                padding: 1.5rem;
+            }
+        }
+
         /* Estilos para ocultar y mostrar la burbuja de FAQ */
         #open-faq-btn {
             opacity: 0;
@@ -762,6 +804,60 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZZNBG5R" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
 
+
+    <!-- Pop-up de Descuento -->
+    <div id="discount-popup"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300 z-50 p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl relative overflow-hidden">
+            <!-- Botón cerrar -->
+            <button id="close-discount-btn"
+                class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <!-- Contenido del pop-up -->
+            <div class="text-center p-8">
+                <!-- Icono/Decoración -->
+                <div class="mb-4">
+                    <svg class="w-16 h-16 mx-auto text-green-600" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7">
+                        </path>
+                    </svg>
+                </div>
+
+                <!-- Título -->
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">
+                    ¡15% de Descuento!
+                </h2>
+
+                <!-- Subtítulo -->
+                <p class="text-lg text-gray-600 mb-4">
+                    Solo este fin de semana
+                </p>
+
+                <!-- Descripción -->
+                <p class="text-gray-700 mb-6">
+                    Aprovecha esta oferta especial en cualquier paquete de fotografía
+                </p>
+
+                <!-- Texto legal -->
+                <p class="text-xs text-gray-400 mb-6">
+                    *Aplica en cualquier paquete
+                </p>
+
+                <!-- Botón de acción -->
+                <button id="claim-discount-btn"
+                    class="w-full bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition shadow-lg">
+                    Ver Paquetes
+                </button>
+            </div>
+        </div>
+    </div>
 
     <button id="open-faq-btn"
         class="fixed bottom-6 right-6 bg-green-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-green-700 transition z-50">
@@ -2234,6 +2330,42 @@
         lazyImages.forEach(img => {
             img.classList.add('lazy');
             imageObserver.observe(img);
+        });
+
+        // Discount Popup
+        const discountPopup = document.getElementById('discount-popup');
+        const closeDiscountBtn = document.getElementById('close-discount-btn');
+        const claimDiscountBtn = document.getElementById('claim-discount-btn');
+
+        // Mostrar el pop-up después de 1 segundo de cargar la página
+        setTimeout(() => {
+            discountPopup.classList.add('show');
+        }, 1000);
+
+        // Cerrar el pop-up con el botón X
+        closeDiscountBtn.addEventListener('click', () => {
+            discountPopup.classList.remove('show');
+            discountPopup.classList.add('hide');
+        });
+
+        // Cerrar el pop-up al hacer clic fuera del contenido
+        discountPopup.addEventListener('click', (e) => {
+            if (e.target === discountPopup) {
+                discountPopup.classList.remove('show');
+                discountPopup.classList.add('hide');
+            }
+        });
+
+        // Cuando se hace clic en "Ver Paquetes", cerrar pop-up y hacer scroll a paquetes
+        claimDiscountBtn.addEventListener('click', () => {
+            discountPopup.classList.remove('show');
+            discountPopup.classList.add('hide');
+
+            // Hacer scroll suave hacia la sección de paquetes
+            const packagesSection = document.getElementById('paquetes');
+            if (packagesSection) {
+                packagesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
 
         // FAQ Modal
