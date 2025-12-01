@@ -1822,7 +1822,7 @@
         const summaryTime = document.getElementById('summary-time');
         const summaryCost = document.getElementById('summary-cost');
 
-        let currentDate = new Date(2025, 10, 1);
+        let currentDate = new Date(2025, 11, 1);
         let selectedDate = null;
         let selectedTime = null;
         // Estas son las nuevas instrucciones para leer la hoja de cálculo
@@ -2035,7 +2035,7 @@
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth();
 
-            prevMonthBtn.disabled = (year === 2025 && month <= 10);
+            prevMonthBtn.disabled = (year === 2025 && month <= 11);
             nextMonthBtn.disabled = (year === 2025 && month >= 11);
 
             const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
