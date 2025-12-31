@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MZZNBG5R');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+        La Guía Anti-Estrés para tu Sesión de Fotos Familiar | CreaFilms
+    </title>
+    <meta name="description"
+        content="¿Temes que tus hijos no cooperen en la sesión de fotos? Descubre nuestra metodología probada para sesiones familiares divertidas y sin estrés. ¡Los niños NO tienen que portarse bien!" />
+    <meta name="keywords"
+        content="sesión fotos familiar, consejos sesión niños, fotos familiares sin estrés, CreaFilms blog, tips padres primerizos, fotografía infantil" />
+    <meta name="author" content="CreaFilms" />
+
+    <meta property="og:title"
+        content="La Guía Anti-Estrés para tu Sesión de Fotos Familiar (Y por qué tus hijos NO tienen que portarse bien)" />
+    <meta property="og:description"
+        content="Descubre nuestra metodología probada para sesiones familiares donde el caos es bienvenido y la diversión garantizada." />
+    <meta property="og:image" content="familia-g.jpg" />
+    <meta property="og:url" content="https://tudominio.com/guia-sesion-familiar-sin-estres.html" />
+    <meta property="og:type" content="article" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title"
+        content="La Guía Anti-Estrés para tu Sesión de Fotos Familiar" />
+    <meta name="twitter:description"
+        content="¿Temes que tus hijos no cooperen? Esta guía es para ti." />
+    <meta name="twitter:image" content="familia-g.jpg" />
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "La Guía Anti-Estrés para tu Sesión de Fotos Familiar (Y por qué tus hijos NO tienen que portarse bien)",
+          "image":"familia-feliz-sesion-navidena.jpg",
+          "datePublished": "2025-10-30T09:00:00+08:00",
+          "dateModified": "2025-10-30T09:00:00+08:00",
+          "author": {
+            "@type": "Person",
+            "name": "CreaFilms"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "CreaFilms",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://tudominio.com/logo.png"
+            }
+          }
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --color-primary: #3c524f;
+            --color-background: #f4f3f1;
+            --color-text: #3d403d;
+            --color-accent: #c7b282;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item:hover {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .checkbox-custom {
+            min-width: 24px;
+            min-height: 24px;
+            border: 2px solid var(--color-primary);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #3c524f 0%, #4a6360 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--color-accent);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Modal de Contacto */
+        .contact-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 1rem;
+        }
+
+        .contact-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .contact-modal-content {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-modal.active .contact-modal-content {
+            transform: scale(1);
+        }
+
+        .contact-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease, transform 0.3s ease;
+            padding: 0.5rem;
+        }
+
+        .contact-modal-close:hover {
+            color: var(--color-primary);
+            transform: rotate(90deg);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(37, 211, 102, 0.3);
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-email {
+            background: var(--color-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-email:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            background-color: #2d3d3b;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZZNBG5R" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold" style="color: var(--color-primary);">CreaFilms</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html#experiencia"
+                    class="text-gray-600 hover:text-black transition duration-300 uppercase text-xs tracking-widest">Experiencia</a>
+                <a href="index.html#paquetes"
+                    class="text-gray-600 hover:text-black transition duration-300 uppercase text-xs tracking-widest">Paquetes</a>
+                <a href="index.html#portafolio"
+                    class="text-gray-600 hover:text-black transition duration-300 uppercase text-xs tracking-widest">Galería</a>
+                <a href="index.html#blog"
+                    class="text-gray-600 hover:text-black transition duration-300 uppercase text-xs tracking-widest">Blog</a>
+                <a href="index.html#paquetes" class="font-bold btn-ghost btn-ghost-dark">Reservar</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i data-lucide="menu" class="h-6 w-6"></i>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="index.html#experiencia"
+                class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Experiencia</a>
+            <a href="index.html#paquetes"
+                class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Paquetes</a>
+            <a href="index.html#portafolio"
+                class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Galería</a>
+            <a href="index.html#blog"
+                class="block py-2 text-gray-600 hover:text-black uppercase text-xs tracking-widest">Blog</a>
+            <a href="index.html#paquetes"
+                class="block mt-2 text-center font-bold btn-ghost btn-ghost-dark">Reservar</a>
+        </div>
+    </header>
+
+    <main class="py-16">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-6 leading-tight"
+                style="color: var(--color-primary);">
+                La Guía Anti-Estrés para tu Sesión de Fotos Familiar
+            </h1>
+
+            <p class="text-xl text-center text-gray-600 mb-8 font-medium">
+                (Y por qué tus hijos NO tienen que "portarse bien")
+            </p>
+
+            <div class="text-center text-gray-600 mb-8">
+                <span>Por CreaFilms</span> • <time datetime="2025-10-30">30 de octubre, 2025</time>
+            </div>
+
+            <figure class="mb-12">
+                <img src="ninos-sonriendo-sesion-navidad.jpg" alt="Niños sonriendo felices durante sesión navideña"
+                    class="w-full h-auto rounded-xl shadow-2xl" />
+                <figcaption class="text-center text-sm text-gray-500 mt-3 italic">
+                    El caos feliz es donde vive la magia real.
+                </figcaption>
+            </figure>
+
+            <article class="prose max-w-none text-lg leading-relaxed text-gray-700">
+                <div class="quote-box text-xl">
+                    "Espero que los niños cooperen..."
+                </div>
+
+                <p>
+                    Como fotógrafo de familias, he escuchado esta frase cientos de veces. Comienza con un suspiro
+                    de preocupación y termina con esa mirada de "¿en qué me metí?"
+                </p>
+
+                <p>
+                    <strong>Déjame contarte un secreto:</strong> El miedo número uno de los padres no es el precio,
+                    ni el clima, ni si combinaron bien la ropa. Es el comportamiento de sus hijos. Te preocupa haber
+                    invertido tiempo y dinero solo para que tu hijo de tres años decida que hoy NO quiere fotos,
+                    que tu bebé llore sin parar o que tu preadolescente perfeccione su cara de "no quiero estar aquí".
+                </p>
+
+                <div class="highlight-box">
+                    <h3 class="text-2xl font-bold mb-4 text-white">Lo que nos hace diferentes</h3>
+                    <p class="text-white mb-2">
+                        Muchas compañías te dirán: "¡No te preocupes, jugamos y usamos dinámicas!"
+                    </p>
+                    <p class="text-white font-bold text-xl">
+                        Nosotros vamos un paso más allá.
+                    </p>
+                    <p class="text-white mt-4">
+                        No creemos en la suerte, creemos en un <strong>método</strong>. No queremos que "te portes bien";
+                        queremos que juegues, te conectes y seas tú mismo. Esta no es solo una sesión de fotos;
+                        es una <strong>hora de juego familiar coreografiada</strong>.
+                    </p>
+                </div>
+
+                <p>
+                    Aquí está nuestra guía práctica, en formato de checklist súper amigable, sobre cómo aseguramos
+                    que los niños (y los padres) estén felices, relajados y cooperativos.
+                </p>
+
+                <h2 class="text-3xl font-bold mt-12 mb-6" style="color: var(--color-primary);">
+                    ✨ Antes de la Sesión: Preparando el Escenario
+                </h2>
+
+                <p class="mb-6">
+                    El éxito de la sesión comienza <strong>antes</strong> de que la cámara se encienda.
+                    Aquí te compartimos nuestros tips probados:
+                </p>
+
+                <div class="checklist-item">
+                    <div class="checkbox-custom">
+                        <i data-lucide="check" class="h-4 w-4" style="color: var(--color-primary);"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2" style="color: var(--color-primary);">
+                            Habla de la sesión como una aventura, no una obligación
+                        </h3>
+                        <p class="text-gray-600">
+                            <strong>❌ En lugar de:</strong> "Mañana tenemos fotos y TIENES que portarte bien"<br>
+                            <strong>✅ Prueba con:</strong> "¡Mañana vamos a jugar con mi amigo fotógrafo!
+                            ¡Va a ser súper divertido! Vamos a correr, saltar y hacer caras chistosas!"
+                        </p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-custom">
+                        <i data-lucide="check" class="h-4 w-4" style="color: var(--color-primary);"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2" style="color: var(--color-primary);">
+                            Alimenta al batallón
+                        </h3>
+                        <p class="text-gray-600">
+                            <strong>La regla de oro:</strong> Un niño (o adulto) con hambre es un niño de mal humor.
+                            Asegúrate de que todos hayan comido bien antes de la sesión. Un snack ligero 30 minutos
+                            antes es perfecto. Papás: esto incluye el café para ustedes ☕
+                        </p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-custom">
+                        <i data-lucide="check" class="h-4 w-4" style="color: var(--color-primary);"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2" style="color: var(--color-primary);">
+                            Respeta las siestas sagradas
+                        </h3>
+                        <p class="text-gray-600">
+                            Programamos las sesiones estratégicamente alrededor de los horarios de sueño de tus hijos.
+                            Un niño descansado es un niño feliz. Un niño con sueño es... bueno, mejor no arriesgarnos.
+                            Si tu pequeño duerme a las 2 PM, no vamos a programar a la 1:45 PM. ¡Somos estratégicos!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-custom">
+                        <i data-lucide="check" class="h-4 w-4" style="color: var(--color-primary);"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2" style="color: var(--color-primary);">
+                            Prepara "El Kit de Emergencia para la Felicidad"
+                        </h3>
+                        <p class="text-gray-600">
+                            Prepara un bolso con lo esencial. Nosotros también llevamos el nuestro,
+                            ¡pero dos es mejor que uno! (Ver checklist detallado abajo 👇)
+                        </p>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl font-bold mt-12 mb-6" style="color: var(--color-primary);">
+                    🎒 El "Kit de Emergencia para la Felicidad": ¿Qué traer?
+                </h2>
+
+                <p class="mb-6">
+                    Este es nuestro secreto para manejar cualquier crisis de energía, humor o... bueno, cualquier cosa.
+                    Padres experimentados: ya conocen esto. Padres primerizos: tomen nota 📝
+                </p>
+
+                <div class="checklist-item">
+                    <div class="checkbox-custom">
+                        <i data-lucide="check" class="h-4 w-4" style="color: var(--color-primary);"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2" style="color: var(--color-primary);">Snacks que no ensucien</h3>
+                        <p class="text-gray-600">
+                            Piensa en galletas tipo "pez", gomitas de frutas, o cualquier cosa que no sea chocolate
+                            (manchas), nada con polvo naranja (Cheetos, te vemos 👀), o azul (RIP ropa blanca).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-custom">
+                        <i data-lucide="check" class="h-4 w-4" style="color: var(--color-primary);"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2" style="color: var(--color-primary);">Agua</h3>
+                        <p class="text-gray-600">
+                            La hidratación es clave. Especialmente si hay mucho movimiento y juego.
+                            Botellas con popote para evitar derrames. Los adultos también beben agua, es un buen ejemplo 😉
+                        </p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-custom">
+                        <i data-lucide="check" class="h-4 w-4" style="color: var(--color-primary);"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2" style="color: var(--color-primary);">Juguetes silenciosos</h3>
+                        <p class="text-gray-600">
+                            Un peluche favorito, un par de carritos, un libro. Algo que puedan sostener para darles
+                            seguridad, pero que no haga "pi-pi-pi" cada 3 segundos. (Deja los juguetes con sonido en casa,
+                            te lo suplico 🙏)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-custom">
+                        <i data-lucide="check" class="h-4 w-4" style="color: var(--color-primary);"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2" style="color: var(--color-primary);">Toallitas húmedas</h3>
+                        <p class="text-gray-600">
+                            Siempre. SIEMPRE. Para mocos, babas, manos pegajosas, o ese momento misterioso en que
+                            nadie sabe de dónde vino esa mancha. Las toallitas son tus mejores amigas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-custom">
+                        <i data-lucide="check" class="h-4 w-4" style="color: var(--color-primary);"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2" style="color: var(--color-primary);">Un cambio de ropa (por si acaso)</h3>
+                        <p class="text-gray-600">
+                            Para el bebé que escupe, el niño que encuentra el único charco en 3 kilómetros,
+                            o el que decide que rodar por el pasto es una excelente idea. ¡Ha pasado! Y cuando pasa,
+                            estarás feliz de tener un plan B.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Segunda imagen estilo revista -->
+                <div class="my-16 relative">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="order-2 md:order-1">
+                            <img src="familia-feliz-sesion-navidena.jpg" alt="Familia feliz durante sesión navideña profesional"
+                                class="w-full h-auto rounded-lg shadow-xl transform md:rotate-2" />
+                        </div>
+                        <div class="order-1 md:order-2 bg-gradient-to-br from-gray-50 to-white p-8 rounded-lg shadow-md">
+                            <p class="text-2xl font-bold mb-4" style="color: var(--color-primary);">
+                                "La mejor foto es la que no se planeó"
+                            </p>
+                            <p class="text-gray-600 text-lg leading-relaxed">
+                                Después de 15 años fotografiando familias, he aprendido que los mejores momentos
+                                suceden cuando los niños olvidan que la cámara existe. Por eso nuestra metodología
+                                se enfoca en crear experiencias, no poses.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl font-bold mt-12 mb-6" style="color: var(--color-primary);">
+                    🎯 Durante la Sesión: Nuestra Metodología por Edades
+                </h2>
+
+                <p class="mb-6">
+                    Aquí es donde realmente brillamos. No le pedimos a un niño de 2 años que pose como uno de 10.
+                    No esperamos que un bebé "coopere". <strong>Adaptamos nuestro enfoque a cada edad,
+                    personalidad y nivel de energía.</strong>
+                </p>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="baby" class="h-8 w-8" style="color: var(--color-accent);"></i>
+                        <h3 class="text-2xl font-bold" style="color: var(--color-primary);">
+                            Para Bebés (0-12 meses): Seguimos su ritmo
+                        </h3>
+                    </div>
+                    <p class="mb-3"><strong>El enfoque:</strong> Comodidad, paciencia y sonidos suaves.</p>
+                    <p class="mb-3"><strong>Cómo lo hacemos:</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4 text-gray-700">
+                        <li>Usamos sonajas suaves, cantamos "Baby Shark" en voz baja (sí, esa canción vive en nuestras cabezas también 🦈)</li>
+                        <li>Nos centramos en la conexión con mamá y papá</li>
+                        <li>Muchas tomas de detalles: manitas, piecitos, esos cachetes perfectos</li>
+                        <li>Momentos tiernos en brazos, besos en la frente, miradas de amor</li>
+                        <li>Si el bebé necesita comer o un cambio, <strong>paramos</strong>. Sin estrés. Nunca apuramos a un bebé.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="palette" class="h-8 w-8" style="color: var(--color-accent);"></i>
+                        <h3 class="text-2xl font-bold" style="color: var(--color-primary);">
+                            Para Niños Pequeños (1-4 años): ¡Somos Directores de Juego!
+                        </h3>
+                    </div>
+                    <p class="mb-3"><strong>El enfoque:</strong> Energía alta, movimiento constante y juegos rápidos.</p>
+                    <p class="mb-3"><strong>Cómo lo hacemos:</strong></p>
+                    <p class="mb-3">
+                        Nunca, NUNCA, decimos "mira la cámara y sonríe". En lugar de eso, usamos <strong>acciones</strong>:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 ml-4 text-gray-700">
+                        <li>"¡Corre y dale a mamá el abrazo más fuerte del mundo!"</li>
+                        <li>"¿Puedes encontrar un tesoro mágico detrás de ese árbol?"</li>
+                        <li>"¡Guerra de cosquillas en 3, 2, 1... AHORA!"</li>
+                        <li>"¿Quién puede saltar más alto? ¡Papá, tú también!"</li>
+                        <li>"Vamos a rugir como dinosaurios... ¡ROAAAR!"</li>
+                    </ul>
+                    <p class="mt-4 font-bold" style="color: var(--color-accent);">
+                        Ellos son los directores de la sesión; nosotros solo capturamos el caos feliz. ✨
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="sparkles" class="h-8 w-8" style="color: var(--color-accent);"></i>
+                        <h3 class="text-2xl font-bold" style="color: var(--color-primary);">
+                            Para Niños en Edad Escolar (5-9 años): ¡Despertamos la Curiosidad!
+                        </h3>
+                    </div>
+                    <p class="mb-3"><strong>El enfoque:</strong> Convertirlo en un desafío o un juego de imaginación.</p>
+                    <p class="mb-3"><strong>Cómo lo hacemos:</strong> Les damos "misiones secretas":</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4 text-gray-700">
+                        <li>"¿Puedes hacer que tu hermana se ría sin tocarla? ¡MISIÓN DIFÍCIL!"</li>
+                        <li>"Vamos a hacer un concurso: ¿quién hace la cara más chistosa?"</li>
+                        <li>Les contamos un chiste tonto (ver abajo 👇) y capturamos la risa genuina</li>
+                        <li>"¿Pueden fingir que el piso es lava y solo pueden pisar aquí?"</li>
+                        <li>"Imaginen que son superhéroes. ¿Cuál es su poder? ¡Muéstrenme!"</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-gray-600 italic">
+                        Pro tip para padres: A esta edad, los niños ADORAN tener un "trabajo importante".
+                        Darles una misión los hace sentir especiales.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="headphones" class="h-8 w-8" style="color: var(--color-accent);"></i>
+                        <h3 class="text-2xl font-bold" style="color: var(--color-primary);">
+                            Para Preadolescentes (10+ años): Lo Tratamos con Respeto
+                        </h3>
+                    </div>
+                    <p class="mb-3"><strong>El enfoque:</strong> Hacerlos sentir "cool" y escuchados.</p>
+                    <p class="mb-3"><strong>Cómo lo hacemos:</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4 text-gray-700">
+                        <li>Hablamos <strong>con</strong> ellos, no <strong>sobre</strong> ellos</li>
+                        <li>Les preguntamos sobre su música favorita, hobbies, o qué están viendo en Netflix</li>
+                        <li>Les mostramos el reverso de la cámara para que vean lo geniales que se ven (esto siempre funciona 😎)</li>
+                        <li>Usamos poses que se sienten naturales y relajadas, nada forzado o "infantil"</li>
+                        <li>Les damos espacio para expresarse a su manera</li>
+                        <li>Si tienen ideas, las escuchamos. Algunos tienen un sentido creativo increíble.</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-gray-600 italic">
+                        Nota para padres: A esta edad, la autonomía es clave. Entre más los tratemos como individuos
+                        con opiniones válidas, más cooperan. ¡Es psicología básica!
+                    </p>
+                </div>
+
+                <h2 class="text-3xl font-bold mt-12 mb-6" style="color: var(--color-primary);">
+                    😄 Las Frases Exactas que Usamos para Risas Genuinas
+                </h2>
+
+                <p class="mb-6">
+                    ¿Crees que esas sonrisas perfectas son suerte? <strong>No.</strong> Son provocadas con estrategia.
+                    Aquí tienes un vistazo a nuestro "guion secreto" (que ya no es tan secreto):
+                </p>
+
+                <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-6 mb-4">
+                    <p class="font-bold mb-2" style="color: var(--color-primary);">Para TODOS:</p>
+                    <p class="text-lg">"¡Digan 'pizza con mocos'!" 🍕</p>
+                    <p class="text-sm text-gray-600 mt-2">
+                        <em>Funciona el 95% del tiempo. Las palabras "raras" siempre hacen reír a los niños.</em>
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-6 mb-4">
+                    <p class="font-bold mb-2" style="color: var(--color-primary);">Mirando al papá:</p>
+                    <p class="text-lg">"¡Papá, huele los pies de Juanito! ¿Huelen a queso? ¿O a calcetines viejos?"</p>
+                    <p class="text-sm text-gray-600 mt-2">
+                        <em>Carcajadas garantizadas. Los niños encuentran esto HILARIO.</em>
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-6 mb-4">
+                    <p class="font-bold mb-2" style="color: var(--color-primary);">Para niños pequeños:</p>
+                    <p class="text-lg">"¿Dónde está tu nariz? ¿Está en tu rodilla? ¿En tu oreja? ¡No! ¡Ahí está!"</p>
+                    <p class="text-sm text-gray-600 mt-2">
+                        <em>Los peques de 1-3 años se ríen a carcajadas con esto. Funciona CADA VEZ.</em>
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-6 mb-4">
+                    <p class="font-bold mb-2" style="color: var(--color-primary);">Susurrando misteriosamente:</p>
+                    <p class="text-lg">"¿Pueden guardar un secreto? Díganle a mamá al oído cuál es su animal favorito... ¡pero en voz de monstruo!"</p>
+                    <p class="text-sm text-gray-600 mt-2">
+                        <em>Esto crea un momento íntimo y divertido. Capturamos conexión Y risas.</em>
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-r from-red-50 to-rose-50 rounded-lg p-6 mb-4">
+                    <p class="font-bold mb-2" style="color: var(--color-primary);">Para los papás (el momento emotivo):</p>
+                    <p class="text-lg">"Miren a su hijo y piensen en el día en que nació. Ahora mírense el uno al otro."</p>
+                    <p class="text-sm text-gray-600 mt-2">
+                        <em>Esto NO es para la risa. Esto es para capturar LA foto. La que te hace llorar años después.
+                        La que termina enmarcada en la sala. ❤️</em>
+                    </p>
+                </div>
+
+                <h2 class="text-3xl font-bold mt-12 mb-6" style="color: var(--color-primary);">
+                    🎉 Después de la Sesión: El Premio
+                </h2>
+
+                <div class="checklist-item">
+                    <div class="checkbox-custom">
+                        <i data-lucide="check" class="h-4 w-4" style="color: var(--color-primary);"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2" style="color: var(--color-primary);">¡Celebren!</h3>
+                        <p class="text-gray-600">
+                            No premies el "buen comportamiento"; celebra la <strong>diversión</strong>.
+                            "¡Fue tan divertido jugar todos juntos! ¿Vamos por un helado para celebrar que somos una familia increíble?".
+                        </p>
+                        <p class="text-sm text-gray-600 mt-2 italic">
+                            Esto refuerza que las sesiones de fotos son experiencias positivas, no "obligaciones que hay que soportar".
+                        </p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox-custom">
+                        <i data-lucide="check" class="h-4 w-4" style="color: var(--color-primary);"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2" style="color: var(--color-primary);">Confía en nosotros</h3>
+                        <p class="text-gray-600">
+                            Incluso si la sesión te pareció caótica, movida, ruidosa y un poco loca... ¡EXCELENTE!
+                            El caos es donde vive la conexión real. Nosotros sabemos cómo encontrar los momentos mágicos
+                            en medio del desorden.
+                        </p>
+                        <p class="text-sm font-bold mt-2" style="color: var(--color-accent);">
+                            Si te pareció "demasiado caótica", probablemente significa que obtuvimos las MEJORES fotos.
+                            Confía en el proceso. ✨
+                        </p>
+                    </div>
+                </div>
+
+                <div class="highlight-box mt-12">
+                    <h2 class="text-3xl font-bold mb-4 text-white">
+                        ¿Listo para una sesión de fotos que se siente como jugar?
+                    </h2>
+                    <p class="text-white text-lg mb-6">
+                        Deja de preocuparte por la sesión de fotos "perfecta" y empieza a emocionarte por la
+                        <strong>experiencia real</strong>. Nuestro trabajo no es solo tomar fotos bonitas;
+                        es crear un espacio donde tu familia pueda ser auténticamente feliz.
+                    </p>
+                    <p class="text-white mb-6">
+                        Donde los niños pueden ser niños (ruidosos, enérgicos, curiosos, impredecibles).
+                        Donde los bebés pueden tomar su tiempo. Donde los preadolescentes pueden sentirse cool.
+                        Y donde los padres pueden... <strong>respirar</strong>.
+                    </p>
+                    <div class="text-center">
+                        <a href="index.html#paquetes"
+                           class="inline-block bg-white text-gray-800 font-bold py-4 px-8 rounded-lg
+                                  hover:bg-gray-100 transition duration-300 shadow-lg">
+                            ¡Reserva tu Sesión Familiar Sin Estrés Aquí!
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-6 mt-12 border-l-4" style="border-color: var(--color-accent);">
+                    <p class="text-sm text-gray-600 mb-4">
+                        <strong>P.D. para padres primerizos:</strong>
+                    </p>
+                    <p class="text-gray-700 mb-3">
+                        Si es tu primera sesión familiar, es normal estar nervioso. Pero déjame decirte algo:
+                        he fotografiado a familias durante más de 15 años. He visto crisis de pañal, berrinches épicos,
+                        hermanos que se pelean, bebés que vomitan en la ropa linda, y niños que deciden que
+                        HOY es el día de probar su independencia.
+                    </p>
+                    <p class="text-gray-700 mb-3">
+                        Y sabes qué... <strong>siempre, SIEMPRE, terminamos con fotos hermosas</strong> que los papás
+                        lloran de emoción cuando las ven.
+                    </p>
+                    <p class="text-gray-700 font-bold">
+                        Porque la perfección no existe. Pero la conexión real, el amor, la risa...
+                        eso sí existe. Y eso es lo que capturamos. ❤️
+                    </p>
+                </div>
+            </article>
+
+            <div class="mt-12 text-center bg-white rounded-lg shadow-md p-8">
+                <h3 class="text-2xl font-bold mb-4">¿Tienes dudas o miedos sobre tu sesión?</h3>
+                <p class="text-gray-600 mb-6">
+                    Escríbenos. En serio. Queremos que llegues tranquilo, emocionado y listo para disfrutar.
+                    ¡Estamos aquí para ayudarte!
+                </p>
+                <button id="open-contact-modal" class="btn-ghost btn-ghost-dark font-bold inline-block cursor-pointer">
+                    Contacta con Nosotros
+                </button>
+            </div>
+
+            <div class="mt-8 text-center">
+                <a href="index.html#blog" class="inline-flex items-center text-gray-600 hover:text-black transition duration-300">
+                    <i data-lucide="arrow-left" class="h-5 w-5 mr-2"></i>
+                    Volver al Blog
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Contacto -->
+    <div id="contact-modal" class="contact-modal">
+        <div class="contact-modal-content">
+            <button class="contact-modal-close" id="close-contact-modal">
+                <i data-lucide="x" class="h-6 w-6"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4"
+                     style="background-color: var(--color-accent);">
+                    <i data-lucide="mail" class="h-8 w-8 text-white"></i>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-bold mb-2" style="color: var(--color-primary);">
+                    ¡Hablemos!
+                </h3>
+                <p class="text-gray-600">
+                    Estamos aquí para resolver todas tus dudas y ayudarte a crear la sesión perfecta.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Botón WhatsApp -->
+                <a href="https://wa.me/523223550795?text=Hola,%20leí%20la%20guía%20y%20me%20gustaría%20saber%20más%20sobre%20las%20sesiones%20familiares"
+                   class="btn-whatsapp"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                    Chatea por WhatsApp
+                </a>
+
+                <!-- Botón Email -->
+                <a href="mailto:creafilmsvallarta@gmail.com?subject=Consulta sobre sesión familiar&body=Hola, leí la guía anti-estrés y me gustaría saber más sobre las sesiones familiares."
+                   class="btn-email">
+                    <i data-lucide="mail" class="h-5 w-5"></i>
+                    Enviar un Email
+                </a>
+
+                <!-- Información adicional -->
+                <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+                    <p class="text-sm text-gray-600 mb-2">
+                        <i data-lucide="phone" class="h-4 w-4 inline mr-1"></i>
+                        <a href="tel:3223550795" class="hover:text-gray-900">322 355 0795</a>
+                    </p>
+                    <p class="text-sm text-gray-600">
+                        <i data-lucide="mail" class="h-4 w-4 inline mr-1"></i>
+                        creafilmsvallarta@gmail.com
+                    </p>
+                </div>
+
+                <!-- Call to action alternativo -->
+                <div class="text-center pt-4">
+                    <p class="text-sm text-gray-500 mb-3">¿Prefieres ver nuestros paquetes primero?</p>
+                    <a href="index.html#paquetes"
+                       class="text-sm font-semibold hover:underline"
+                       style="color: var(--color-accent);">
+                        Ver Paquetes y Precios →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-white py-12" style="background-color: var(--color-text);">
+        <div class="container mx-auto px-6 text-center">
+            <a href="index.html" class="text-2xl font-bold mb-4 inline-block">CreaFilms</a>
+            <p class="text-sm text-gray-400 mb-6">Capturando la magia de tus momentos más preciados.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://www.instagram.com/creafilms" class="text-gray-400 hover:text-white">
+                    <i data-lucide="instagram" class="h-6 w-6"></i>
+                </a>
+                <a href="https://www.facebook.com/Creafilms" class="text-gray-400 hover:text-white">
+                    <i data-lucide="facebook" class="h-6 w-6"></i>
+                </a>
+            </div>
+            <div class="mt-8 text-xs text-gray-500 space-y-2">
+                <p>© 2025 Creafilms Fotografía. Todos los derechos reservados.</p>
+                <p>
+                    <a href="aviso-privacidad.html" class="text-gray-400 hover:text-white underline">Aviso de Privacidad</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Contact Modal
+        const contactModal = document.getElementById('contact-modal');
+        const openContactModalBtn = document.getElementById('open-contact-modal');
+        const closeContactModalBtn = document.getElementById('close-contact-modal');
+
+        // Abrir modal
+        if (openContactModalBtn) {
+            openContactModalBtn.addEventListener('click', () => {
+                contactModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                // Re-crear iconos de Lucide después de mostrar el modal
+                setTimeout(() => {
+                    lucide.createIcons();
+                }, 100);
+            });
+        }
+
+        // Cerrar modal con botón X
+        if (closeContactModalBtn) {
+            closeContactModalBtn.addEventListener('click', () => {
+                contactModal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Cerrar modal al hacer clic fuera del contenido
+        if (contactModal) {
+            contactModal.addEventListener('click', (e) => {
+                if (e.target === contactModal) {
+                    contactModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && contactModal.classList.contains('active')) {
+                contactModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+
+</html>

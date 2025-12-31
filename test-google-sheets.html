@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba Google Sheets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .result {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Prueba de Conexión con Google Sheets</h1>
+
+    <div>
+        <h3>Tu URL de Google Apps Script:</h3>
+        <input type="text" id="url" value="https://script.google.com/macros/s/AKfycbxtuaZvZ9r3RaQk2vzr44CI9LNFelJmYU8JdtrMtpF6b9iQyP0eHzImpX5PxjigvxbvlA/exec" style="width: 90%;">
+    </div>
+
+    <div>
+        <h3>Email de prueba:</h3>
+        <input type="email" id="email" value="test@ejemplo.com">
+    </div>
+
+    <div>
+        <button onclick="testConnection()">1️⃣ Probar Conexión (GET)</button>
+        <button onclick="testSimplePost()">2️⃣ Enviar Email Simple</button>
+        <button onclick="testWithFormData()">3️⃣ Enviar con FormData</button>
+    </div>
+
+    <div id="results"></div>
+
+    <script>
+        function log(message, type = 'info') {
+            const resultsDiv = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `result ${type}`;
+            div.textContent = message;
+            resultsDiv.appendChild(div);
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        async function testConnection() {
+            clearResults();
+            const url = document.getElementById('url').value;
+
+            log('🔵 Probando conexión GET...');
+            log('URL: ' + url);
+
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                log('✅ Respuesta recibida:', 'success');
+                log(text, 'success');
+            } catch (error) {
+                log('❌ Error: ' + error.message, 'error');
+            }
+        }
+
+        async function testSimplePost() {
+            clearResults();
+            const url = document.getElementById('url').value;
+            const email = document.getElementById('email').value;
+
+            log('🔵 Enviando POST simple...');
+            log('Email: ' + email);
+
+            const data = {
+                email: email,
+                source: 'test',
+                ip: 'N/A',
+                userAgent: navigator.userAgent
+            };
+
+            log('Datos: ' + JSON.stringify(data, null, 2));
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                    redirect: 'follow'
+                });
+
+                log('Status: ' + response.status);
+                log('Status Text: ' + response.statusText);
+
+                const text = await response.text();
+                log('✅ Respuesta:', 'success');
+                log(text, 'success');
+
+                try {
+                    const json = JSON.parse(text);
+                    log('JSON parseado:', 'success');
+                    log(JSON.stringify(json, null, 2), 'success');
+                } catch (e) {
+                    log('La respuesta no es JSON válido', 'info');
+                }
+
+            } catch (error) {
+                log('❌ Error: ' + error.message, 'error');
+                log('Esto puede ser normal con CORS. Revisa Google Sheets manualmente.', 'info');
+            }
+        }
+
+        async function testWithFormData() {
+            clearResults();
+            const url = document.getElementById('url').value;
+            const email = document.getElementById('email').value;
+
+            log('🔵 Enviando con FormData...');
+
+            const formData = new FormData();
+            formData.append('email', email);
+            formData.append('source', 'test-formdata');
+            formData.append('ip', 'N/A');
+            formData.append('userAgent', navigator.userAgent);
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const text = await response.text();
+                log('✅ Respuesta:', 'success');
+                log(text, 'success');
+
+            } catch (error) {
+                log('❌ Error: ' + error.message, 'error');
+            }
+        }
+    </script>
+</body>
+</html>
