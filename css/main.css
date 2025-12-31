@@ -1,0 +1,311 @@
+/* ========================================
+   CREAFILMS - Main Stylesheet
+   Cinema Minimal Design System
+   ======================================== */
+
+/* ========================================
+   1. CSS RESET & BASE
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: #ffffff;
+    background-color: #000000;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   2. TYPOGRAPHY
+   ======================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* ========================================
+   3. HERO SECTION - CINEMA MINIMAL
+   ======================================== */
+
+#hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Video Background */
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Dark Overlay (40-50% opacity) */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+/* Hero Content */
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Hero Title */
+.hero-title {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    line-height: 1;
+    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.7);
+    animation: fadeInUp 1.2s ease-out;
+}
+
+.hero-subtitle {
+    display: block;
+    font-size: clamp(1.2rem, 3vw, 2.5rem);
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    color: #d4af37;
+    margin-top: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    animation: fadeInUp 1.4s ease-out;
+}
+
+/* ========================================
+   4. NAVIGATION BUTTONS (Ghost Style)
+   ======================================== */
+
+.hero-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 4rem;
+    animation: fadeInUp 1.6s ease-out;
+}
+
+.btn-ghost {
+    position: relative;
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #ffffff;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.btn-ghost::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+
+.btn-ghost:hover {
+    border-color: #d4af37;
+    color: #d4af37;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+.btn-ghost:hover::before {
+    left: 0;
+}
+
+.btn-ghost:active {
+    transform: translateY(0);
+}
+
+/* ========================================
+   5. SCROLL INDICATOR (Optional)
+   ======================================== */
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.7;
+    animation: fadeIn 2s ease-out;
+}
+
+.scroll-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), transparent);
+    animation: scrollLineMove 2s ease-in-out infinite;
+}
+
+/* ========================================
+   6. ANIMATIONS
+   ======================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.7;
+    }
+}
+
+@keyframes scrollLineMove {
+    0%, 100% {
+        height: 40px;
+        opacity: 0.8;
+    }
+    50% {
+        height: 60px;
+        opacity: 0.4;
+    }
+}
+
+/* ========================================
+   7. RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablets */
+@media (max-width: 768px) {
+    .hero-nav {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 3rem;
+    }
+
+    .btn-ghost {
+        padding: 1rem 2.5rem;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .scroll-indicator {
+        bottom: 2rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        letter-spacing: 0.2em;
+    }
+
+    .hero-nav {
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .btn-ghost {
+        padding: 0.9rem 2rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ========================================
+   8. ACCESSIBILITY
+   ======================================== */
+
+/* Focus States */
+.btn-ghost:focus {
+    outline: 2px solid #d4af37;
+    outline-offset: 4px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .btn-ghost {
+        border-width: 3px;
+    }
+}
