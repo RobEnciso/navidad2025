@@ -1,74 +1,84 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CREAFILMS - Visual Legacy. Fotografía y video profesional para bodas, eventos y sesiones especiales.">
-    <meta name="keywords" content="CreaFilms, fotografía profesional, video, bodas, eventos, sesiones fotográficas">
+    <meta name="description" content="CREAFILMS - Visual Legacy. Fotografía y cinematografía de autor para momentos eternos.">
+    <meta name="keywords" content="CreaFilms, fotografía editorial, cinematografía de lujo, bodas exclusivas">
     <meta name="author" content="CreaFilms">
 
-    <!-- Open Graph Meta Tags -->
+    <!-- Open Graph -->
     <meta property="og:title" content="CREAFILMS: Visual Legacy">
-    <meta property="og:description" content="Fotografía y video profesional que captura tu legado visual.">
+    <meta property="og:description" content="Fotografía y cinematografía de autor. Momentos eternos capturados con visión editorial.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/hero1.jpg">
 
-    <title>CREAFILMS: Visual Legacy</title>
+    <title>CREAFILMS</title>
 
     <!-- Google Fonts: Cinzel + Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-    <!-- Hero Section -->
-    <section id="hero">
-        <!-- Video Background -->
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="assets/home-bg.mp4" type="video/mp4">
-            <!-- Fallback Image -->
-            <img src="assets/hero1.jpg" alt="CREAFILMS Background">
-        </video>
 
-        <!-- Dark Overlay -->
-        <div class="hero-overlay"></div>
+    <!-- Fixed Video Background -->
+    <video id="bg-video" autoplay muted loop playsinline>
+        <source src="assets/home-bg.mp4" type="video/mp4">
+    </video>
 
-        <!-- Hero Content -->
+    <!-- Video Overlay -->
+    <div class="video-overlay"></div>
+
+    <!-- Main Content -->
+    <main class="hero-container">
         <div class="hero-content">
             <!-- Main Title -->
-            <h1 class="hero-title">
+            <h1 class="main-title">
                 CREAFILMS
-                <span class="hero-subtitle">Visual Legacy</span>
             </h1>
 
-            <!-- Navigation Buttons -->
-            <nav class="hero-nav">
-                <a href="bodas/index.html" class="btn-ghost">
-                    <span>BODAS</span>
-                </a>
-                <a href="estudio/index.html" class="btn-ghost">
-                    <span>ESTUDIO</span>
-                </a>
-                <a href="navidad/index.html" class="btn-ghost">
-                    <span>TEMPORADA</span>
-                </a>
-            </nav>
-
-            <!-- Scroll Indicator (Optional) -->
-            <div class="scroll-indicator">
-                <span class="scroll-text">Explora</span>
-                <div class="scroll-line"></div>
-            </div>
+            <!-- Subtitle -->
+            <p class="main-subtitle">
+                Visual Legacy
+            </p>
         </div>
-    </section>
+    </main>
 
-    <!-- Main JS -->
+    <!-- Corner Navigation -->
+    <nav class="corner-nav">
+        <!-- Top Left -->
+        <a href="bodas/index.html" class="nav-link nav-tl" data-label="01">
+            <span class="nav-text">BODAS</span>
+        </a>
+
+        <!-- Top Right -->
+        <a href="estudio/index.html" class="nav-link nav-tr" data-label="02">
+            <span class="nav-text">ESTUDIO</span>
+        </a>
+
+        <!-- Bottom Center -->
+        <a href="navidad/index.html" class="nav-link nav-bc" data-label="03">
+            <span class="nav-text">TEMPORADA</span>
+        </a>
+    </nav>
+
+    <!-- Year Display (Optional Editorial Touch) -->
+    <div class="year-display">2025</div>
+
+    <!-- Scroll Hint -->
+    <div class="scroll-hint">
+        <span class="scroll-line"></span>
+    </div>
+
+    <!-- JavaScript -->
     <script src="js/main.js"></script>
+
 </body>
 
 </html>

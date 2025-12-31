@@ -1,10 +1,10 @@
 /* ========================================
-   CREAFILMS - Main Stylesheet
-   Cinema Minimal Design System
+   CREAFILMS - Editorial Luxury Design
+   Magazine Style - VOGUE Inspired
    ======================================== */
 
 /* ========================================
-   1. CSS RESET & BASE
+   1. RESET & BASE
    ======================================== */
 
 * {
@@ -13,200 +13,265 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     color: #ffffff;
     background-color: #000000;
-    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* ========================================
-   2. TYPOGRAPHY
+   2. FIXED VIDEO BACKGROUND (IMMERSIVE)
    ======================================== */
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -2;
+    opacity: 0;
+    animation: videoFadeIn 2s ease-out 0.5s forwards;
+}
+
+/* Video Overlay (Dark) */
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+    z-index: -1;
+    pointer-events: none;
 }
 
 /* ========================================
-   3. HERO SECTION - CINEMA MINIMAL
+   3. MAIN HERO CONTAINER (CENTERED)
    ======================================== */
 
-#hero {
+.hero-container {
     position: relative;
     width: 100%;
     height: 100vh;
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-}
-
-/* Video Background */
-.hero-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
+    padding: 2rem;
     z-index: 1;
 }
 
-/* Dark Overlay (40-50% opacity) */
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 2;
-}
-
-/* Hero Content */
 .hero-content {
-    position: relative;
-    z-index: 3;
     text-align: center;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Hero Title */
-.hero-title {
-    font-size: clamp(3rem, 8vw, 7rem);
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    color: #ffffff;
-    margin-bottom: 1rem;
-    line-height: 1;
-    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.7);
-    animation: fadeInUp 1.2s ease-out;
-}
-
-.hero-subtitle {
-    display: block;
-    font-size: clamp(1.2rem, 3vw, 2.5rem);
-    font-weight: 400;
-    letter-spacing: 0.3em;
-    color: #d4af37;
-    margin-top: 1rem;
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    animation: fadeInUp 1.4s ease-out;
+    max-width: 1400px;
 }
 
 /* ========================================
-   4. NAVIGATION BUTTONS (Ghost Style)
+   4. TYPOGRAPHY - GIGANTE EDITORIAL
    ======================================== */
 
-.hero-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-    margin-top: 4rem;
-    animation: fadeInUp 1.6s ease-out;
+.main-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 400;
+    letter-spacing: 0.5rem;
+    color: #ffffff;
+    line-height: 0.95;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: titleReveal 2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
 }
 
-.btn-ghost {
-    position: relative;
-    display: inline-block;
-    padding: 1.2rem 3rem;
+.main-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
+    font-weight: 200;
+    letter-spacing: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: subtitleReveal 2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+
+/* ========================================
+   5. CORNER NAVIGATION (NO BOXES)
+   ======================================== */
+
+.corner-nav {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.nav-link {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
     font-family: 'Cinzel', serif;
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
-    font-weight: 600;
-    letter-spacing: 0.2em;
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+    font-weight: 400;
+    letter-spacing: 0.3rem;
     text-transform: uppercase;
     text-decoration: none;
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.7);
     background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: all;
+    opacity: 0;
+}
+
+/* Number Labels */
+.nav-link::before {
+    content: attr(data-label);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    color: rgba(255, 255, 255, 0.4);
+    transition: all 0.4s ease;
+}
+
+.nav-text {
+    position: relative;
     overflow: hidden;
 }
 
-.btn-ghost::before {
+.nav-text::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: -1;
-}
-
-.btn-ghost:hover {
-    border-color: #d4af37;
-    color: #d4af37;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-}
-
-.btn-ghost:hover::before {
+    bottom: -2px;
     left: 0;
+    width: 0;
+    height: 1px;
+    background: #ffffff;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn-ghost:active {
-    transform: translateY(0);
+/* Hover States */
+.nav-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
 }
 
-/* ========================================
-   5. SCROLL INDICATOR (Optional)
-   ======================================== */
+.nav-link:hover::before {
+    color: rgba(255, 255, 255, 0.8);
+}
 
-.scroll-indicator {
-    position: absolute;
+.nav-link:hover .nav-text::after {
+    width: 100%;
+}
+
+/* Position: Top Left */
+.nav-tl {
+    top: 3rem;
+    left: 3rem;
+    animation: navReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards;
+}
+
+/* Position: Top Right */
+.nav-tr {
+    top: 3rem;
+    right: 3rem;
+    animation: navReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1.8s forwards;
+}
+
+/* Position: Bottom Center */
+.nav-bc {
     bottom: 3rem;
     left: 50%;
     transform: translateX(-50%);
+    animation: navReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) 2s forwards;
+}
+
+/* ========================================
+   6. YEAR DISPLAY (EDITORIAL DETAIL)
+   ======================================== */
+
+.year-display {
+    position: fixed;
+    bottom: 3rem;
+    left: 3rem;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+    font-weight: 300;
+    letter-spacing: 0.4rem;
+    color: rgba(255, 255, 255, 0.3);
+    z-index: 50;
+    opacity: 0;
+    animation: yearReveal 1.5s ease-out 2.2s forwards;
+}
+
+/* ========================================
+   7. SCROLL HINT
+   ======================================== */
+
+.scroll-hint {
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    opacity: 0.7;
-    animation: fadeIn 2s ease-out;
-}
-
-.scroll-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #ffffff;
+    z-index: 50;
+    opacity: 0;
+    animation: scrollHintReveal 1.5s ease-out 2.4s forwards;
 }
 
 .scroll-line {
+    display: block;
     width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), transparent);
-    animation: scrollLineMove 2s ease-in-out infinite;
+    height: 50px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    animation: scrollLineMove 3s ease-in-out infinite;
 }
 
 /* ========================================
-   6. ANIMATIONS
+   8. ANIMATIONS
    ======================================== */
 
-@keyframes fadeInUp {
+@keyframes videoFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes titleReveal {
     from {
         opacity: 0;
         transform: translateY(30px);
@@ -217,78 +282,134 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-@keyframes fadeIn {
+@keyframes subtitleReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes navReveal {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes yearReveal {
     from {
         opacity: 0;
     }
     to {
-        opacity: 0.7;
+        opacity: 0.3;
+    }
+}
+
+@keyframes scrollHintReveal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.6;
     }
 }
 
 @keyframes scrollLineMove {
     0%, 100% {
-        height: 40px;
+        transform: scaleY(1);
         opacity: 0.8;
     }
     50% {
-        height: 60px;
+        transform: scaleY(1.5);
         opacity: 0.4;
     }
 }
 
 /* ========================================
-   7. RESPONSIVE DESIGN
+   9. RESPONSIVE DESIGN - MOBILE
    ======================================== */
 
-/* Tablets */
 @media (max-width: 768px) {
-    .hero-nav {
-        flex-direction: column;
-        gap: 1.5rem;
-        margin-top: 3rem;
+    .main-title {
+        font-size: clamp(2.5rem, 12vw, 5rem);
+        letter-spacing: 0.3rem;
     }
 
-    .btn-ghost {
-        padding: 1rem 2.5rem;
-        width: 100%;
-        max-width: 300px;
+    .main-subtitle {
+        font-size: clamp(0.7rem, 3vw, 1.2rem);
+        letter-spacing: 0.5rem;
     }
 
-    .scroll-indicator {
+    /* Navigation - Stack vertically on mobile */
+    .nav-tl,
+    .nav-tr {
+        top: 2rem;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+    }
+
+    .nav-tl {
+        top: 2rem;
+    }
+
+    .nav-tr {
+        top: 6rem;
+    }
+
+    .nav-bc {
         bottom: 2rem;
+    }
+
+    .year-display {
+        bottom: 2rem;
+        left: 2rem;
+        font-size: 0.65rem;
+    }
+
+    .scroll-hint {
+        display: none;
+    }
+
+    .nav-link {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.2rem;
     }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
-    .hero-title {
+    .main-title {
         font-size: 2.5rem;
+        letter-spacing: 0.2rem;
     }
 
-    .hero-subtitle {
-        font-size: 1rem;
-        letter-spacing: 0.2em;
+    .main-subtitle {
+        font-size: 0.7rem;
+        letter-spacing: 0.4rem;
     }
 
-    .hero-nav {
-        gap: 1rem;
-        margin-top: 2rem;
-    }
-
-    .btn-ghost {
-        padding: 0.9rem 2rem;
-        font-size: 0.85rem;
+    .nav-link {
+        padding: 0.7rem 1rem;
+        font-size: 0.7rem;
     }
 }
 
 /* ========================================
-   8. ACCESSIBILITY
+   10. ACCESSIBILITY
    ======================================== */
 
 /* Focus States */
-.btn-ghost:focus {
-    outline: 2px solid #d4af37;
+.nav-link:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
     outline-offset: 4px;
 }
 
@@ -303,9 +424,28 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* High Contrast Mode */
+/* High Contrast */
 @media (prefers-contrast: high) {
-    .btn-ghost {
-        border-width: 3px;
+    .nav-link {
+        border: 1px solid rgba(255, 255, 255, 0.5);
     }
+
+    .main-title {
+        text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    }
+}
+
+/* ========================================
+   11. FALLBACK FOR NO VIDEO
+   ======================================== */
+
+body.no-video {
+    background-image: url('../assets/hero1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body.no-video #bg-video {
+    display: none;
 }
