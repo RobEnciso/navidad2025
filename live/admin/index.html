@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin · CreaFilms Live</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg:        #0a0a0a;
+            --card:      #111111;
+            --border:    #222222;
+            --text:      #faf9f7;
+            --muted:     #888888;
+            --gold:      #c9a96e;
+            --gold-h:    #d4b580;
+            --danger:    #8b2635;
+            --danger-h:  #a32e41;
+            --neutral:   #222222;
+            --neutral-h: #2e2e2e;
+            --radius:    4px;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* ── PANTALLA LOGIN ─────────────────────────────── */
+        #login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .login-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            width: 100%;
+            max-width: 380px;
+            padding: 48px 40px;
+        }
+
+        .login-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 13px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-field {
+            margin-bottom: 20px;
+        }
+
+        .login-label {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: 'Lato', sans-serif;
+            font-size: 14px;
+            border-radius: var(--radius);
+            transition: border-color 0.2s;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .login-error {
+            display: none;
+            font-size: 12px;
+            color: var(--danger);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .login-error.visible {
+            display: block;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 11px 20px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: var(--radius);
+            transition: background 0.2s, opacity 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--gold-h);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .btn-danger:hover:not(:disabled) {
+            background: var(--danger-h);
+        }
+
+        .btn-neutral {
+            background: var(--neutral);
+            color: var(--text);
+        }
+
+        .btn-neutral:hover:not(:disabled) {
+            background: var(--neutral-h);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover:not(:disabled) {
+            color: var(--text);
+            border-color: #444;
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ── DASHBOARD ──────────────────────────────────── */
+        #dashboard {
+            display: none;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        #dashboard.visible {
+            display: flex;
+        }
+
+        /* HEADER */
+        .admin-header {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .header-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            letter-spacing: 5px;
+            font-weight: 300;
+            color: var(--text);
+        }
+
+        .header-logo span {
+            color: var(--gold);
+        }
+
+        .header-active-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .header-active-name {
+            display: inline;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* MAIN LAYOUT */
+        .admin-body {
+            flex: 1;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .card-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        /* EVENTO ACTIVO */
+        .evento-activo-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .info-item label {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+
+        .info-item span {
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .evento-activo-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .no-active {
+            font-size: 14px;
+            color: var(--muted);
+            font-style: italic;
+            padding: 8px 0;
+        }
+
+        /* TABLA */
+        .tabla-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        thead th {
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.15s;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        tbody td {
+            padding: 14px 16px;
+            color: var(--text);
+            vertical-align: middle;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            font-weight: 700;
+        }
+
+        .badge-active {
+            background: rgba(201,169,110,0.15);
+            color: var(--gold);
+        }
+
+        .badge-inactive {
+            background: rgba(136,136,136,0.1);
+            color: var(--muted);
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* FORMULARIO EVENTO */
+        #form-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 100;
+            align-items: flex-start;
+            justify-content: center;
+            overflow-y: auto;
+            padding: 32px 16px;
+        }
+
+        #form-overlay.visible {
+            display: flex;
+        }
+
+        .form-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 680px;
+            margin: auto;
+        }
+
+        .form-card .card-header {
+            position: sticky;
+            top: 0;
+            background: var(--card);
+            z-index: 1;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .form-input,
+        .form-textarea {
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: 'Lato', sans-serif;
+            font-size: 13px;
+            border-radius: var(--radius);
+            transition: border-color 0.2s;
+            width: 100%;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-hint {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            padding-top: 8px;
+        }
+
+        /* TEMAS DE COLOR */
+        .temas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
+        }
+
+        .tema-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px 12px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            text-align: center;
+        }
+
+        .tema-card:hover {
+            border-color: #444;
+        }
+
+        .tema-card.selected {
+            border-color: var(--gold);
+        }
+
+        .tema-nombre {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--text);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .tema-colores {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .tema-circulo {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.1);
+            flex-shrink: 0;
+        }
+
+        /* LOADING OVERLAY */
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #loading-overlay.visible {
+            display: flex;
+        }
+
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(201,169,110,0.2);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* TOAST */
+        #toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 300;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+        }
+
+        .toast {
+            padding: 12px 20px;
+            font-size: 13px;
+            border-radius: var(--radius);
+            border-left: 3px solid transparent;
+            animation: toastIn 0.25s ease, toastOut 0.3s ease 2.7s forwards;
+            max-width: 320px;
+        }
+
+        .toast-success {
+            background: #1a2a1a;
+            border-color: #4a9a4a;
+            color: #aaffaa;
+        }
+
+        .toast-error {
+            background: #2a1218;
+            border-color: var(--danger);
+            color: #ffaaaa;
+        }
+
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes toastOut {
+            from { opacity: 1; }
+            to   { opacity: 0; }
+        }
+
+        /* CONFIRM DIALOG */
+        #confirm-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 250;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        #confirm-overlay.visible {
+            display: flex;
+        }
+
+        .confirm-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            max-width: 360px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .confirm-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .confirm-msg {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .confirm-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 640px) {
+            .admin-header {
+                padding: 16px;
+            }
+
+            .admin-body {
+                padding: 16px;
+                gap: 20px;
+            }
+
+            .card-header {
+                padding: 16px;
+            }
+
+            .card-body {
+                padding: 16px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .temas-grid {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            thead th,
+            tbody td {
+                padding: 10px 10px;
+            }
+
+            .btn {
+                font-size: 10px;
+                padding: 9px 14px;
+            }
+
+            .table-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     PANTALLA DE LOGIN
+════════════════════════════════════════════════════════ -->
+<div id="login-screen">
+    <div class="login-card">
+        <div class="login-logo">CreaFilms Live</div>
+        <div class="login-subtitle">Panel de Administración</div>
+
+        <form id="login-form">
+            <div class="login-field">
+                <label class="login-label" for="login-email">Email</label>
+                <input type="email" id="login-email" class="login-input"
+                       placeholder="admin@creafilms.com" autocomplete="email">
+            </div>
+
+            <div class="login-field">
+                <label class="login-label" for="login-password">Contraseña</label>
+                <input type="password" id="login-password" class="login-input"
+                       placeholder="••••••••" autocomplete="current-password" required>
+            </div>
+
+            <div class="login-error" id="login-error">
+                Contraseña incorrecta. Inténtalo de nuevo.
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">
+                Entrar
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     DASHBOARD
+════════════════════════════════════════════════════════ -->
+<div id="dashboard">
+
+    <!-- HEADER -->
+    <header class="admin-header">
+        <div class="header-left">
+            <div class="header-logo">
+                CREAFILMS <span>LIVE</span> · ADMIN
+            </div>
+            <div class="header-active-label">
+                Evento activo:
+                <span class="header-active-name" id="header-active-name">—</span>
+            </div>
+        </div>
+        <button class="btn btn-ghost" id="btn-logout">Cerrar sesión</button>
+    </header>
+
+    <!-- BODY -->
+    <main class="admin-body">
+
+        <!-- PANEL EVENTO ACTIVO -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Evento Activo</div>
+            </div>
+            <div class="card-body" id="active-event-body">
+                <div class="no-active">No hay ningún evento activo.</div>
+            </div>
+        </div>
+
+        <!-- LISTA DE EVENTOS -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Todos los eventos</div>
+                <button class="btn btn-primary" id="btn-nuevo">+ Nuevo evento</button>
+            </div>
+            <div class="card-body" style="padding: 0;">
+                <div class="tabla-wrapper">
+                    <table id="eventos-tabla">
+                        <thead>
+                            <tr>
+                                <th>Pareja</th>
+                                <th>Fecha</th>
+                                <th>Lugar</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="eventos-tbody">
+                            <tr>
+                                <td colspan="5" style="text-align:center;color:var(--muted);padding:32px;">
+                                    Cargando...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     FORMULARIO OVERLAY
+════════════════════════════════════════════════════════ -->
+<div id="form-overlay">
+    <div class="form-card">
+        <div class="card-header">
+            <div class="card-title" id="form-title">Nuevo evento</div>
+            <button class="btn btn-ghost" id="btn-form-cancelar">Cancelar</button>
+        </div>
+        <div class="card-body">
+            <form id="evento-form">
+                <input type="hidden" id="form-id">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="f-pareja">Nombre de la pareja *</label>
+                        <input type="text" id="f-pareja" class="form-input"
+                               placeholder="Ana & Carlos" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="f-fecha">Fecha *</label>
+                        <input type="date" id="f-fecha" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="f-lugar">Lugar *</label>
+                        <input type="text" id="f-lugar" class="form-input"
+                               placeholder="Puerto Vallarta, Jalisco" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="f-youtube">YouTube ID *</label>
+                        <input type="text" id="f-youtube" class="form-input"
+                               placeholder="dQw4w9WgXcQ" required>
+                        <span class="form-hint">El ID al final de la URL de YouTube</span>
+                    </div>
+
+                    <div class="form-group full">
+                        <label class="form-label" for="f-bienvenida">Mensaje de bienvenida</label>
+                        <textarea id="f-bienvenida" class="form-textarea"
+                                  placeholder="Bienvenidos a la transmisión en vivo de nuestra boda..."></textarea>
+                    </div>
+
+                    <div class="form-group full">
+                        <label class="form-label">Tema de color *</label>
+                        <div class="temas-grid" id="temas-grid">
+                            <!-- Generado por JS -->
+                        </div>
+                        <input type="hidden" id="f-tema-selected">
+                    </div>
+                </div>
+
+                <div class="form-actions" style="margin-top:24px;">
+                    <button type="button" class="btn btn-neutral" id="btn-form-cancelar-2">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="btn-form-guardar">
+                        Guardar evento
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CONFIRM DIALOG
+════════════════════════════════════════════════════════ -->
+<div id="confirm-overlay">
+    <div class="confirm-card">
+        <div class="confirm-title">¿Estás seguro?</div>
+        <div class="confirm-msg" id="confirm-msg"></div>
+        <div class="confirm-actions">
+            <button class="btn btn-neutral" id="confirm-cancel">Cancelar</button>
+            <button class="btn btn-danger" id="confirm-ok">Eliminar</button>
+        </div>
+    </div>
+</div>
+
+<!-- LOADING OVERLAY -->
+<div id="loading-overlay">
+    <div class="spinner"></div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div id="toast-container"></div>
+
+<!-- Config — debe ir antes del SDK -->
+<script src="/live/config.js"></script>
+
+<!-- Supabase JS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// CONSTANTES
+// ═══════════════════════════════════════════════════════════════
+
+const PASSWORD = 'creafilms2025';
+const SESSION_KEY = 'creafilms_admin_auth';
+
+const TEMAS = [
+    {
+        id: 'dorado-clasico',
+        nombre: 'Dorado Clásico',
+        primario: '#c9a96e',
+        secundario: '#0a0a0a',
+        acento: '#faf9f7'
+    },
+    {
+        id: 'rosa-poudre',
+        nombre: 'Rosa Poudre',
+        primario: '#d4a5a5',
+        secundario: '#2c1810',
+        acento: '#fdf6f0'
+    },
+    {
+        id: 'verde-salvia',
+        nombre: 'Verde Salvia',
+        primario: '#8faa8b',
+        secundario: '#1a2318',
+        acento: '#f5f5f0'
+    },
+    {
+        id: 'azul-cielo',
+        nombre: 'Azul Cielo',
+        primario: '#7ba7bc',
+        secundario: '#1a2535',
+        acento: '#f0f4f8'
+    },
+    {
+        id: 'terracota',
+        nombre: 'Terracota',
+        primario: '#c17f5a',
+        secundario: '#1c1008',
+        acento: '#faf4ee'
+    },
+    {
+        id: 'lavanda',
+        nombre: 'Lavanda',
+        primario: '#9b89b4',
+        secundario: '#1a1525',
+        acento: '#f8f5fc'
+    },
+    {
+        id: 'blanco-puro',
+        nombre: 'Blanco Puro',
+        primario: '#e8e8e8',
+        secundario: '#1a1a1a',
+        acento: '#ffffff'
+    },
+    {
+        id: 'vino-tinto',
+        nombre: 'Vino Tinto',
+        primario: '#8b2635',
+        secundario: '#0f0508',
+        acento: '#fdf5f6'
+    }
+];
+
+// ═══════════════════════════════════════════════════════════════
+// ESTADO GLOBAL
+// ═══════════════════════════════════════════════════════════════
+
+let db;
+let eventos = [];
+let eventoActivo = null;
+let temaSeleccionado = null;
+let confirmCallback = null;
+
+// ═══════════════════════════════════════════════════════════════
+// UTILIDADES
+// ═══════════════════════════════════════════════════════════════
+
+function escapeHTML(str) {
+    const d = document.createElement('div');
+    d.textContent = str || '';
+    return d.innerHTML;
+}
+
+function showLoading() {
+    document.getElementById('loading-overlay').classList.add('visible');
+}
+
+function hideLoading() {
+    document.getElementById('loading-overlay').classList.remove('visible');
+}
+
+function toast(msg, type = 'success') {
+    const container = document.getElementById('toast-container');
+    const el = document.createElement('div');
+    el.className = `toast toast-${type}`;
+    el.textContent = msg;
+    container.appendChild(el);
+    setTimeout(() => el.remove(), 3100);
+}
+
+function confirm(msg, cb) {
+    document.getElementById('confirm-msg').textContent = msg;
+    confirmCallback = cb;
+    document.getElementById('confirm-overlay').classList.add('visible');
+}
+
+function formatFecha(fechaStr) {
+    if (!fechaStr) return '—';
+    const parts = fechaStr.split('-');
+    if (parts.length !== 3) return fechaStr;
+    const [y, m, d] = parts;
+    return `${d}/${m}/${y}`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LOGIN
+// ═══════════════════════════════════════════════════════════════
+
+function checkSession() {
+    return sessionStorage.getItem(SESSION_KEY) === 'true';
+}
+
+function saveSession() {
+    sessionStorage.setItem(SESSION_KEY, 'true');
+}
+
+function clearSession() {
+    sessionStorage.removeItem(SESSION_KEY);
+}
+
+document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const pwd = document.getElementById('login-password').value;
+    const errEl = document.getElementById('login-error');
+
+    if (pwd === PASSWORD) {
+        errEl.classList.remove('visible');
+        saveSession();
+        showDashboard();
+    } else {
+        errEl.classList.add('visible');
+        document.getElementById('login-password').value = '';
+        document.getElementById('login-password').focus();
+    }
+});
+
+document.getElementById('btn-logout').addEventListener('click', () => {
+    clearSession();
+    location.reload();
+});
+
+// ═══════════════════════════════════════════════════════════════
+// PANTALLAS
+// ═══════════════════════════════════════════════════════════════
+
+function showDashboard() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('dashboard').classList.add('visible');
+    initDB();
+    cargarEventos();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SUPABASE
+// ═══════════════════════════════════════════════════════════════
+
+function initDB() {
+    db = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseKey);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CARGAR EVENTOS
+// ═══════════════════════════════════════════════════════════════
+
+async function cargarEventos() {
+    showLoading();
+    try {
+        const { data, error } = await db
+            .from('eventos')
+            .select('*')
+            .order('fecha', { ascending: false });
+
+        if (error) throw error;
+
+        eventos = data || [];
+        eventoActivo = eventos.find(e => e.activo) || null;
+
+        renderHeaderActive();
+        renderEventoActivo();
+        renderTabla();
+    } catch (err) {
+        console.error(err);
+        toast('Error al cargar eventos: ' + (err.message || err), 'error');
+    } finally {
+        hideLoading();
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER HEADER
+// ═══════════════════════════════════════════════════════════════
+
+function renderHeaderActive() {
+    const el = document.getElementById('header-active-name');
+    el.textContent = eventoActivo ? eventoActivo.nombre_pareja : '—';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER EVENTO ACTIVO
+// ═══════════════════════════════════════════════════════════════
+
+function renderEventoActivo() {
+    const body = document.getElementById('active-event-body');
+
+    if (!eventoActivo) {
+        body.innerHTML = '<div class="no-active">No hay ningún evento activo en este momento.</div>';
+        return;
+    }
+
+    const e = eventoActivo;
+    const salaUrl = `${location.origin}/live/sala/`;
+
+    body.innerHTML = `
+        <div class="evento-activo-info">
+            <div class="info-item">
+                <label>Pareja</label>
+                <span>${escapeHTML(e.nombre_pareja)}</span>
+            </div>
+            <div class="info-item">
+                <label>Fecha</label>
+                <span>${formatFecha(e.fecha)}</span>
+            </div>
+            <div class="info-item">
+                <label>Lugar</label>
+                <span>${escapeHTML(e.lugar || '—')}</span>
+            </div>
+            <div class="info-item">
+                <label>YouTube ID</label>
+                <span>${escapeHTML(e.youtube_id || '—')}</span>
+            </div>
+        </div>
+        <div class="evento-activo-actions">
+            <button class="btn btn-neutral" onclick="abrirSala()">
+                Abrir sala virtual
+            </button>
+            <button class="btn btn-ghost" onclick="copiarLinkSala()">
+                Copiar link
+            </button>
+            <button class="btn btn-danger" onclick="desactivarEvento(${e.id})">
+                Desactivar
+            </button>
+        </div>
+    `;
+}
+
+function abrirSala() {
+    window.open('/live/sala/', '_blank');
+}
+
+function copiarLinkSala() {
+    const url = `${location.origin}/live/sala/`;
+    navigator.clipboard.writeText(url).then(() => {
+        toast('Link copiado al portapapeles');
+    }).catch(() => {
+        toast('No se pudo copiar: ' + url, 'error');
+    });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER TABLA
+// ═══════════════════════════════════════════════════════════════
+
+function renderTabla() {
+    const tbody = document.getElementById('eventos-tbody');
+
+    if (!eventos.length) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="5" style="text-align:center;color:var(--muted);padding:32px;">
+                    No hay eventos. Crea el primero.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    tbody.innerHTML = eventos.map(e => `
+        <tr>
+            <td><strong>${escapeHTML(e.nombre_pareja)}</strong></td>
+            <td>${formatFecha(e.fecha)}</td>
+            <td>${escapeHTML(e.lugar || '—')}</td>
+            <td>
+                <span class="badge ${e.activo ? 'badge-active' : 'badge-inactive'}">
+                    ${e.activo ? 'Activo' : 'Inactivo'}
+                </span>
+            </td>
+            <td>
+                <div class="table-actions">
+                    ${!e.activo ? `<button class="btn btn-primary" onclick="activarEvento(${e.id})">Activar</button>` : ''}
+                    <button class="btn btn-neutral" onclick="abrirFormEditar(${e.id})">Editar</button>
+                    <button class="btn btn-danger" onclick="eliminarEvento(${e.id}, '${escapeHTML(e.nombre_pareja).replace(/'/g, "\\'")}')">Eliminar</button>
+                </div>
+            </td>
+        </tr>
+    `).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ACTIVAR / DESACTIVAR
+// ═══════════════════════════════════════════════════════════════
+
+async function activarEvento(id) {
+    showLoading();
+    try {
+        // Primero desactivar todos
+        const { error: e1 } = await db
+            .from('eventos')
+            .update({ activo: false })
+            .eq('activo', true);
+        if (e1) throw e1;
+
+        // Luego activar el seleccionado
+        const { error: e2 } = await db
+            .from('eventos')
+            .update({ activo: true })
+            .eq('id', id);
+        if (e2) throw e2;
+
+        toast('Evento activado correctamente');
+        await cargarEventos();
+    } catch (err) {
+        console.error(err);
+        toast('Error al activar el evento', 'error');
+        hideLoading();
+    }
+}
+
+async function desactivarEvento(id) {
+    showLoading();
+    try {
+        const { error } = await db
+            .from('eventos')
+            .update({ activo: false })
+            .eq('id', id);
+        if (error) throw error;
+
+        toast('Evento desactivado');
+        await cargarEventos();
+    } catch (err) {
+        console.error(err);
+        toast('Error al desactivar el evento', 'error');
+        hideLoading();
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ELIMINAR
+// ═══════════════════════════════════════════════════════════════
+
+function eliminarEvento(id, nombre) {
+    confirm(`Se eliminará permanentemente el evento de ${nombre}. Esta acción no se puede deshacer.`, async () => {
+        showLoading();
+        try {
+            const { error } = await db
+                .from('eventos')
+                .delete()
+                .eq('id', id);
+            if (error) throw error;
+
+            toast('Evento eliminado');
+            await cargarEventos();
+        } catch (err) {
+            console.error(err);
+            toast('Error al eliminar el evento', 'error');
+            hideLoading();
+        }
+    });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// FORMULARIO — ABRIR / CERRAR
+// ═══════════════════════════════════════════════════════════════
+
+function abrirFormNuevo() {
+    document.getElementById('form-title').textContent = 'Nuevo evento';
+    document.getElementById('form-id').value = '';
+    document.getElementById('evento-form').reset();
+    seleccionarTema('dorado-clasico');
+    document.getElementById('form-overlay').classList.add('visible');
+}
+
+function abrirFormEditar(id) {
+    const evento = eventos.find(e => e.id === id);
+    if (!evento) return;
+
+    document.getElementById('form-title').textContent = 'Editar evento';
+    document.getElementById('form-id').value = evento.id;
+    document.getElementById('f-pareja').value = evento.nombre_pareja || '';
+    document.getElementById('f-fecha').value = evento.fecha || '';
+    document.getElementById('f-lugar').value = evento.lugar || '';
+    document.getElementById('f-youtube').value = evento.youtube_id || '';
+    document.getElementById('f-bienvenida').value = evento.mensaje_bienvenida || '';
+
+    // Tema de color
+    const temaId = evento.color_tema && evento.color_tema.id
+        ? evento.color_tema.id
+        : 'dorado-clasico';
+    seleccionarTema(temaId);
+
+    document.getElementById('form-overlay').classList.add('visible');
+}
+
+function cerrarForm() {
+    document.getElementById('form-overlay').classList.remove('visible');
+}
+
+document.getElementById('btn-nuevo').addEventListener('click', abrirFormNuevo);
+document.getElementById('btn-form-cancelar').addEventListener('click', cerrarForm);
+document.getElementById('btn-form-cancelar-2').addEventListener('click', cerrarForm);
+
+// Cerrar al hacer click fuera
+document.getElementById('form-overlay').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('form-overlay')) cerrarForm();
+});
+
+// ═══════════════════════════════════════════════════════════════
+// FORMULARIO — GUARDAR
+// ═══════════════════════════════════════════════════════════════
+
+document.getElementById('evento-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const id = document.getElementById('form-id').value;
+    const pareja = document.getElementById('f-pareja').value.trim();
+    const fecha = document.getElementById('f-fecha').value;
+    const lugar = document.getElementById('f-lugar').value.trim();
+    const youtube = document.getElementById('f-youtube').value.trim();
+    const bienvenida = document.getElementById('f-bienvenida').value.trim();
+    const tema = temaSeleccionado;
+
+    if (!pareja || !fecha || !lugar || !youtube) {
+        toast('Completa todos los campos obligatorios', 'error');
+        return;
+    }
+
+    if (!tema) {
+        toast('Selecciona un tema de color', 'error');
+        return;
+    }
+
+    const payload = {
+        nombre_pareja: pareja,
+        fecha: fecha,
+        lugar: lugar,
+        youtube_id: youtube,
+        mensaje_bienvenida: bienvenida || null,
+        color_tema: tema
+    };
+
+    showLoading();
+    cerrarForm();
+
+    try {
+        if (id) {
+            // Editar
+            const { error } = await db
+                .from('eventos')
+                .update(payload)
+                .eq('id', id);
+            if (error) throw error;
+            toast('Evento actualizado correctamente');
+        } else {
+            // Crear
+            const { error } = await db
+                .from('eventos')
+                .insert({ ...payload, activo: false });
+            if (error) throw error;
+            toast('Evento creado correctamente');
+        }
+
+        await cargarEventos();
+    } catch (err) {
+        console.error(err);
+        toast('Error al guardar: ' + (err.message || err), 'error');
+        hideLoading();
+    }
+});
+
+// ═══════════════════════════════════════════════════════════════
+// TEMAS DE COLOR
+// ═══════════════════════════════════════════════════════════════
+
+function renderTemas() {
+    const grid = document.getElementById('temas-grid');
+    grid.innerHTML = TEMAS.map(t => `
+        <div class="tema-card" data-tema-id="${t.id}" onclick="seleccionarTema('${t.id}')">
+            <div class="tema-nombre">${t.nombre}</div>
+            <div class="tema-colores">
+                <div class="tema-circulo" style="background:${t.primario};" title="Primario"></div>
+                <div class="tema-circulo" style="background:${t.secundario};" title="Secundario"></div>
+                <div class="tema-circulo" style="background:${t.acento};" title="Acento"></div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function seleccionarTema(id) {
+    const tema = TEMAS.find(t => t.id === id);
+    if (!tema) return;
+
+    temaSeleccionado = tema;
+    document.getElementById('f-tema-selected').value = id;
+
+    // Actualizar UI
+    document.querySelectorAll('.tema-card').forEach(card => {
+        card.classList.toggle('selected', card.dataset.temaId === id);
+    });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CONFIRM DIALOG
+// ═══════════════════════════════════════════════════════════════
+
+document.getElementById('confirm-cancel').addEventListener('click', () => {
+    document.getElementById('confirm-overlay').classList.remove('visible');
+    confirmCallback = null;
+});
+
+document.getElementById('confirm-ok').addEventListener('click', () => {
+    document.getElementById('confirm-overlay').classList.remove('visible');
+    if (confirmCallback) {
+        confirmCallback();
+        confirmCallback = null;
+    }
+});
+
+// ═══════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════
+
+window.addEventListener('DOMContentLoaded', () => {
+    renderTemas();
+
+    if (checkSession()) {
+        showDashboard();
+    }
+    // Si no hay sesión, el login-screen ya está visible por defecto
+});
+</script>
+
+</body>
+</html>

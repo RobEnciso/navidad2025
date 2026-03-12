@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transmisión en vivo | CreaFilms</title>
+    <meta name="description" content="Transmisión en vivo de boda">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --negro: #0a0a0a;
+            --crema: #faf9f7;
+            --dorado: #c9a96e;
+            --gris: #666;
+            --gris-claro: #999;
+            --gris-oscuro: #0d0d0d;
+            --borde: #151515;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* PANTALLA PRÓXIMAMENTE */
+        #proximamente {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--negro);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        #proximamente.active {
+            display: flex;
+        }
+
+        .proximamente-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+
+        .proximamente-texto {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--gris);
+        }
+
+        /* CONTAINER PRINCIPAL */
+        #sala-container {
+            display: none;
+        }
+
+        #sala-container.active {
+            display: block;
+        }
+
+        /* NAV */
+        nav {
+            background: var(--negro);
+            border-bottom: 1px solid var(--borde);
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: var(--gris);
+        }
+
+        .nav-info {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 300;
+            color: #fff;
+        }
+
+        .nav-info span {
+            color: var(--gris);
+            font-size: 12px;
+            margin: 0 12px;
+        }
+
+        /* LAYOUT PRINCIPAL */
+        .sala-main {
+            display: flex;
+            height: calc(100vh - 120px);
+        }
+
+        /* VIDEO */
+        .video-section {
+            flex: 65;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 */
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            flex: 35;
+            background: var(--gris-oscuro);
+            border-left: 1px solid var(--borde);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* CONTADOR */
+        .contador {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--borde);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .punto-rojo {
+            width: 8px;
+            height: 8px;
+            background: #ff0000;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .contador-texto {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--dorado);
+            font-weight: 700;
+        }
+
+        .contador-num {
+            font-size: 13px;
+            color: var(--gris-claro);
+            margin-left: auto;
+        }
+
+        /* COMENTARIOS */
+        .comentarios-section {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .comentario {
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .comentario-nombre {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--dorado);
+            margin-bottom: 4px;
+        }
+
+        .comentario-mensaje {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #aaa;
+            margin-bottom: 4px;
+        }
+
+        .comentario-hora {
+            font-size: 10px;
+            color: #333;
+        }
+
+        .no-comentarios {
+            text-align: center;
+            color: var(--gris);
+            font-size: 13px;
+            font-style: italic;
+            padding: 40px 20px;
+        }
+
+        /* FORMULARIO */
+        .formulario {
+            padding: 24px;
+            border-top: 1px solid var(--borde);
+            background: var(--negro);
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gris);
+            margin-bottom: 6px;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--borde);
+            color: #fff;
+            font-family: 'Lato', sans-serif;
+            font-size: 13px;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--dorado);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .char-counter {
+            text-align: right;
+            font-size: 10px;
+            color: var(--gris);
+            margin-top: 4px;
+        }
+
+        .char-counter.warning {
+            color: var(--dorado);
+        }
+
+        .btn-enviar {
+            width: 100%;
+            padding: 12px;
+            background: var(--dorado);
+            color: var(--negro);
+            border: none;
+            font-family: 'Lato', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-enviar:hover {
+            background: #d4b580;
+        }
+
+        .btn-enviar:disabled {
+            background: #333;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        .cooldown-msg {
+            display: none;
+            text-align: center;
+            font-size: 11px;
+            color: var(--dorado);
+            margin-top: 8px;
+        }
+
+        .cooldown-msg.active {
+            display: block;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--negro);
+            border-top: 1px solid var(--borde);
+            padding: 16px 32px;
+            text-align: center;
+        }
+
+        .footer-texto {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--gris);
+        }
+
+        .footer-texto a {
+            color: var(--dorado);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer-texto a:hover {
+            opacity: 0.7;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 8px;
+                padding: 16px;
+            }
+
+            .nav-info {
+                font-size: 14px;
+                text-align: center;
+            }
+
+            .nav-info span {
+                display: block;
+                margin: 4px 0;
+            }
+
+            .sala-main {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .video-section {
+                flex: none;
+            }
+
+            .sidebar {
+                flex: none;
+                border-left: none;
+                border-top: 1px solid var(--borde);
+                min-height: 500px;
+            }
+
+            .comentarios-section {
+                max-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PANTALLA PRÓXIMAMENTE -->
+    <div id="proximamente">
+        <div class="proximamente-logo">CREAFILMS</div>
+        <div class="proximamente-texto">La transmisión comenzará pronto</div>
+    </div>
+
+    <!-- SALA VIRTUAL -->
+    <div id="sala-container">
+        <!-- NAV -->
+        <nav>
+            <div class="nav-logo">CREAFILMS LIVE</div>
+            <div class="nav-info">
+                <span id="nav-pareja">—</span>
+                <span>·</span>
+                <span id="nav-fecha">—</span>
+                <span>·</span>
+                <span id="nav-lugar">—</span>
+            </div>
+        </nav>
+
+        <!-- MAIN -->
+        <div class="sala-main">
+            <!-- VIDEO -->
+            <section class="video-section">
+                <div class="video-wrapper">
+                    <iframe id="youtube-player"
+                            src=""
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <!-- Contador -->
+                <div class="contador">
+                    <div class="punto-rojo"></div>
+                    <div class="contador-texto">EN VIVO</div>
+                    <div class="contador-num"><span id="viewer-count">0</span> personas viendo</div>
+                </div>
+
+                <!-- Comentarios -->
+                <div class="comentarios-section" id="comentarios-section">
+                    <div id="comentarios-lista">
+                        <div class="no-comentarios">Sé el primero en comentar</div>
+                    </div>
+                </div>
+
+                <!-- Formulario -->
+                <div class="formulario">
+                    <form id="comment-form">
+                        <div class="form-group">
+                            <label class="form-label" for="user-name">Tu nombre</label>
+                            <input type="text"
+                                   id="user-name"
+                                   class="form-input"
+                                   placeholder="Nombre completo"
+                                   maxlength="50"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="user-message">Mensaje</label>
+                            <textarea id="user-message"
+                                      class="form-textarea"
+                                      placeholder="Escribe tu mensaje..."
+                                      maxlength="200"
+                                      required></textarea>
+                            <div class="char-counter">
+                                <span id="char-count">0</span> / 200
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-enviar" id="btn-enviar">
+                            Enviar mensaje
+                        </button>
+
+                        <div class="cooldown-msg" id="cooldown-msg">
+                            Espera <span id="cooldown-seconds">5</span>s para enviar otro mensaje
+                        </div>
+                    </form>
+                </div>
+            </aside>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-texto">
+                CREAFILMS LIVE · <a href="https://estudiocreafilms.com">estudiocreafilms.com</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Config — debe ir antes del SDK -->
+    <script src="/live/config.js"></script>
+
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- JavaScript Principal -->
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        // VARIABLES GLOBALES
+        // ═══════════════════════════════════════════════════════════════
+
+        let db;
+        let eventoActual = null;
+        let presenceChannel = null;
+        let commentsChannel = null;
+        let lastCommentTime = 0;
+        const COOLDOWN_MS = 5000;
+
+        const proximamente = document.getElementById('proximamente');
+        const salaContainer = document.getElementById('sala-container');
+        const commentForm = document.getElementById('comment-form');
+        const userName = document.getElementById('user-name');
+        const userMessage = document.getElementById('user-message');
+        const charCount = document.getElementById('char-count');
+        const btnEnviar = document.getElementById('btn-enviar');
+        const cooldownMsg = document.getElementById('cooldown-msg');
+        const comentariosLista = document.getElementById('comentarios-lista');
+        const comentariosSection = document.getElementById('comentarios-section');
+
+        // ═══════════════════════════════════════════════════════════════
+        // INICIALIZAR
+        // ═══════════════════════════════════════════════════════════════
+
+        async function init() {
+            if (!CONFIG.isConfigured()) {
+                console.error('CONFIG no está configurado');
+                mostrarProximamente();
+                return;
+            }
+
+            db = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseKey);
+
+            const savedName = localStorage.getItem('creafilms_live_name');
+            if (savedName) userName.value = savedName;
+
+            await cargarEventoActivo();
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // CARGAR EVENTO ACTIVO
+        // ═══════════════════════════════════════════════════════════════
+
+        async function cargarEventoActivo() {
+            try {
+                const { data, error } = await db
+                    .from('eventos')
+                    .select('*')
+                    .eq('activo', true)
+                    .single();
+
+                if (error || !data) {
+                    mostrarProximamente();
+                    return;
+                }
+
+                eventoActual = data;
+                mostrarSala();
+                await cargarComentarios();
+                setupRealtimeComments();
+                setupPresence();
+
+            } catch (err) {
+                console.error('Error:', err);
+                mostrarProximamente();
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // MOSTRAR PANTALLAS
+        // ═══════════════════════════════════════════════════════════════
+
+        function mostrarProximamente() {
+            proximamente.classList.add('active');
+        }
+
+        function mostrarSala() {
+            document.getElementById('nav-pareja').textContent = eventoActual.nombre_pareja;
+            document.getElementById('nav-fecha').textContent = eventoActual.fecha;
+            document.getElementById('nav-lugar').textContent = eventoActual.lugar;
+
+            const youtubeUrl = `https://www.youtube.com/embed/${eventoActual.youtube_id}?autoplay=1&rel=0&modestbranding=1`;
+            document.getElementById('youtube-player').src = youtubeUrl;
+
+            proximamente.classList.remove('active');
+            salaContainer.classList.add('active');
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // COMENTARIOS — CARGAR INICIALES
+        // ═══════════════════════════════════════════════════════════════
+
+        async function cargarComentarios() {
+            try {
+                const { data, error } = await db
+                    .from('comentarios')
+                    .select('*')
+                    .eq('evento_id', eventoActual.id)
+                    .order('created_at', { ascending: true })
+                    .limit(100);
+
+                if (error) throw error;
+
+                comentariosLista.innerHTML = '';
+
+                if (data && data.length > 0) {
+                    data.forEach(c => agregarComentarioAlDOM(c));
+                    scrollToBottom();
+                } else {
+                    comentariosLista.innerHTML = '<div class="no-comentarios">Sé el primero en comentar</div>';
+                }
+
+            } catch (err) {
+                console.error('Error al cargar comentarios:', err);
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // COMENTARIOS — REALTIME
+        // ═══════════════════════════════════════════════════════════════
+
+        function setupRealtimeComments() {
+            commentsChannel = db
+                .channel('comentarios-realtime')
+                .on(
+                    'postgres_changes',
+                    {
+                        event: 'INSERT',
+                        schema: 'public',
+                        table: 'comentarios',
+                        filter: `evento_id=eq.${eventoActual.id}`
+                    },
+                    (payload) => {
+                        agregarComentarioAlDOM(payload.new);
+                        scrollToBottom();
+                    }
+                )
+                .subscribe();
+        }
+
+        function agregarComentarioAlDOM(c) {
+            const noComments = comentariosLista.querySelector('.no-comentarios');
+            if (noComments) noComments.remove();
+
+            const div = document.createElement('div');
+            div.className = 'comentario';
+
+            const time = new Date(c.created_at);
+            const hora = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`;
+
+            div.innerHTML = `
+                <div class="comentario-nombre">${escapeHTML(c.nombre_visitante)}</div>
+                <div class="comentario-mensaje">${escapeHTML(c.mensaje)}</div>
+                <div class="comentario-hora">${hora}</div>
+            `;
+
+            comentariosLista.appendChild(div);
+        }
+
+        function scrollToBottom() {
+            comentariosSection.scrollTop = comentariosSection.scrollHeight;
+        }
+
+        function escapeHTML(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // PRESENCE — CONTADOR DE ESPECTADORES
+        // ═══════════════════════════════════════════════════════════════
+
+        function setupPresence() {
+            const randomId = Math.random().toString(36).substring(7);
+
+            presenceChannel = db.channel('presence-sala', {
+                config: { presence: { key: randomId } }
+            });
+
+            presenceChannel
+                .on('presence', { event: 'sync' }, () => {
+                    const state = presenceChannel.presenceState();
+                    const count = Object.keys(state).length;
+                    document.getElementById('viewer-count').textContent = count;
+                })
+                .subscribe(async (status) => {
+                    if (status === 'SUBSCRIBED') {
+                        await presenceChannel.track({ online_at: new Date().toISOString() });
+                    }
+                });
+
+            window.addEventListener('beforeunload', () => {
+                if (presenceChannel) presenceChannel.untrack();
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // FORMULARIO — ENVIAR COMENTARIO
+        // ═══════════════════════════════════════════════════════════════
+
+        commentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const now = Date.now();
+            if (now - lastCommentTime < COOLDOWN_MS) {
+                mostrarCooldown();
+                return;
+            }
+
+            const nombre = userName.value.trim();
+            const mensaje = userMessage.value.trim();
+
+            if (!nombre || !mensaje) return;
+
+            btnEnviar.disabled = true;
+            btnEnviar.textContent = 'Enviando...';
+
+            try {
+                const { error } = await db
+                    .from('comentarios')
+                    .insert({
+                        evento_id: eventoActual.id,
+                        nombre_visitante: nombre,
+                        mensaje: mensaje
+                    });
+
+                if (error) throw error;
+
+                localStorage.setItem('creafilms_live_name', nombre);
+                userMessage.value = '';
+                charCount.textContent = '0';
+                lastCommentTime = now;
+
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Error al enviar. Inténtalo de nuevo.');
+            } finally {
+                btnEnviar.disabled = false;
+                btnEnviar.textContent = 'Enviar mensaje';
+            }
+        });
+
+        function mostrarCooldown() {
+            const remaining = Math.ceil((COOLDOWN_MS - (Date.now() - lastCommentTime)) / 1000);
+            document.getElementById('cooldown-seconds').textContent = remaining;
+            cooldownMsg.classList.add('active');
+
+            const interval = setInterval(() => {
+                const rem = Math.ceil((COOLDOWN_MS - (Date.now() - lastCommentTime)) / 1000);
+                if (rem <= 0) {
+                    clearInterval(interval);
+                    cooldownMsg.classList.remove('active');
+                } else {
+                    document.getElementById('cooldown-seconds').textContent = rem;
+                }
+            }, 1000);
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // CONTADOR DE CARACTERES
+        // ═══════════════════════════════════════════════════════════════
+
+        userMessage.addEventListener('input', () => {
+            const count = userMessage.value.length;
+            charCount.textContent = count;
+            charCount.parentElement.classList.toggle('warning', count > 180);
+        });
+
+        // ═══════════════════════════════════════════════════════════════
+        // INICIAR
+        // ═══════════════════════════════════════════════════════════════
+
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+
+</body>
+</html>

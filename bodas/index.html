@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fotografía profesional de bodas - CreaFilms. Próximamente.">
-    <title>Bodas | CREAFILMS - Próximamente</title>
+    <title>Bodas | CREAFILMS — Puerto Vallarta</title>
+    <meta name="description" content="Fotografía, video y transmisión en vivo de bodas en Puerto Vallarta y Riviera Nayarit. CreaFilms.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;600;700&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -19,249 +18,757 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --negro: #0a0a0a;
+            --crema: #faf9f7;
+            --dorado: #c9a96e;
+            --gris: #666;
+            --gris-claro: #999;
+        }
+
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            color: #ffffff;
+            font-family: 'Lato', sans-serif;
+            background: var(--negro);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--negro);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-lista {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-item {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--gris-claro);
+            text-decoration: none;
+            transition: color 0.2s;
+            text-transform: uppercase;
+        }
+
+        .nav-item:hover {
+            color: #fff;
+        }
+
+        .nav-item.activo {
+            color: #fff;
+        }
+
+        /* ── HERO ── */
+        .hero {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 2rem;
+            padding: 120px 48px 80px;
+            background: var(--negro);
+        }
+
+        .hero-geo {
+            font-size: 10px;
+            letter-spacing: 6px;
+            color: var(--dorado);
+            margin-bottom: 32px;
+            text-transform: uppercase;
+        }
+
+        .hero-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 88px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 24px;
+            line-height: 1;
+        }
+
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-style: italic;
+            color: var(--gris);
+            margin-bottom: 40px;
+        }
+
+        .hero-linea {
+            width: 40px;
+            height: 1px;
+            background: var(--dorado);
+            margin: 0 auto;
+        }
+
+        /* ── SECCIONES ── */
+        .seccion {
+            padding: 120px 48px;
+        }
+
+        .fondo-crema {
+            background: var(--crema);
+            color: var(--negro);
+        }
+
+        .fondo-negro {
+            background: var(--negro);
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sec-label {
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: var(--dorado);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .sec-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 40px;
+            font-weight: 300;
+        }
+
+        /* ── GALERÍA ── */
+        .galeria-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .ver-todas {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--negro);
+            text-decoration: none;
+            opacity: 0.45;
+            transition: opacity 0.2s;
+            text-transform: uppercase;
+        }
+
+        .ver-todas:hover {
+            opacity: 1;
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4px;
+        }
+
+        .foto-grande {
             position: relative;
             overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
         }
 
-        /* Background Decorative Elements */
-        body::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
-            animation: float 20s ease-in-out infinite;
+        .fotos-pequeñas {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
         }
 
-        body::after {
-            content: '';
-            position: absolute;
-            bottom: -50%;
-            left: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
-            animation: float 25s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0);
-            }
-            50% {
-                transform: translate(30px, 30px);
-            }
-        }
-
-        .container {
+        .foto-chica {
             position: relative;
-            z-index: 1;
-            max-width: 800px;
-            opacity: 0;
-            animation: fadeInUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            cursor: pointer;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h1 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 400;
-            letter-spacing: 0.3rem;
-            margin-bottom: 1.5rem;
-            color: #ffffff;
-            text-transform: uppercase;
-        }
-
-        .subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(0.9rem, 2vw, 1.3rem);
-            font-weight: 200;
-            letter-spacing: 0.5rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 3rem;
-            text-transform: uppercase;
-        }
-
-        .message {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            font-weight: 300;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
+        .foto-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #111;
             display: flex;
-            gap: 1.5rem;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
         }
 
-        .btn {
+        .foto-placeholder-alt {
+            background: #141414;
+        }
+
+        .foto-txt {
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: #2a2a2a;
+            text-transform: uppercase;
+        }
+
+        .foto-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            transition: background 0.3s;
+        }
+
+        .foto-info {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .foto-pareja {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 300;
+            color: #fff;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .foto-lugar {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--dorado);
+            text-transform: uppercase;
+        }
+
+        .foto-grande:hover .foto-overlay,
+        .foto-chica:hover .foto-overlay {
+            background: rgba(0,0,0,0.6);
+        }
+
+        .foto-grande:hover .foto-info,
+        .foto-chica:hover .foto-info {
+            opacity: 1;
+        }
+
+        /* ── 3 SERVICIOS ── */
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .serv-col {
+            background: #0d0d0d;
+            padding: 48px 40px;
+        }
+
+        .serv-col.destacado {
+            background: #0f0e0b;
+            border: 1px solid #2a2516;
+        }
+
+        .serv-badge {
+            font-size: 8px;
+            letter-spacing: 3px;
+            color: var(--dorado);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .serv-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .serv-col.destacado .serv-titulo {
+            color: var(--dorado);
+        }
+
+        .serv-subtitulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 24px;
+        }
+
+        .serv-linea {
+            width: 20px;
+            height: 1px;
+            background: #222;
+            margin-bottom: 24px;
+        }
+
+        .serv-col.destacado .serv-linea {
+            background: #2a2516;
+        }
+
+        .serv-items {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .serv-items li {
+            font-size: 12px;
+            line-height: 2.2;
+            color: #555;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .serv-items li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #333;
+        }
+
+        .serv-link {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--dorado);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: opacity 0.2s;
+        }
+
+        .serv-link:hover {
+            opacity: 0.7;
+        }
+
+        /* ── LISTA EDITORIAL ── */
+        .lista-bodas {
+            margin-top: 48px;
+        }
+
+        .boda-item {
+            display: grid;
+            grid-template-columns: 40px 1fr 1fr 1fr 120px;
+            align-items: center;
+            gap: 24px;
+            padding: 20px 0;
+            border-bottom: 1px solid #e8e4df;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .boda-item:first-child {
+            border-top: 1px solid #e8e4df;
+        }
+
+        .boda-item:hover {
+            opacity: 0.65;
+        }
+
+        .boda-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        .boda-pareja {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 300;
+            color: var(--negro);
+        }
+
+        .boda-lugar {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: #888;
+        }
+
+        .boda-tipo {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--dorado);
+            text-transform: uppercase;
+        }
+
+        .boda-fecha {
+            font-size: 11px;
+            color: #aaa;
+            text-align: right;
+        }
+
+        /* ── CTA ── */
+        .cta {
+            text-align: center;
+        }
+
+        .cta-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 52px;
+            font-weight: 300;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 48px;
+        }
+
+        .cta-titulo-italic {
+            font-style: italic;
+            color: var(--dorado);
+            display: block;
+        }
+
+        .btn-whatsapp {
             display: inline-block;
-            padding: 1rem 2.5rem;
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            font-weight: 400;
-            letter-spacing: 0.2rem;
+            padding: 18px 48px;
+            background: var(--dorado);
+            color: var(--negro);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
             text-transform: uppercase;
             text-decoration: none;
-            color: #ffffff;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
+            transition: background 0.2s;
         }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: -1;
+        .btn-whatsapp:hover {
+            background: #d4b580;
         }
 
-        .btn:hover {
-            border-color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        /* ── FOOTER ── */
+        footer {
+            background: var(--negro);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 40px 48px;
+            text-align: center;
         }
 
-        .btn:hover::before {
-            left: 0;
+        .footer-texto {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #444;
         }
 
-        .btn-primary {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.5);
+        .footer-links {
+            margin-top: 16px;
+            display: flex;
+            gap: 24px;
+            justify-content: center;
         }
 
-        .logo {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            letter-spacing: 0.4rem;
-            color: rgba(255, 255, 255, 0.3);
-            margin-top: 4rem;
+        .footer-link {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #444;
+            text-decoration: none;
+            transition: color 0.2s;
             text-transform: uppercase;
         }
 
-        /* Loading Animation */
-        .loading-dots {
-            display: inline-flex;
-            gap: 0.5rem;
-            margin-top: 2rem;
+        .footer-link:hover {
+            color: var(--dorado);
         }
 
-        .dot {
-            width: 8px;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        .dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.2);
-            }
-        }
-
+        /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-                letter-spacing: 0.2rem;
+            .nav-container {
+                padding: 20px 24px;
             }
 
-            .subtitle {
-                font-size: 0.8rem;
-                letter-spacing: 0.3rem;
+            .nav-lista {
+                gap: 16px;
             }
 
-            .message {
-                font-size: 1rem;
+            .hero {
+                padding: 100px 24px 60px;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
+            .hero-titulo {
+                font-size: 52px;
             }
 
-            .btn {
-                width: 100%;
-                max-width: 300px;
+            .hero-tagline {
+                font-size: 18px;
+            }
+
+            .seccion {
+                padding: 80px 24px;
+            }
+
+            .galeria-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fotos-pequeñas {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: 1fr;
+            }
+
+            .foto-chica {
+                aspect-ratio: 1/1;
+            }
+
+            .servicios-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .boda-item {
+                grid-template-columns: 32px 1fr;
+                grid-template-rows: auto auto;
+                gap: 8px 16px;
+            }
+
+            .boda-lugar {
+                grid-column: 2;
+            }
+
+            .boda-tipo,
+            .boda-fecha {
+                display: none;
+            }
+
+            .cta-titulo {
+                font-size: 36px;
+            }
+
+            footer {
+                padding: 40px 24px;
             }
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>BODAS</h1>
-        <p class="subtitle">Próximamente</p>
 
-        <p class="message">
-            Estamos construyendo el mejor sitio para mostrar nuestros proyectos de fotografía y video de bodas.
-            Mientras tanto, descubre nuestro trabajo actual.
-        </p>
-
-        <div class="cta-buttons">
-            <a href="../navidad/index.html" class="btn btn-primary">Ver Navidad 2025</a>
-            <a href="../index.html" class="btn">Volver al Inicio</a>
+    <!-- NAV -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="nav-logo">CREAFILMS</a>
+            <ul class="nav-lista">
+                <li><a href="/bodas/" class="nav-item activo">01 BODAS</a></li>
+                <li><a href="/live/" class="nav-item">02 LIVE</a></li>
+                <li><a href="/estudio/" class="nav-item">03 ESTUDIO</a></li>
+            </ul>
         </div>
+    </nav>
 
-        <div class="loading-dots">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+    <!-- HERO -->
+    <section class="hero">
+        <div>
+            <p class="hero-geo">PUERTO VALLARTA · RIVIERA NAYARIT</p>
+            <h1 class="hero-titulo">Bodas</h1>
+            <p class="hero-tagline">Fotografía · Video · Transmisión en vivo</p>
+            <div class="hero-linea"></div>
         </div>
+    </section>
 
-        <div class="logo">CREAFILMS</div>
-    </div>
+    <!-- GALERÍA -->
+    <section class="seccion fondo-crema">
+        <div class="contenedor">
+            <div class="galeria-header">
+                <div>
+                    <div class="sec-label">TRABAJOS RECIENTES</div>
+                    <h2 class="sec-titulo">Bodas</h2>
+                </div>
+                <a href="#" class="ver-todas">VER TODAS →</a>
+            </div>
+            <div class="galeria-grid" id="galeria-grid"></div>
+        </div>
+    </section>
+
+    <!-- 3 SERVICIOS -->
+    <section class="seccion fondo-negro">
+        <div class="contenedor">
+            <div class="servicios-grid">
+
+                <div class="serv-col">
+                    <h3 class="serv-titulo">Fotografía</h3>
+                    <p class="serv-subtitulo">Imágenes que duran para siempre</p>
+                    <div class="serv-linea"></div>
+                    <ul class="serv-items">
+                        <li>Cobertura completa</li>
+                        <li>Edición profesional</li>
+                        <li>Entrega digital</li>
+                        <li>Álbum opcional</li>
+                    </ul>
+                </div>
+
+                <div class="serv-col">
+                    <h3 class="serv-titulo">Video</h3>
+                    <p class="serv-subtitulo">Tu historia en movimiento</p>
+                    <div class="serv-linea"></div>
+                    <ul class="serv-items">
+                        <li>Film cinematográfico</li>
+                        <li>Corte 5–8 min</li>
+                        <li>Highlights reel</li>
+                        <li>Entrega 4K</li>
+                    </ul>
+                </div>
+
+                <div class="serv-col destacado">
+                    <div class="serv-badge">● EN VIVO</div>
+                    <h3 class="serv-titulo">Live Stream</h3>
+                    <p class="serv-subtitulo">Para quienes no pudieron estar</p>
+                    <div class="serv-linea"></div>
+                    <ul class="serv-items">
+                        <li>Transmisión en vivo</li>
+                        <li>Sala virtual propia</li>
+                        <li>Comentarios en tiempo real</li>
+                        <li>Video guardado</li>
+                    </ul>
+                    <a href="/live/" class="serv-link">VER MÁS SOBRE LIVE →</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LISTA EDITORIAL -->
+    <section class="seccion fondo-crema">
+        <div class="contenedor">
+            <div class="sec-label">PORTAFOLIO</div>
+            <h2 class="sec-titulo">Bodas recientes</h2>
+            <div class="lista-bodas" id="lista-bodas"></div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="seccion fondo-negro cta">
+        <div class="contenedor">
+            <h2 class="cta-titulo">
+                Cuéntanos
+                <span class="cta-titulo-italic">sobre tu boda</span>
+            </h2>
+            <a href="#" class="btn-whatsapp" id="btn-whatsapp">
+                COTIZAR VÍA WHATSAPP
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-texto">© CREAFILMS · estudiocreafilms.com</div>
+        <div class="footer-links">
+            <a href="/" class="footer-link">INICIO</a>
+            <a href="/bodas/" class="footer-link">BODAS</a>
+            <a href="/live/" class="footer-link">LIVE</a>
+        </div>
+    </footer>
+
+    <script>
+        // ── DATOS ─────────────────────────────────────────────────
+        // Edita este array para agregar/quitar bodas.
+        // Cuando tengas fotos, pon la ruta en el campo "foto".
+        const bodas = [
+            {
+                pareja: 'Nombre de la pareja',
+                lugar: 'Venue, Puerto Vallarta',
+                fecha: 'Mes 2025',
+                tipo: 'Foto · Video · Live',
+                foto: ''
+            },
+            {
+                pareja: 'Nombre de la pareja',
+                lugar: 'Venue, Riviera Nayarit',
+                fecha: 'Mes 2025',
+                tipo: 'Foto · Video',
+                foto: ''
+            },
+            {
+                pareja: 'Nombre de la pareja',
+                lugar: 'Venue, Puerto Vallarta',
+                fecha: 'Mes 2025',
+                tipo: 'Fotografía',
+                foto: ''
+            },
+            {
+                pareja: 'Nombre de la pareja',
+                lugar: 'Venue, Riviera Nayarit',
+                fecha: 'Mes 2025',
+                tipo: 'Video · Live',
+                foto: ''
+            },
+            {
+                pareja: 'Nombre de la pareja',
+                lugar: 'Venue, Puerto Vallarta',
+                fecha: 'Mes 2025',
+                tipo: 'Foto · Video',
+                foto: ''
+            }
+        ];
+
+        // ── GALERÍA ASIMÉTRICA ────────────────────────────────────
+        function renderGaleria() {
+            const grid = document.getElementById('galeria-grid');
+
+            const crearFoto = (boda, esGrande) => {
+                const cls = esGrande ? 'foto-grande' : 'foto-chica';
+                const fondo = boda.foto
+                    ? `background: url('${boda.foto}') center/cover no-repeat;`
+                    : '';
+                const altClass = !esGrande ? ' foto-placeholder-alt' : '';
+                return `
+                <div class="${cls}">
+                    <div class="foto-placeholder${altClass}" style="${fondo}">
+                        ${!boda.foto ? '<span class="foto-txt">FOTO PRÓXIMAMENTE</span>' : ''}
+                    </div>
+                    <div class="foto-overlay">
+                        <div class="foto-info">
+                            <span class="foto-pareja">${boda.pareja}</span>
+                            <span class="foto-lugar">${boda.lugar}</span>
+                        </div>
+                    </div>
+                </div>`;
+            };
+
+            grid.innerHTML =
+                crearFoto(bodas[0], true) +
+                `<div class="fotos-pequeñas">
+                    ${bodas.slice(1, 5).map(b => crearFoto(b, false)).join('')}
+                </div>`;
+        }
+
+        // ── LISTA EDITORIAL ───────────────────────────────────────
+        function renderLista() {
+            const lista = document.getElementById('lista-bodas');
+            lista.innerHTML = bodas.map((b, i) => `
+                <div class="boda-item">
+                    <span class="boda-num">0${i + 1}</span>
+                    <span class="boda-pareja">${b.pareja}</span>
+                    <span class="boda-lugar">${b.lugar}</span>
+                    <span class="boda-tipo">${b.tipo}</span>
+                    <span class="boda-fecha">${b.fecha}</span>
+                </div>`
+            ).join('');
+        }
+
+        // ── WHATSAPP ──────────────────────────────────────────────
+        const waNum = '52XXXXXXXXXX';
+        const waMsg = encodeURIComponent('Hola, me interesa cotizar un paquete de bodas en Puerto Vallarta');
+        document.getElementById('btn-whatsapp').href = `https://wa.me/${waNum}?text=${waMsg}`;
+
+        // ── INIT ──────────────────────────────────────────────────
+        renderGaleria();
+        renderLista();
+    </script>
+
 </body>
-
 </html>
