@@ -119,6 +119,7 @@ h3,.process li>b,.included li b{font-family:var(--display);font-weight:500}
 .gallery .grid{grid-auto-flow:dense}
 .photo--blue-closeup{grid-column:1/-1;aspect-ratio:4/5}
 .photo--blue-closeup img{object-position:50% 42%}
+.care__guide{margin-top:1.5rem;padding:1.1rem 1.2rem;background:#fff;border-left:3px solid var(--coral);border-radius:0 .9rem .9rem 0}.care__guide p{margin:0 0 .55rem;color:var(--muted);font-size:.9rem;line-height:1.55}.care__guide strong{color:var(--ink)}.care__guide a{color:var(--blue);font-size:.84rem;font-weight:700;text-decoration-color:var(--coral);text-decoration-thickness:2px;text-underline-offset:4px}.care__guide a:focus-visible{outline:3px solid var(--sun);outline-offset:4px}
 @media(min-width:700px){
   .photo--blue-closeup{grid-column:span 4;grid-row:span 2;aspect-ratio:auto;min-height:100%}
   .photo--blue-closeup img{object-position:50% 44%}
