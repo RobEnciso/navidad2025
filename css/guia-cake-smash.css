@@ -79,3 +79,9 @@ a:focus-visible{outline:3px solid var(--sun);outline-offset:4px}.header-link:hov
 @media(min-width:980px){
   .article-photo--portrait{width:34rem;margin-top:1.5rem;margin-bottom:5.5rem}
 }
+
+/* Published topic in the guide index */
+.topic-published h3 a{color:inherit;text-decoration:none}
+.topic-published h3 a:hover{text-decoration:underline;text-decoration-color:var(--coral);text-decoration-thickness:2px;text-underline-offset:4px}
+.topic-list .topic-published>p a{color:var(--sun);font-weight:800;text-decoration:none}
+.inline-link{color:var(--blue);font-weight:700;text-decoration-color:var(--coral);text-decoration-thickness:2px;text-underline-offset:3px}
