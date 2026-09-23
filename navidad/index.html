@@ -72,7 +72,11 @@
 
     .hero { display: flex; flex-direction: column; color: #fff; background: var(--pine); }
     .hero__visual { position: relative; display: grid; width: 100%; min-width: 0; min-height: 0; height: auto; aspect-ratio: 1448 / 1086; grid-template-columns: minmax(0, 1fr); place-items: center; overflow: hidden; padding: 10px; background: #d8c8b1; }
-    .hero__visual img { width: 100%; min-width: 0; height: 100%; object-fit: contain; object-position: center; box-shadow: 0 0 0 1px #866f4d40; }
+    .hero__visual img { grid-area: 1 / 1; width: 100%; min-width: 0; height: 100%; object-fit: contain; object-position: center; box-shadow: 0 0 0 1px #866f4d40; transition: opacity 1.6s cubic-bezier(.22, 1, .36, 1), transform 2.4s cubic-bezier(.22, 1, .36, 1); }
+    .hero__image--set { z-index: 2; opacity: 1; transform: scale(1); }
+    .hero__image--family { z-index: 1; opacity: 0; transform: scale(1.025); }
+    .hero__visual.is-family-visible .hero__image--set { opacity: 0; transform: scale(1.012); }
+    .hero__visual.is-family-visible .hero__image--family { opacity: 1; transform: scale(1); }
     .hero__copy { display: flex; flex-direction: column; align-items: stretch; justify-content: center; width: 100%; min-width: 0; padding: 30px 20px 42px; }
     .hero__eyebrow { color: var(--gold); }
     .hero h1 { max-width: 700px; margin: 0; font: 600 clamp(2.85rem, 12vw, 6.3rem)/.89 var(--display); letter-spacing: -.025em; }
@@ -224,6 +228,9 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .btn { transition: none; }
+      .hero__visual img { transition: none; }
+      .hero__image--set { opacity: 0; }
+      .hero__image--family { opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -247,7 +254,8 @@
   <main id="contenido">
     <section class="hero" id="inicio" aria-labelledby="hero-title">
       <div class="hero__visual">
-        <img src="../assets/set2026.png" width="1448" height="1086" alt="Set navideño 2026 de CreaFilms con árboles, guirnaldas y regalos en tonos verde olivo, crema y dorado" fetchpriority="high">
+        <img class="hero__image--set" src="../assets/set2026.png" width="1448" height="1086" alt="Propuesta del set navideño 2026 de CreaFilms con su paleta en verde olivo, crema y dorado" fetchpriority="high">
+        <img class="hero__image--family" src="../assets/set2026-fam.png" width="1448" height="1086" alt="Familia de ejemplo en el set navideño 2026 de CreaFilms" decoding="async">
       </div>
       <div class="hero__copy">
         <p class="eyebrow hero__eyebrow">Puerto Vallarta · Edición 2026</p>
@@ -406,6 +414,22 @@
       if (value !== undefined) element.textContent = value;
     });
     document.querySelector('[data-cal-fallback]').href = NAVIDAD_CONFIG.calUrl;
+
+    // Presenta primero el concepto y, cuando la foto esté lista, revela el resultado familiar.
+    const heroVisual = document.querySelector('.hero__visual');
+    const familyImage = document.querySelector('.hero__image--family');
+    if (heroVisual && familyImage) {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const revealFamily = () => {
+        if (reducedMotion) {
+          heroVisual.classList.add('is-family-visible');
+          return;
+        }
+        window.setTimeout(() => heroVisual.classList.add('is-family-visible'), 3200);
+      };
+      if (familyImage.complete && familyImage.naturalWidth) revealFamily();
+      else familyImage.addEventListener('load', revealFamily, { once: true });
+    }
 
     function trackNavidad(eventName, eventData = {}) {
       window.dataLayer = window.dataLayer || [];
