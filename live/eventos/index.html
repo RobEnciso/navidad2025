@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transmisión en Vivo de Eventos Puerto Vallarta | Congresos y Corporativos | CreaFilms Live</title>
+    <meta name="description" content="Transmisión en vivo profesional de eventos en Puerto Vallarta. Congresos, convenciones, eventos corporativos, deportivos y circuito cerrado. Señal estable · Multi-cámara · Cotiza ahora.">
+    <link rel="canonical" href="https://estudiocreafilms.com/live/eventos/">
+
+    <!-- Schema: Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Transmisión en Vivo de Eventos Puerto Vallarta",
+      "provider": {
+        "@id": "https://estudiocreafilms.com/#business"
+      },
+      "brand": {
+        "@type": "Brand",
+        "name": "CreaFilms Live"
+      },
+      "areaServed": "Puerto Vallarta, Riviera Nayarit, Jalisco",
+      "serviceType": "Transmisión en vivo de eventos corporativos"
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --negro:      #0a0a0a;
+            --dorado:     #c9a96e;
+            --gris:       #666;
+            --gris-claro: #999;
+            --borde:      #151515;
+            --azul-live:  #4A9AC8;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--negro);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: var(--negro);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            color: #fff;
+        }
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        .nav-link {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--gris-claro);
+            transition: color 0.2s;
+        }
+        .nav-link:hover,
+        .nav-link.active { color: var(--dorado); }
+        .nav-breadcrumb {
+            font-size: 10px;
+            color: #444;
+            letter-spacing: 2px;
+            text-align: center;
+            padding: 8px 0;
+            background: var(--negro);
+            border-bottom: 1px solid rgba(255,255,255,.04);
+        }
+
+        @media (max-width: 640px) {
+            .nav-container { padding: 20px 24px; }
+            .nav-links { gap: 20px; }
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(145deg, #0A1828 0%, #152030 45%, #0A0A0A 100%);
+            padding: 140px 2rem 80px;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                rgba(0,0,0,.88) 0%,
+                rgba(0,0,0,.3) 60%,
+                transparent 100%);
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 820px;
+            width: 100%;
+        }
+        .hero-eyebrow {
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: var(--azul-live);
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(52px, 8vw, 92px);
+            font-weight: 300;
+            color: #FAFAFA;
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+        .hero h1 em { font-style: italic; color: var(--azul-live); }
+        .hero-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(15px, 2vw, 20px);
+            font-style: italic;
+            color: rgba(250,250,250,.4);
+            margin-bottom: 20px;
+        }
+        .hero-desc {
+            font-size: 14px;
+            color: rgba(250,250,250,.55);
+            max-width: 540px;
+            margin: 0 auto 32px;
+            line-height: 1.75;
+        }
+        .hero-chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        .hero-chip {
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 100px;
+            padding: 8px 18px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            color: rgba(250,250,250,.7);
+        }
+        .hero-ctas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+        }
+        .btn-azul {
+            display: inline-block;
+            padding: 15px 36px;
+            background: var(--azul-live);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: filter .2s, transform .2s;
+        }
+        .btn-azul:hover { filter: brightness(1.15); transform: translateY(-1px); }
+        .btn-ghost {
+            display: inline-block;
+            padding: 15px 36px;
+            background: transparent;
+            color: rgba(250,250,250,.75);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 2px;
+            transition: border-color .2s, color .2s;
+        }
+        .btn-ghost:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+
+        /* ── STRIP ── */
+        .strip {
+            background: #050A10;
+            padding: 14px 48px;
+            text-align: center;
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: #2A3A48;
+        }
+        .strip b { color: var(--azul-live); font-weight: 400; }
+
+        /* ── SECCIÓN BASE ── */
+        .sec { padding: 100px 48px; }
+        .sec-inner { max-width: 1200px; margin: 0 auto; }
+        .sec-eyebrow {
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: var(--azul-live);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .sec-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 44px;
+            font-weight: 300;
+            color: #FAFAFA;
+            line-height: 1.12;
+        }
+        .sec-title em { font-style: italic; color: var(--azul-live); }
+
+        @media (max-width: 760px) {
+            .sec { padding: 80px 24px; }
+            .sec-title { font-size: 32px; }
+        }
+
+        /* ── TIPOS DE EVENTOS ── */
+        .tipos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 64px;
+        }
+        @media (max-width: 900px) { .tipos-grid { grid-template-columns: 1fr; } }
+
+        .tipo-card {
+            padding: 40px 32px;
+            border-top: 2px solid var(--azul-live);
+        }
+        .tipo-card:nth-child(odd)  { background: #0d0d0d; }
+        .tipo-card:nth-child(even) { background: #111; }
+
+        .tipo-icono { font-size: 28px; margin-bottom: 16px; }
+        .tipo-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 300;
+            color: #FAFAFA;
+            margin-bottom: 12px;
+        }
+        .tipo-desc {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.8;
+        }
+        .tipo-lista {
+            list-style: none;
+            margin-top: 16px;
+        }
+        .tipo-lista li {
+            font-size: 12px;
+            color: #444;
+            line-height: 2.2;
+            padding-left: 16px;
+            position: relative;
+        }
+        .tipo-lista li::before { content: '—'; position: absolute; left: 0; }
+
+        /* ── CÓMO FUNCIONA ── */
+        .pasos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+            margin-top: 64px;
+        }
+        @media (max-width: 680px) { .pasos-grid { grid-template-columns: 1fr; } }
+
+        .paso { position: relative; }
+        .paso-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 80px;
+            font-weight: 300;
+            color: rgba(74,154,200,.08);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .paso-titulo {
+            font-size: 15px;
+            font-weight: 700;
+            color: #FAFAFA;
+            margin-bottom: 10px;
+        }
+        .paso-texto {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.8;
+        }
+
+        /* ── QUÉ INCLUYE ── */
+        .incluye-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 64px;
+        }
+        @media (max-width: 760px) { .incluye-grid { grid-template-columns: 1fr; } }
+
+        .incluye-card {
+            background: #111;
+            padding: 32px;
+            border-top: 1px solid var(--azul-live);
+        }
+        .incluye-linea {
+            width: 20px;
+            height: 1px;
+            background: var(--azul-live);
+            margin-bottom: 16px;
+        }
+        .incluye-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .incluye-desc {
+            font-size: 12px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* ── CROSS-SELL ── */
+        .crossell {
+            padding: 60px 48px;
+            background: #0a0a0a;
+            border-top: 1px solid #111;
+        }
+        .crossell-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .crossell-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: var(--dorado);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .crossell-texto {
+            font-size: 14px;
+            color: #444;
+            max-width: 520px;
+            line-height: 1.7;
+        }
+        .btn-ghost-dorado {
+            display: inline-block;
+            padding: 14px 28px;
+            background: transparent;
+            color: var(--dorado);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid var(--dorado);
+            border-radius: 2px;
+            white-space: nowrap;
+            transition: background .2s, color .2s;
+        }
+        .btn-ghost-dorado:hover { background: var(--dorado); color: var(--negro); }
+
+        /* ── FAQ ── */
+        .faq-wrap {
+            max-width: 760px;
+            margin: 64px auto 0;
+        }
+        .faq-item {
+            border-bottom: 1px solid #151515;
+        }
+        .faq-q {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #fff;
+            font-family: 'Lato', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: .5px;
+            text-align: left;
+            padding: 20px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            transition: color .2s;
+        }
+        .faq-q:hover { color: var(--azul-live); }
+        .faq-icon {
+            font-size: 18px;
+            color: var(--azul-live);
+            flex-shrink: 0;
+            transition: transform .25s;
+        }
+        .faq-a {
+            display: none;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.8;
+            padding-bottom: 20px;
+        }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-item.open .faq-a   { display: block; }
+        .faq-item.open .faq-q   { color: var(--azul-live); }
+
+        /* ── CTA FINAL ── */
+        .cta-sec {
+            padding: 100px 48px;
+            background: var(--negro);
+            text-align: center;
+        }
+        .cta-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 300;
+            color: #FAFAFA;
+            margin-bottom: 12px;
+        }
+        .cta-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-style: italic;
+            color: var(--azul-live);
+            margin-bottom: 24px;
+        }
+        .cta-desc {
+            font-size: 14px;
+            color: #555;
+            max-width: 480px;
+            margin: 0 auto 40px;
+            line-height: 1.75;
+        }
+        .cta-btns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+        }
+        .btn-wha {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: #25D366;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: filter .2s, transform .2s;
+        }
+        .btn-wha:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .cta-nota {
+            font-size: 11px;
+            color: #333;
+            margin-top: 14px;
+            letter-spacing: .5px;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--negro);
+            border-top: 1px solid rgba(255,255,255,.06);
+            padding: 32px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-logo {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #333;
+        }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+        .footer-links a {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #333;
+            transition: color .2s;
+        }
+        .footer-links a:hover { color: var(--dorado); }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="nav-logo">CREAFILMS LIVE</a>
+            <ul class="nav-links">
+                <li><a href="/bodas/" class="nav-link">01 BODAS</a></li>
+                <li><a href="/live/" class="nav-link active">02 LIVE</a></li>
+                <li><a href="/estudio/" class="nav-link">03 ESTUDIO</a></li>
+            </ul>
+        </div>
+        <div class="nav-breadcrumb">LIVE › EVENTOS</div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">CreaFilms Live · Eventos &amp; Corporativos</p>
+            <h1>Tu evento llega<br>a donde tú<br><em>no puedes</em></h1>
+            <p class="hero-sub">Congresos · Corporativos · Deportivos · Circuito Cerrado</p>
+            <p class="hero-desc">
+                Transmitimos tu evento en vivo a cualquier plataforma o sala
+                virtual privada. Señal profesional, equipo de respaldo,
+                coordinación técnica completa desde Puerto Vallarta.
+            </p>
+            <div class="hero-chips">
+                <span class="hero-chip">📡 Señal profesional</span>
+                <span class="hero-chip">🎥 Multi-cámara</span>
+                <span class="hero-chip">🌐 YouTube · Zoom · Teams</span>
+                <span class="hero-chip">🔒 Circuito cerrado</span>
+            </div>
+            <div class="hero-ctas">
+                <a href="https://wa.me/523223550795?text=Hola,%20me%20interesa%20cotizar%20una%20transmisi%C3%B3n%20en%20vivo%20para%20un%20evento%20%F0%9F%8E%A5"
+                   class="btn-azul" target="_blank" rel="noopener">
+                    Cotizar mi evento
+                </a>
+                <a href="#tipos" class="btn-ghost">¿Qué tipos de eventos? ↓</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STRIP -->
+    <div class="strip">
+        <b>Congresos</b> · Convenciones · <b>Corporativos</b> · Deportivos
+        · Circuito cerrado · <b>Puerto Vallarta</b> y Riviera Nayarit
+    </div>
+
+    <!-- TIPOS DE EVENTOS -->
+    <section class="sec" style="background:#000;" id="tipos">
+        <div class="sec-inner">
+            <p class="sec-eyebrow">¿Qué tipo de evento tienes?</p>
+            <h2 class="sec-title">Transmitimos cualquier evento<br><em>con calidad profesional</em></h2>
+
+            <div class="tipos-grid">
+
+                <!-- CONGRESOS -->
+                <div class="tipo-card">
+                    <div class="tipo-icono">🏛️</div>
+                    <h3 class="tipo-titulo">Congresos y Convenciones</h3>
+                    <p class="tipo-desc">
+                        Transmisión simultánea para asistentes remotos.
+                        Ponencias, paneles y presentaciones en vivo a
+                        cualquier plataforma o sala privada.
+                    </p>
+                    <ul class="tipo-lista">
+                        <li>Transmisión a YouTube, Zoom, Teams o sala privada</li>
+                        <li>Multi-cámara para ponentes y audiencia</li>
+                        <li>Grabación del evento completo</li>
+                        <li>Coordinación técnica en sitio</li>
+                    </ul>
+                </div>
+
+                <!-- CORPORATIVOS -->
+                <div class="tipo-card">
+                    <div class="tipo-icono">🏢</div>
+                    <h3 class="tipo-titulo">Eventos Corporativos</h3>
+                    <p class="tipo-desc">
+                        Lanzamientos de producto, presentaciones internas,
+                        juntas de consejo y eventos de empresa con audiencia
+                        remota o híbrida.
+                    </p>
+                    <ul class="tipo-lista">
+                        <li>Presentaciones de producto en vivo</li>
+                        <li>Eventos híbridos (presencial + virtual)</li>
+                        <li>Transmisión interna o pública</li>
+                        <li>Grabación y entrega posterior</li>
+                    </ul>
+                </div>
+
+                <!-- DEPORTIVOS Y SOCIALES -->
+                <div class="tipo-card">
+                    <div class="tipo-icono">🏆</div>
+                    <h3 class="tipo-titulo">Deportivos y Sociales</h3>
+                    <p class="tipo-desc">
+                        Torneos, competencias, celebraciones y eventos
+                        sociales de gran formato que requieren cobertura
+                        en vivo profesional.
+                    </p>
+                    <ul class="tipo-lista">
+                        <li>Torneos y competencias deportivas</li>
+                        <li>Eventos de gran formato y festivales</li>
+                        <li>Ceremonias y graduaciones</li>
+                        <li>Circuito cerrado (CCTV) para venues</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <section class="sec" style="background:#080808;">
+        <div class="sec-inner">
+            <p class="sec-eyebrow">El proceso</p>
+            <h2 class="sec-title">De principio a fin</h2>
+
+            <div class="pasos-grid">
+
+                <div class="paso">
+                    <div class="paso-num">01</div>
+                    <h4 class="paso-titulo">Consulta inicial</h4>
+                    <p class="paso-texto">
+                        Nos describes el evento — fecha, locación, número
+                        de participantes y plataforma de destino. Te enviamos
+                        propuesta técnica y cotización en 24 horas.
+                    </p>
+                </div>
+
+                <div class="paso">
+                    <div class="paso-num">02</div>
+                    <h4 class="paso-titulo">Evaluación técnica</h4>
+                    <p class="paso-texto">
+                        Visitamos el venue o coordinamos con el equipo del lugar
+                        para evaluar conectividad, posicionamiento de cámaras
+                        y requerimientos técnicos específicos.
+                    </p>
+                </div>
+
+                <div class="paso">
+                    <div class="paso-num">03</div>
+                    <h4 class="paso-titulo">Día del evento</h4>
+                    <p class="paso-texto">
+                        Llegamos con anticipación para instalar y probar el
+                        equipo. Monitoreo constante durante toda la transmisión.
+                        Equipo de respaldo disponible.
+                    </p>
+                </div>
+
+                <div class="paso">
+                    <div class="paso-num">04</div>
+                    <h4 class="paso-titulo">Entrega posterior</h4>
+                    <p class="paso-texto">
+                        Grabación del evento disponible para descarga o
+                        distribución. Informe técnico si se requiere para
+                        documentación corporativa.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- QUÉ INCLUYE -->
+    <section class="sec" style="background:#000;">
+        <div class="sec-inner">
+            <p class="sec-eyebrow">Lo que obtienes</p>
+            <h2 class="sec-title">Servicio técnico completo</h2>
+
+            <div class="incluye-grid">
+
+                <div class="incluye-card">
+                    <div class="incluye-linea"></div>
+                    <h3 class="incluye-titulo">Transmisión estable</h3>
+                    <p class="incluye-desc">
+                        Equipo profesional con conexión de respaldo.
+                        Monitoreo constante durante todo el evento.
+                    </p>
+                </div>
+
+                <div class="incluye-card">
+                    <div class="incluye-linea"></div>
+                    <h3 class="incluye-titulo">Multi-cámara</h3>
+                    <p class="incluye-desc">
+                        Cobertura desde múltiples ángulos según
+                        las necesidades del evento.
+                    </p>
+                </div>
+
+                <div class="incluye-card">
+                    <div class="incluye-linea"></div>
+                    <h3 class="incluye-titulo">Cualquier plataforma</h3>
+                    <p class="incluye-desc">
+                        YouTube Live, Zoom, Teams, Meet, Facebook
+                        o sala virtual privada personalizada.
+                    </p>
+                </div>
+
+                <div class="incluye-card">
+                    <div class="incluye-linea"></div>
+                    <h3 class="incluye-titulo">Grabación del evento</h3>
+                    <p class="incluye-desc">
+                        Video del evento grabado y disponible
+                        para descarga o distribución posterior.
+                    </p>
+                </div>
+
+                <div class="incluye-card">
+                    <div class="incluye-linea"></div>
+                    <h3 class="incluye-titulo">Coordinación en sitio</h3>
+                    <p class="incluye-desc">
+                        Técnico presente durante todo el evento.
+                        Coordinación con el equipo del venue.
+                    </p>
+                </div>
+
+                <div class="incluye-card">
+                    <div class="incluye-linea"></div>
+                    <h3 class="incluye-titulo">Circuito cerrado (CCTV)</h3>
+                    <p class="incluye-desc">
+                        Transmisión interna a pantallas o
+                        salas auxiliares dentro del venue.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CROSS-SELL BODAS -->
+    <div class="crossell">
+        <div class="crossell-inner">
+            <div>
+                <p class="crossell-label">¿Tienes una boda próximamente?</p>
+                <p class="crossell-texto">
+                    También ofrecemos transmisión en vivo de bodas con sala
+                    virtual personalizada y colores de tu boda.
+                </p>
+            </div>
+            <a href="/live/bodas/" class="btn-ghost-dorado">
+                Ver transmisión de bodas →
+            </a>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <section class="sec" style="background:#080808;">
+        <div class="sec-inner">
+            <p class="sec-eyebrow">Preguntas frecuentes</p>
+            <h2 class="sec-title">Lo que organizadores<br><em>nos preguntan</em></h2>
+
+            <div class="faq-wrap">
+
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        ¿Qué plataformas soportan para la transmisión?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        Transmitimos a YouTube Live, Zoom, Microsoft Teams,
+                        Google Meet, Facebook Live y cualquier plataforma
+                        compatible con RTMP. También ofrecemos sala virtual
+                        privada propia sin plataformas externas.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        ¿Pueden cubrir eventos fuera del hotel o venue?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        Sí. Tenemos equipo móvil para eventos en exteriores,
+                        playas, jardines y cualquier locación. Evaluamos la
+                        conectividad del lugar con anticipación y llevamos
+                        equipo de respaldo de señal cuando es necesario.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        ¿Con cuánta anticipación debo contratar el servicio?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        Recomendamos mínimo 2 semanas de anticipación para
+                        eventos corporativos — necesitamos evaluar el venue
+                        y coordinar con el equipo técnico del lugar. Para
+                        congresos grandes, 4–6 semanas es ideal.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        ¿Pueden grabar el evento además de transmitirlo?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        Sí. Grabamos el evento completo en paralelo a la
+                        transmisión en vivo. La grabación queda disponible
+                        para descarga o distribución posterior.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        ¿Ofrecen circuito cerrado para pantallas internas?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        Sí. Además de la transmisión externa, podemos manejar
+                        distribución de señal a pantallas auxiliares dentro
+                        del venue para participantes que no tienen vista directa
+                        al escenario.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        ¿Trabajan con hoteles y venues de Puerto Vallarta?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-a">
+                        Sí, conocemos los principales venues de Puerto Vallarta
+                        y Riviera Nayarit. Coordinamos directamente con el
+                        equipo técnico del hotel o venue para garantizar
+                        la mejor integración.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-sec">
+        <h2 class="cta-titulo">¿Tienes un evento próximo?</h2>
+        <p class="cta-sub">Hablemos de los detalles técnicos.</p>
+        <p class="cta-desc">
+            Cuéntanos la fecha, el tipo de evento, el venue y el número
+            aproximado de participantes. Te enviamos propuesta técnica
+            y cotización en menos de 24 horas.
+        </p>
+        <div class="cta-btns">
+            <a href="https://wa.me/523223550795?text=Hola,%20me%20interesa%20cotizar%20transmisi%C3%B3n%20en%20vivo%20para%20un%20evento%20corporativo%20%F0%9F%8E%A5"
+               class="btn-wha" target="_blank" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+                </svg>
+                Cotizar por WhatsApp
+            </a>
+            <a href="/live/bodas/" class="btn-ghost">Ver transmisión de bodas →</a>
+        </div>
+        <p class="cta-nota">Respondemos en menos de 24 horas · Lun–Sáb</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <span class="footer-logo">CREAFILMS LIVE</span>
+        <ul class="footer-links">
+            <li><a href="/">INICIO</a></li>
+            <li><a href="/live/">LIVE</a></li>
+            <li><a href="/live/bodas/">BODAS</a></li>
+            <li><a href="/estudio/">ESTUDIO</a></li>
+        </ul>
+    </footer>
+
+    <script>
+    function toggleFaq(btn) {
+        var item = btn.parentElement;
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(el) {
+            el.classList.remove('open');
+        });
+        if (!isOpen) item.classList.add('open');
+    }
+    </script>
+
+</body>
+</html>

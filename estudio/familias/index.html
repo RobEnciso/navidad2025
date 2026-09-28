@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fotos Familiares Puerto Vallarta | Family Photographer Vallarta | Crea Films</title>
+  <meta name="description" content="Sesiones de fotos familiares en Puerto Vallarta. Playa, estudio o exterior. Family photographer in Puerto Vallarta — vacation sessions, portraits and lifestyle. Book now.">
+  <link rel="canonical" href="https://estudiocreafilms.com/estudio/familias/">
+  <link rel="alternate" hreflang="es" href="https://estudiocreafilms.com/estudio/familias/">
+  <link rel="alternate" hreflang="en" href="https://estudiocreafilms.com/estudio/familias/">
+  <link rel="alternate" hreflang="x-default" href="https://estudiocreafilms.com/estudio/familias/">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://estudiocreafilms.com/estudio/familias/">
+  <meta property="og:title"       content="Fotos Familiares Puerto Vallarta | Family Photographer Vallarta | Crea Films">
+  <meta property="og:description" content="Family photographer in Puerto Vallarta — vacation sessions, beach portraits and lifestyle. Sesiones familiares en playa, estudio y exterior.">
+  <meta property="og:site_name"   content="Crea Films">
+
+  <!-- Schema: Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Family Photography Sessions Puerto Vallarta",
+    "alternateName": "Sesiones Fotográficas Familiares Puerto Vallarta",
+    "provider": {
+      "@id": "https://estudiocreafilms.com/#business"
+    },
+    "areaServed": "Puerto Vallarta, Riviera Nayarit",
+    "serviceType": "Family Photography, Vacation Portraits, Beach Sessions",
+    "availableLanguage": ["Spanish", "English"],
+    "offers": {
+      "@type": "Offer",
+      "price": "1800",
+      "priceCurrency": "MXN"
+    }
+  }
+  </script>
+
+  <!-- Schema: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do you speak English? ¿Hablan inglés?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! We're fully bilingual — all our sessions are available in Spanish and English. From booking to delivery, we've got you covered."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How far in advance should I book? ¿Con cuánto tiempo debo reservar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Para sesiones de atardecer recomendamos 1–2 semanas de anticipación. For sunset sessions we recommend 1–2 weeks ahead — those spots fill up fast, especially December through April."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Pueden ir a mi hotel o Airbnb?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, hacemos sesiones en hoteles, villas y Airbnbs con costo de traslado dependiendo de la ubicación. Cotiza directamente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I receive my photos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You'll get a private online gallery link within 7 business days. Download all photos in high resolution — no watermarks, no apps needed. Gallery available for 1 year."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do beach sessions include getting wet? ¿Incluyen fotos en la playa?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "¡Depende de ustedes! Hacemos desde sesiones completamente secas hasta trash-the-dress y splashing sessions. We adapt to what you want — just let us know and we'll plan accordingly."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/estudio.css">
+
+  <style>
+    /* ── PALETTE & ACCENT ── */
+    :root {
+      --space:    #1E1E24;
+      --mid:      #3A3A42;
+      --mist:     #7A7A85;
+      --silver:   #C8C8D0;
+      --smoke:    #F0EEF2;
+      --white:    #FAFAFA;
+      --mauve:    #B89EA8;
+      --mauve-l:  #D9C8D0;
+      --mauve-d:  #8A7080;
+      --accent:   #5A8A5A;
+      --accent-l: #D4E8D4;
+      --green-wa: #25D366;
+      --font-title: 'Cormorant Garamond', Georgia, serif;
+      --font-body:  'Outfit', system-ui, sans-serif;
+    }
+
+    /* ── BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--space);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    .fam-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      padding: 1.1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: background .3s ease;
+    }
+    .fam-nav.scrolled {
+      background: rgba(30,30,36,.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(255,255,255,.06);
+    }
+    .fam-nav__logo {
+      font-family: var(--font-title);
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .fam-nav__logo span { color: var(--mauve-l); }
+    .fam-nav__breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .75rem;
+      color: rgba(250,250,250,.5);
+    }
+    .fam-nav__breadcrumb a { color: rgba(250,250,250,.65); transition: color .2s; }
+    .fam-nav__breadcrumb a:hover { color: var(--accent-l); }
+    .fam-nav__breadcrumb .sep { color: rgba(250,250,250,.28); }
+    .fam-nav__breadcrumb .cur { color: var(--accent-l); }
+    .fam-nav__cta {
+      display: inline-block;
+      padding: .6rem 1.4rem;
+      background: var(--accent);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      border-radius: 4px;
+      transition: filter .2s, transform .2s;
+      white-space: nowrap;
+    }
+    .fam-nav__cta:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    @media (max-width: 640px) {
+      .fam-nav__breadcrumb { display: none; }
+      .fam-nav { padding: 1rem 1.25rem; }
+    }
+
+    /* ── HERO ── */
+    .fam-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: linear-gradient(145deg, #8AAA8A 0%, #4A6A4A 35%, #2A3A28 70%, #1E1E24 100%);
+    }
+    .fam-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(14,20,14,.92) 0%, rgba(14,20,14,.38) 55%, transparent 100%);
+    }
+    .fam-hero__content {
+      position: relative;
+      z-index: 2;
+      padding: 0 2rem 5rem;
+      max-width: 940px;
+    }
+    .fam-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent-l);
+      margin-bottom: 1rem;
+    }
+    .fam-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .fam-hero h1 {
+      font-family: var(--font-title);
+      font-size: clamp(3.25rem, 8vw, 6rem);
+      font-weight: 300;
+      line-height: 1.02;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .fam-hero h1 em { font-style: italic; color: var(--accent-l); }
+    .fam-hero__sub {
+      font-family: var(--font-title);
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.375rem);
+      color: rgba(250,250,250,.45);
+      margin-bottom: 1.25rem;
+    }
+    .fam-hero__bilingual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 680px;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 580px) {
+      .fam-hero__bilingual { grid-template-columns: 1fr; gap: .75rem; }
+    }
+    .fam-hero__bilingual p {
+      font-size: .8125rem;
+      line-height: 1.75;
+    }
+    .fam-hero__bilingual .es-text { color: rgba(250,250,250,.55); }
+    .fam-hero__bilingual .en-text { color: rgba(250,250,250,.38); font-style: italic; }
+    .fam-hero__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .btn-accent {
+      display: inline-block;
+      padding: .78rem 2rem;
+      background: var(--accent);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      border-radius: 4px;
+      transition: filter .25s, transform .25s;
+    }
+    .btn-accent:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .link-ghost {
+      font-size: .82rem;
+      font-weight: 500;
+      color: rgba(250,250,250,.5);
+      transition: color .2s;
+    }
+    .link-ghost:hover { color: rgba(250,250,250,.85); }
+    @media (max-width: 640px) {
+      .fam-hero__content { padding: 0 1.25rem 3.5rem; }
+    }
+
+    /* ── STRIP ── */
+    .fam-strip {
+      background: var(--space);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .4rem 0;
+    }
+    .fam-strip__item {
+      font-family: var(--font-body);
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: rgba(250,250,250,.38);
+      padding: 0 1rem;
+    }
+    .fam-strip__item b { color: var(--accent-l); font-weight: 400; }
+    .fam-strip__dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: rgba(90,138,90,.25);
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .fam-section { padding: 4.5rem 2rem; }
+    .fam-section--smoke { background: var(--smoke); }
+    .fam-section--white { background: var(--white); }
+    .fam-section--dark  { background: var(--space); }
+    .fam-container { max-width: 1280px; margin: 0 auto; }
+    .fam-hdr { text-align: center; margin-bottom: 2.5rem; }
+    .fam-hdr h2 {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.12;
+      color: var(--space);
+    }
+    .fam-hdr h2 em { font-style: italic; color: var(--accent); }
+    .fam-hdr--dark h2 { color: var(--white); }
+    .fam-hdr--dark h2 em { color: var(--accent-l); }
+    .fam-hdr p { font-size: .88rem; color: var(--mist); margin-top: .5rem; line-height: 1.6; }
+    .fam-hdr .bilingual-note {
+      display: inline-flex;
+      gap: .5rem;
+      font-size: .72rem;
+      color: var(--mist);
+      margin-top: .35rem;
+    }
+    .fam-hdr .bilingual-note span { color: var(--accent); }
+
+    /* ── PARA QUIÉN ES — 2 cols ── */
+    .fam-para-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.25rem;
+      align-items: center;
+    }
+    @media (max-width: 860px) { .fam-para-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .fam-para__eyebrow {
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--mauve-d);
+      margin-bottom: .75rem;
+    }
+    .fam-para__h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--space);
+      margin-bottom: 1.75rem;
+    }
+    .fam-para__h2 em { font-style: italic; color: var(--accent); }
+
+    .fam-para__items { display: flex; flex-direction: column; gap: 1.25rem; }
+    .fam-para__item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .fam-para__item-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--accent-l);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .fam-para__item-title {
+      font-family: var(--font-body);
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--space);
+      margin-bottom: .2rem;
+    }
+    .fam-para__item-desc {
+      font-size: .82rem;
+      color: var(--mist);
+      line-height: 1.65;
+    }
+    .fam-para__item-desc em {
+      font-style: italic;
+      color: var(--mist);
+      opacity: .8;
+    }
+
+    /* Visual col */
+    .fam-para__visual {
+      border-radius: 10px;
+      background: linear-gradient(145deg, #8AAA8A 0%, #3A6A3A 50%, #1A3A1A 100%);
+      min-height: 440px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+    }
+    .fam-para__silhouette {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: clamp(5rem, 14vw, 9rem);
+      opacity: .1;
+      user-select: none;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .fam-para__badge {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .6rem 1rem;
+      background: rgba(20,30,20,.65);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(90,138,90,.3);
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    /* ── INCLUYE GRID 3×2 ── */
+    .fam-inc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 900px) { .fam-inc-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px)  { .fam-inc-grid { grid-template-columns: 1fr; } }
+    .fam-inc-card {
+      background: var(--white);
+      border: 1px solid var(--silver);
+      border-radius: 10px;
+      padding: 1.5rem 1.25rem;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .fam-inc-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.06); transform: translateY(-2px); }
+    .fam-inc-card.accent { border-color: var(--accent); background: var(--accent-l); }
+    .fam-inc-card__icon { font-size: 1.5rem; margin-bottom: .6rem; }
+    .fam-inc-card__title {
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--space);
+      margin-bottom: .2rem;
+      line-height: 1.3;
+    }
+    .fam-inc-card.accent .fam-inc-card__title { color: #2A5A2A; }
+    .fam-inc-card__sub {
+      font-size: .72rem;
+      font-style: italic;
+      color: var(--mist);
+      margin-bottom: .35rem;
+    }
+    .fam-inc-card.accent .fam-inc-card__sub { color: #4A7A4A; }
+    .fam-inc-card__desc { font-size: .82rem; color: var(--mist); line-height: 1.6; }
+
+    /* ── PRECIOS ── */
+    .fam-prices-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      align-items: start;
+    }
+    @media (max-width: 860px) { .fam-prices-grid { grid-template-columns: 1fr; } }
+    .fam-pack {
+      background: var(--white);
+      border: 1px solid var(--silver);
+      border-radius: 8px;
+      padding: 2rem 1.75rem;
+    }
+    .fam-pack.star {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .fam-pack__badge {
+      display: inline-block;
+      padding: .25rem .8rem;
+      background: var(--accent);
+      color: var(--white);
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-radius: 2rem;
+      margin-bottom: 1.1rem;
+    }
+    .fam-pack__name {
+      font-family: var(--font-title);
+      font-size: 1.65rem;
+      font-weight: 400;
+      color: var(--space);
+      margin-bottom: .15rem;
+    }
+    .fam-pack__name-en {
+      font-size: .75rem;
+      font-style: italic;
+      color: var(--mist);
+      margin-bottom: .5rem;
+    }
+    .fam-pack__price {
+      font-family: var(--font-title);
+      font-size: 1.9rem;
+      font-weight: 300;
+      color: var(--space);
+      margin-bottom: .1rem;
+    }
+    .fam-pack__price-usd {
+      font-size: .75rem;
+      color: var(--mist);
+      margin-bottom: .25rem;
+    }
+    .fam-pack__ideal {
+      display: inline-block;
+      padding: .22rem .7rem;
+      background: var(--accent-l);
+      color: var(--accent);
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      border-radius: 2rem;
+      margin-bottom: 1.1rem;
+    }
+    .fam-pack__specs {
+      font-size: .82rem;
+      color: var(--mist);
+      line-height: 1.65;
+      margin-bottom: 1.1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--smoke);
+    }
+    .fam-pack__list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    .fam-pack__list li {
+      font-size: .82rem;
+      color: var(--mist);
+      padding: .35rem 0;
+      border-bottom: 1px solid var(--smoke);
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      line-height: 1.4;
+    }
+    .fam-pack__list li::before {
+      content: '✓';
+      color: var(--accent);
+      font-size: .72rem;
+      margin-top: .1rem;
+      flex-shrink: 0;
+    }
+    .btn-outline {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: .72rem 1.5rem;
+      background: transparent;
+      color: var(--space);
+      font-family: var(--font-body);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      border: 1px solid var(--silver);
+      border-radius: 4px;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-accent-solid {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: .72rem 1.5rem;
+      background: var(--accent);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      border-radius: 4px;
+      transition: filter .2s, transform .2s;
+    }
+    .btn-accent-solid:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .fam-prices-note {
+      text-align: center;
+      font-size: .82rem;
+      color: var(--mist);
+      margin-top: 1.5rem;
+    }
+    .fam-prices-note strong { color: var(--space); }
+    .fam-prices-note small {
+      display: block;
+      font-size: .72rem;
+      font-style: italic;
+      margin-top: .25rem;
+    }
+
+    /* ── LOCACIONES SCROLL ── */
+    .fam-locs-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: .5rem;
+    }
+    .fam-locs-wrap::-webkit-scrollbar { display: none; }
+    .fam-locs-row {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+    }
+    .fam-loc-card {
+      width: 180px;
+      height: 240px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: .9rem;
+      transition: transform .25s;
+    }
+    .fam-loc-card:hover { transform: translateY(-3px); }
+    .fam-loc-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 55%);
+    }
+    .fam-loc-card__icon {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      opacity: .14;
+      user-select: none;
+    }
+    .fam-loc-card__name {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      color: var(--white);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .fam-loc--muertos  { background: linear-gradient(155deg, #9AC8B8 0%, #2A5848 100%); }
+    .fam-loc--malecon  { background: linear-gradient(155deg, #A0B8C8 0%, #283858 100%); }
+    .fam-loc--romantica { background: linear-gradient(155deg, #B0A8C8 0%, #384068 100%); }
+    .fam-loc--centro   { background: linear-gradient(155deg, #C0A890 0%, #583820 100%); }
+    .fam-loc--punta    { background: linear-gradient(155deg, #8AC8A8 0%, #284838 100%); }
+    .fam-loc--estudio  { background: linear-gradient(155deg, #B0A0B8 0%, #4A3858 100%); }
+
+    /* ── CTA FINAL ── */
+    .fam-cta-section {
+      background: var(--space);
+      padding: 4.5rem 2rem;
+    }
+    .fam-cta-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .fam-cta-inner h3 {
+      font-family: var(--font-title);
+      font-size: clamp(1.75rem, 4vw, 2.8rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.75rem;
+    }
+    .fam-cta-inner h3 em { font-style: italic; color: var(--accent-l); }
+    .fam-cta-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .btn-wha {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .85rem 2rem;
+      background: var(--green-wa);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: .85rem;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: filter .2s, transform .2s;
+    }
+    .btn-wha:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .fam-cta-note {
+      font-size: .72rem;
+      color: rgba(250,250,250,.3);
+      margin-top: .85rem;
+    }
+
+    /* ── FAQ ── */
+    .fam-faq-hdr { text-align: center; margin-bottom: 2.5rem; }
+    .fam-faq-hdr h2 {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 400;
+      color: var(--space);
+    }
+    .fam-faq-hdr h2 em { font-style: italic; color: var(--mauve); }
+    .fam-faq .e-faq-icon { color: var(--accent); }
+    .fam-faq .e-faq-q:hover { color: var(--accent); }
+
+    .fam-faq .faq-bilingual {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      align-items: baseline;
+    }
+    .fam-faq .faq-en {
+      font-size: .72rem;
+      font-style: italic;
+      color: var(--mist);
+      opacity: .75;
+    }
+
+    /* ── FOOTER ── */
+    .fam-footer {
+      background: #141418;
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .fam-footer__logo { font-family: var(--font-title); font-size: 1.2rem; color: var(--mauve-l); }
+    .fam-footer__links { display: flex; gap: 1.5rem; flex-wrap: wrap; list-style: none; }
+    .fam-footer__links a { font-size: .78rem; color: var(--silver); transition: color .2s; }
+    .fam-footer__links a:hover { color: var(--accent-l); }
+    .fam-footer__copy {
+      width: 100%;
+      text-align: center;
+      font-size: .7rem;
+      color: var(--mist);
+      margin-top: .75rem;
+      padding-top: .75rem;
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════
+       NAV
+  ════════════════════════════ -->
+  <nav class="fam-nav" id="famNav">
+    <a href="/" class="fam-nav__logo">CREA<span>FILMS</span></a>
+
+    <div class="fam-nav__breadcrumb">
+      <a href="/">Inicio</a>
+      <span class="sep">›</span>
+      <a href="/estudio/">Estudio</a>
+      <span class="sep">›</span>
+      <span class="cur">Familias</span>
+    </div>
+
+    <a href="https://wa.me/523223550795?text=Hola%2C%20quisiera%20cotizar%20una%20sesi%C3%B3n%20familiar%20%2F%20Hi%2C%20I%27d%20like%20to%20book%20a%20family%20session"
+       class="fam-nav__cta" target="_blank" rel="noopener">Cotizar / Book Now</a>
+  </nav>
+
+  <!-- ════════════════════════════
+       HERO
+  ════════════════════════════ -->
+  <section class="fam-hero">
+    <div class="fam-hero__overlay"></div>
+    <div class="fam-hero__content">
+
+      <p class="fam-eyebrow">Sesiones Familiares · Puerto Vallarta · Family Sessions</p>
+
+      <h1>Fotos de familia<br>en el paraíso<br><em>más hermoso</em></h1>
+
+      <p class="fam-hero__sub">Playa · Malecón · Estudio · Riviera Nayarit</p>
+
+      <div class="fam-hero__bilingual">
+        <p class="es-text">
+          Capturamos el vínculo de tu familia en los escenarios más bellos de
+          Puerto Vallarta. Sesiones relajadas, sin poses forzadas — solo ustedes
+          siendo ustedes.
+        </p>
+        <p class="en-text">
+          We capture your family's bond in Puerto Vallarta's most beautiful
+          settings. Relaxed sessions, natural poses — just you being you.
+        </p>
+      </div>
+
+      <div class="fam-hero__ctas">
+        <a href="https://wa.me/523223550795?text=Hola%2C%20quisiera%20agendar%20una%20sesi%C3%B3n%20familiar"
+           class="btn-accent" target="_blank" rel="noopener">Agendar sesión</a>
+        <a href="https://wa.me/523223550795?text=Hi%2C%20I%27d%20like%20to%20book%20a%20family%20session%20in%20Puerto%20Vallarta"
+           class="link-ghost" target="_blank" rel="noopener">Book your session →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       STRIP
+  ════════════════════════════ -->
+  <div class="fam-strip">
+    <span class="fam-strip__item">Familias <b>locales</b></span>
+    <span class="fam-strip__dot"></span>
+    <span class="fam-strip__item"><b>Turistas</b> · Vacations</span>
+    <span class="fam-strip__dot"></span>
+    <span class="fam-strip__item">Playa &amp; <b>estudio</b></span>
+    <span class="fam-strip__dot"></span>
+    <span class="fam-strip__item">Entrega <b>7 días</b></span>
+    <span class="fam-strip__dot"></span>
+    <span class="fam-strip__item"><b>English spoken</b> 🇺🇸</span>
+  </div>
+
+  <!-- ════════════════════════════
+       PARA QUIÉN ES
+  ════════════════════════════ -->
+  <section class="fam-section fam-section--white">
+    <div class="fam-container">
+      <div class="fam-para-grid">
+
+        <!-- Texto -->
+        <div>
+          <p class="fam-para__eyebrow">¿Para quién es esta sesión?</p>
+          <h2 class="fam-para__h2">Para cualquier familia<br>que quiera <em>recordar este momento</em></h2>
+
+          <div class="fam-para__items">
+
+            <div class="fam-para__item">
+              <div class="fam-para__item-icon">🏠</div>
+              <div>
+                <p class="fam-para__item-title">Familias locales de Puerto Vallarta</p>
+                <p class="fam-para__item-desc">
+                  Fotos anuales de familia, celebraciones, o simplemente porque
+                  los niños crecen muy rápido.
+                </p>
+              </div>
+            </div>
+
+            <div class="fam-para__item">
+              <div class="fam-para__item-icon">✈️</div>
+              <div>
+                <p class="fam-para__item-title">Familias en vacaciones — Vacation Sessions</p>
+                <p class="fam-para__item-desc">
+                  Recuerden sus vacaciones en Vallarta con fotos profesionales.
+                  <em>More than just selfies — real memories.</em>
+                </p>
+              </div>
+            </div>
+
+            <div class="fam-para__item">
+              <div class="fam-para__item-icon">👨‍👩‍👧</div>
+              <div>
+                <p class="fam-para__item-title">Retratos de maternidad &amp; newborn</p>
+                <p class="fam-para__item-desc">
+                  El embarazo y los primeros días de vida merecen fotos que
+                  capturen cada detalle.
+                </p>
+              </div>
+            </div>
+
+            <div class="fam-para__item">
+              <div class="fam-para__item-icon">🌅</div>
+              <div>
+                <p class="fam-para__item-title">Sesiones en playa al atardecer</p>
+                <p class="fam-para__item-desc">
+                  La hora dorada en Vallarta es mágica. Organizamos tu sesión
+                  en el momento perfecto de luz.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Visual -->
+        <div class="fam-para__visual">
+          <div class="fam-para__silhouette">👨‍👩‍👧‍👦</div>
+          <div class="fam-para__badge">English spoken 🇲🇽🇺🇸</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       QUÉ INCLUYE
+  ════════════════════════════ -->
+  <section class="fam-section fam-section--smoke">
+    <div class="fam-container">
+      <div class="fam-hdr">
+        <p class="fam-eyebrow" style="justify-content:center;color:var(--mauve-d);">Lo que obtienes · What you get</p>
+        <h2>Everything included — <em>Todo incluido</em></h2>
+        <div class="bilingual-note" style="display:inline-flex;gap:.5rem;font-size:.72rem;color:var(--mist);margin-top:.35rem;">
+          <span style="color:var(--accent);">ES</span> Español ·
+          <span style="color:var(--accent);">EN</span> English
+        </div>
+      </div>
+
+      <div class="fam-inc-grid">
+
+        <div class="fam-inc-card accent">
+          <div class="fam-inc-card__icon">📸</div>
+          <h4 class="fam-inc-card__title">20+ fotos editadas</h4>
+          <p class="fam-inc-card__sub">20+ edited photos</p>
+          <p class="fam-inc-card__desc">Seleccionadas y retocadas. Listas para imprimir o publicar.</p>
+        </div>
+
+        <div class="fam-inc-card">
+          <div class="fam-inc-card__icon">⏱️</div>
+          <h4 class="fam-inc-card__title">Sesión de 1–2 horas</h4>
+          <p class="fam-inc-card__sub">1–2 hour session</p>
+          <p class="fam-inc-card__desc">El tiempo suficiente para capturar todos los momentos sin cansar a los niños.</p>
+        </div>
+
+        <div class="fam-inc-card">
+          <div class="fam-inc-card__icon">🌅</div>
+          <h4 class="fam-inc-card__title">Locación ideal según el atardecer</h4>
+          <p class="fam-inc-card__sub">Ideal location for sunset timing</p>
+          <p class="fam-inc-card__desc">Coordinamos la locación y horario para aprovechar la mejor luz del día.</p>
+        </div>
+
+        <div class="fam-inc-card accent">
+          <div class="fam-inc-card__icon">🖼️</div>
+          <h4 class="fam-inc-card__title">Galería digital privada</h4>
+          <p class="fam-inc-card__sub">Private online gallery</p>
+          <p class="fam-inc-card__desc">Acceso online para descargar. Lista en 7 días hábiles / ready in 7 business days.</p>
+        </div>
+
+        <div class="fam-inc-card">
+          <div class="fam-inc-card__icon">🗣️</div>
+          <h4 class="fam-inc-card__title">Dirección en español e inglés</h4>
+          <p class="fam-inc-card__sub">Spanish &amp; English guidance</p>
+          <p class="fam-inc-card__desc">El fotógrafo dirige la sesión en ambos idiomas. No te preocupes por la comunicación.</p>
+        </div>
+
+        <div class="fam-inc-card">
+          <div class="fam-inc-card__icon">📱</div>
+          <h4 class="fam-inc-card__title">Fotos listas para compartir</h4>
+          <p class="fam-inc-card__sub">Share-ready resolution</p>
+          <p class="fam-inc-card__desc">Resolución óptima para redes sociales e impresión. Sin marca de agua.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       PRECIOS
+  ════════════════════════════ -->
+  <section class="fam-section fam-section--white">
+    <div class="fam-container">
+      <div class="fam-hdr">
+        <p class="fam-eyebrow" style="justify-content:center;color:var(--mauve-d);">Paquetes · Packages</p>
+        <h2>Paquetes / <em>Packages</em></h2>
+        <p>Prices in MXN · USD equivalent shown</p>
+      </div>
+
+      <div class="fam-prices-grid">
+
+        <!-- MINI -->
+        <div class="fam-pack">
+          <h3 class="fam-pack__name">Sesión Mini</h3>
+          <p class="fam-pack__name-en">Mini Session</p>
+          <p class="fam-pack__price">$1,800 <sup style="font-size:.85rem;">MXN</sup></p>
+          <p class="fam-pack__price-usd">~$90 USD</p>
+          <span class="fam-pack__ideal">Quick vacation session</span>
+          <p class="fam-pack__specs">30 min · 1 location · 15 edited photos</p>
+          <ul class="fam-pack__list">
+            <li>15 fotos editadas</li>
+            <li>Galería privada</li>
+            <li>1 outfit</li>
+          </ul>
+          <a href="https://wa.me/523223550795?text=Hi%2C%20I%27d%20like%20to%20book%20a%20Mini%20Session%20in%20Puerto%20Vallarta"
+             class="btn-outline" target="_blank" rel="noopener">Book / Cotizar</a>
+        </div>
+
+        <!-- FULL — DESTACADA -->
+        <div class="fam-pack star">
+          <span class="fam-pack__badge">Most popular</span>
+          <h3 class="fam-pack__name">Sesión Completa</h3>
+          <p class="fam-pack__name-en">Full Session</p>
+          <p class="fam-pack__price">$3,200 <sup style="font-size:.85rem;">MXN</sup></p>
+          <p class="fam-pack__price-usd">~$160 USD</p>
+          <span class="fam-pack__ideal">Families &amp; vacation portraits</span>
+          <p class="fam-pack__specs">1.5 hours · 2 locations · 25+ edited photos</p>
+          <ul class="fam-pack__list">
+            <li>25+ fotos editadas</li>
+            <li>Galería privada</li>
+            <li>Asesoría de locación previa</li>
+            <li>Entrega en 7 días hábiles</li>
+            <li>Dirección en español e inglés</li>
+          </ul>
+          <a href="https://wa.me/523223550795?text=Hi%2C%20I%27d%20like%20to%20book%20a%20Full%20Family%20Session%20in%20Puerto%20Vallarta"
+             class="btn-accent-solid" target="_blank" rel="noopener">Book / Cotizar</a>
+        </div>
+
+        <!-- SUNSET PREMIUM -->
+        <div class="fam-pack">
+          <h3 class="fam-pack__name">Sunset Premium</h3>
+          <p class="fam-pack__name-en">Golden Hour Session</p>
+          <p class="fam-pack__price">$4,800 <sup style="font-size:.85rem;">MXN</sup></p>
+          <p class="fam-pack__price-usd">~$240 USD</p>
+          <span class="fam-pack__ideal">Special occasions &amp; anniversaries</span>
+          <p class="fam-pack__specs">2 hours · sunset timing · 40+ photos + video reel</p>
+          <ul class="fam-pack__list">
+            <li>40+ fotos editadas</li>
+            <li>Galería privada</li>
+            <li>Video reel 30–60 seg</li>
+            <li>Horario sunset coordinado</li>
+            <li>Riviera Nayarit incluida</li>
+          </ul>
+          <a href="https://wa.me/523223550795?text=Hi%2C%20I%27d%20like%20to%20book%20a%20Sunset%20Premium%20session%20in%20Puerto%20Vallarta"
+             class="btn-outline" target="_blank" rel="noopener">Book / Cotizar</a>
+        </div>
+
+      </div>
+
+      <p class="fam-prices-note">
+        <strong>30% deposit to book · Pago del 30% para apartar fecha</strong>
+        <small>Tarjeta de crédito disponible / Credit card accepted</small>
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       LOCACIONES
+  ════════════════════════════ -->
+  <section class="fam-section fam-section--smoke">
+    <div class="fam-container">
+      <div class="fam-hdr">
+        <p class="fam-eyebrow" style="justify-content:center;color:var(--mauve-d);">Dónde sesionamos · Where we shoot</p>
+        <h2>Los mejores spots<br><em>de Vallarta</em></h2>
+      </div>
+      <div class="fam-locs-wrap">
+        <div class="fam-locs-row">
+
+          <div class="fam-loc-card fam-loc--muertos">
+            <div class="fam-loc-card__overlay"></div>
+            <div class="fam-loc-card__icon">🏖️</div>
+            <span class="fam-loc-card__name">Playa Los Muertos</span>
+          </div>
+
+          <div class="fam-loc-card fam-loc--malecon">
+            <div class="fam-loc-card__overlay"></div>
+            <div class="fam-loc-card__icon">🌊</div>
+            <span class="fam-loc-card__name">Malecón</span>
+          </div>
+
+          <div class="fam-loc-card fam-loc--romantica">
+            <div class="fam-loc-card__overlay"></div>
+            <div class="fam-loc-card__icon">🌺</div>
+            <span class="fam-loc-card__name">Zona Romántica</span>
+          </div>
+
+          <div class="fam-loc-card fam-loc--centro">
+            <div class="fam-loc-card__overlay"></div>
+            <div class="fam-loc-card__icon">🏛️</div>
+            <span class="fam-loc-card__name">Centro Histórico</span>
+          </div>
+
+          <div class="fam-loc-card fam-loc--punta">
+            <div class="fam-loc-card__overlay"></div>
+            <div class="fam-loc-card__icon">🌴</div>
+            <span class="fam-loc-card__name">Punta Mita</span>
+          </div>
+
+          <div class="fam-loc-card fam-loc--estudio">
+            <div class="fam-loc-card__overlay"></div>
+            <div class="fam-loc-card__icon">📷</div>
+            <span class="fam-loc-card__name">Estudio Propio</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       CTA FINAL
+  ════════════════════════════ -->
+  <section class="fam-cta-section">
+    <div class="fam-cta-inner">
+      <h3>Let's capture your family story —<br><em>Capturemos su historia</em></h3>
+      <div class="fam-cta-row">
+        <a href="https://wa.me/523223550795?text=Hi%20%2F%20Hola%2C%20I%27d%20like%20to%20book%20a%20family%20session%20in%20Puerto%20Vallarta"
+           class="btn-wha" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+          </svg>
+          WhatsApp us / Escríbenos
+        </a>
+      </div>
+      <p class="fam-cta-note">English &amp; Spanish · Lun–Sáb / Mon–Sat · Response in under 2 hours</p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       FAQ
+  ════════════════════════════ -->
+  <section class="fam-section fam-section--smoke">
+    <div class="fam-container">
+      <div class="fam-faq-hdr">
+        <p class="fam-eyebrow" style="justify-content:center;color:var(--mauve-d);">FAQ · Preguntas frecuentes</p>
+        <h2>Everything you need<br><em>to know</em></h2>
+      </div>
+
+      <div class="e-faq-wrap fam-faq">
+
+        <div class="e-faq-item">
+          <button class="e-faq-q" onclick="toggleFaq(this)">
+            <span class="faq-bilingual">
+              ¿Hablan inglés?
+              <span class="faq-en">/ Do you speak English?</span>
+            </span>
+            <span class="e-faq-icon">+</span>
+          </button>
+          <div class="e-faq-a">
+            Yes! We're fully bilingual — all our sessions are available in Spanish and English.
+            From booking to delivery, we've got you covered.
+          </div>
+        </div>
+
+        <div class="e-faq-item">
+          <button class="e-faq-q" onclick="toggleFaq(this)">
+            <span class="faq-bilingual">
+              ¿Con cuánto tiempo debo reservar?
+              <span class="faq-en">/ How far in advance should I book?</span>
+            </span>
+            <span class="e-faq-icon">+</span>
+          </button>
+          <div class="e-faq-a">
+            Para sesiones de atardecer recomendamos <strong>1–2 semanas de anticipación</strong>.
+            For sunset sessions we recommend 1–2 weeks ahead — those spots fill up fast,
+            especially December through April.
+          </div>
+        </div>
+
+        <div class="e-faq-item">
+          <button class="e-faq-q" onclick="toggleFaq(this)">
+            ¿Pueden ir a mi hotel o Airbnb?
+            <span class="e-faq-icon">+</span>
+          </button>
+          <div class="e-faq-a">
+            Sí, hacemos sesiones en hoteles, villas y Airbnbs con costo de traslado
+            dependiendo de la ubicación. Cotiza directamente por WhatsApp.
+          </div>
+        </div>
+
+        <div class="e-faq-item">
+          <button class="e-faq-q" onclick="toggleFaq(this)">
+            How do I receive my photos?
+            <span class="e-faq-icon">+</span>
+          </button>
+          <div class="e-faq-a">
+            You'll get a private online gallery link within <strong>7 business days</strong>.
+            Download all photos in high resolution — no watermarks, no apps needed.
+            Gallery available for 1 year.
+          </div>
+        </div>
+
+        <div class="e-faq-item">
+          <button class="e-faq-q" onclick="toggleFaq(this)">
+            <span class="faq-bilingual">
+              ¿Incluyen fotos en la playa?
+              <span class="faq-en">/ Do beach sessions include getting wet?</span>
+            </span>
+            <span class="e-faq-icon">+</span>
+          </button>
+          <div class="e-faq-a">
+            ¡Depende de ustedes! Hacemos desde sesiones completamente secas hasta
+            trash-the-dress y splashing sessions. We adapt to what you want —
+            just let us know and we'll plan accordingly.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       FOOTER
+  ════════════════════════════ -->
+  <footer class="fam-footer">
+    <span class="fam-footer__logo">CREAFILMS</span>
+    <ul class="fam-footer__links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/estudio/sesiones/">Sesiones</a></li>
+      <li><a href="/estudio/xv-anos/">XV Años</a></li>
+      <li><a href="/estudio/cake-smash/">Cake Smash</a></li>
+      <li><a href="/estudio/familias/">Familias</a></li>
+      <li><a href="/estudio/temporada/">Temporada</a></li>
+      <li><a href="/experiencias-digitales/">Experiencias Digitales</a></li>
+    </ul>
+    <p class="fam-footer__copy">© 2025 Crea Films · Puerto Vallarta, Jalisco · Family Photographer · Todos los derechos reservados</p>
+  </footer>
+
+  <script src="/js/estudio.js"></script>
+  <script>
+    (function () {
+      var nav = document.getElementById('famNav');
+      if (!nav) return;
+      function onScroll() {
+        nav.classList.toggle('scrolled', window.scrollY > 80);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+
+</body>
+</html>

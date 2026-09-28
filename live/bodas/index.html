@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transmisión en Vivo de Bodas Puerto Vallarta | CreaFilms Live</title>
+    <meta name="description" content="Transmite tu boda en vivo para quienes no pudieron estar. Sala virtual personalizada con colores de tu boda. Link y QR para invitados. Puerto Vallarta y Riviera Nayarit.">
+    <link rel="canonical" href="https://estudiocreafilms.com/live/bodas/">
+
+    <!-- Schema: Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Transmisión en Vivo de Bodas Puerto Vallarta",
+      "provider": {
+        "@id": "https://estudiocreafilms.com/#business"
+      },
+      "brand": {
+        "@type": "Brand",
+        "name": "CreaFilms Live"
+      },
+      "areaServed": "Puerto Vallarta, Riviera Nayarit",
+      "serviceType": "Transmisión en vivo de bodas"
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --negro: #0a0a0a;
+            --crema: #faf9f7;
+            --dorado: #c9a96e;
+            --gris: #666;
+            --gris-claro: #999;
+            --borde-oscuro: #2a2516;
+            --destaque: #0f0e0b;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--negro);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--negro);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--gris-claro);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--dorado);
+        }
+
+        .nav-breadcrumb {
+            font-size: 10px;
+            color: #333;
+            letter-spacing: 2px;
+            text-align: center;
+            padding: 8px 0;
+            background: #0a0a0a;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 48px 80px;
+            background: var(--negro);
+        }
+
+        .hero-badge {
+            font-size: 10px;
+            letter-spacing: 6px;
+            color: var(--dorado);
+            margin-bottom: 32px;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 88px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 24px;
+            line-height: 1;
+        }
+
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-style: italic;
+            color: var(--gris);
+            margin-bottom: 32px;
+        }
+
+        .hero-line {
+            width: 40px;
+            height: 1px;
+            background: var(--dorado);
+            margin: 0 auto 40px;
+        }
+
+        .hero-description {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #555;
+            max-width: 500px;
+            margin: 0 auto 48px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--dorado);
+            color: var(--negro);
+        }
+
+        .btn-primary:hover {
+            background: #d4b580;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #2a2a2a;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--dorado);
+            color: var(--dorado);
+        }
+
+        /* SECCIONES */
+        section {
+            padding: 120px 48px;
+        }
+
+        .bg-crema {
+            background: var(--crema);
+            color: var(--negro);
+        }
+
+        .section-label {
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: var(--dorado);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 44px;
+            font-weight: 300;
+            margin-bottom: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* CÓMO FUNCIONA */
+        .proceso-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+        }
+
+        .proceso-item {
+            position: relative;
+        }
+
+        .proceso-numero {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 120px;
+            font-weight: 300;
+            color: #e8e4df;
+            position: absolute;
+            top: -40px;
+            left: -20px;
+            z-index: 0;
+        }
+
+        .proceso-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: var(--dorado);
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .proceso-desc {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #888;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* QUÉ INCLUYE */
+        .incluye-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .incluye-card {
+            background: #111;
+            padding: 32px;
+            border-top: 1px solid var(--dorado);
+        }
+
+        .incluye-linea {
+            width: 20px;
+            height: 1px;
+            background: var(--dorado);
+            margin-bottom: 16px;
+        }
+
+        .incluye-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .incluye-desc {
+            font-size: 12px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* PAQUETES */
+        .paquetes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .paquete {
+            background: #fff;
+            border: 1px solid #e8e4df;
+            padding: 48px 32px;
+            position: relative;
+        }
+
+        .paquete.destacado {
+            background: #1a1a1a;
+            border: none;
+        }
+
+        .paquete-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: var(--dorado);
+        }
+
+        .paquete-nombre {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 16px;
+        }
+
+        .paquete .paquete-nombre {
+            color: var(--negro);
+        }
+
+        .paquete.destacado .paquete-nombre {
+            color: var(--dorado);
+        }
+
+        .paquete-linea {
+            width: 100%;
+            height: 1px;
+            background: #e8e4df;
+            margin-bottom: 24px;
+        }
+
+        .paquete.destacado .paquete-linea {
+            background: #222;
+        }
+
+        .paquete-items {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .paquete-items li {
+            font-size: 12px;
+            line-height: 2;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .paquete .paquete-items li {
+            color: #666;
+        }
+
+        .paquete.destacado .paquete-items li {
+            color: #888;
+        }
+
+        .paquete-items li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+        }
+
+        .paquete-link {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .paquete .paquete-link {
+            color: var(--negro);
+        }
+
+        .paquete.destacado .paquete-link {
+            color: var(--dorado);
+        }
+
+        /* CTA */
+        .cta {
+            background: var(--negro);
+            text-align: center;
+            padding: 120px 48px;
+        }
+
+        .cta-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .cta-title-italic {
+            font-style: italic;
+            color: var(--dorado);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: #fff;
+            margin-top: 40px;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1ebd59;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--negro);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 40px 48px;
+            text-align: center;
+        }
+
+        .footer-texto {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--gris);
+        }
+
+        .footer-links {
+            margin-top: 16px;
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+        }
+
+        .footer-link {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--gris);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--dorado);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 20px 24px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .hero {
+                padding: 100px 24px 60px;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .hero-tagline {
+                font-size: 18px;
+            }
+
+            section {
+                padding: 80px 24px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .proceso-grid,
+            .incluye-grid,
+            .paquetes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .proceso-numero {
+                font-size: 80px;
+            }
+
+            .cta-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="nav-logo">CREAFILMS</a>
+            <ul class="nav-links">
+                <li><a href="/bodas/" class="nav-link">01 BODAS</a></li>
+                <li><a href="/live/" class="nav-link active">02 LIVE</a></li>
+                <li><a href="/estudio/" class="nav-link">03 ESTUDIO</a></li>
+            </ul>
+        </div>
+        <div class="nav-breadcrumb">LIVE › BODAS</div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" style="padding-top:160px;">
+        <div>
+            <div class="hero-badge">CREAFILMS LIVE</div>
+            <h1 class="hero-title">Tu boda en vivo</h1>
+            <p class="hero-tagline">Para quienes no pudieron estar</p>
+            <div class="hero-line"></div>
+            <p class="hero-description">
+                Comparte tu día especial con familiares y amigos en cualquier parte del mundo.
+                Transmisión profesional con sala virtual personalizada.
+            </p>
+
+            <div style="
+              background:#111;
+              border:1px solid #2a2a2a;
+              border-top:2px solid #c9a96e;
+              max-width:440px;
+              margin:0 auto 40px;
+              padding:20px 24px;
+              text-align:left;
+            ">
+              <div style="font-size:9px;letter-spacing:3px;color:#c9a96e;margin-bottom:12px;">
+                SALA VIRTUAL PERSONALIZADA
+              </div>
+              <div style="display:flex;gap:16px;align-items:center;margin-bottom:14px;">
+                <div style="display:flex;gap:6px;">
+                  <div style="width:20px;height:20px;border-radius:50%;background:#8B6A8A;"></div>
+                  <div style="width:20px;height:20px;border-radius:50%;background:#C4A882;"></div>
+                  <div style="width:20px;height:20px;border-radius:50%;background:#F5F0E8;"></div>
+                </div>
+                <span style="font-size:11px;color:#555;letter-spacing:1px;">
+                  Colores de tu boda · Personalizada para ti
+                </span>
+              </div>
+              <div style="font-size:12px;color:#444;line-height:1.7;">
+                Cada sala lleva tus nombres, fecha, paleta de color
+                y mensaje de bienvenida. No es un stream genérico —
+                es <em style="color:#c9a96e;font-style:italic;">tu boda</em>.
+              </div>
+            </div>
+
+            <div class="hero-buttons">
+                <button class="btn btn-primary abrir-modal" data-paquete="" style="cursor:pointer;">Cotizar ahora</button>
+                <a href="/live/sala/" class="btn btn-secondary">Ver ejemplo en vivo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <section class="bg-crema">
+        <div class="container">
+            <div class="section-label">EL PROCESO</div>
+            <h2 class="section-title">Así de simple</h2>
+
+            <div class="proceso-grid">
+                <div class="proceso-item">
+                    <div class="proceso-numero">01</div>
+                    <div class="proceso-label">CONTRATAS</div>
+                    <p class="proceso-desc">
+                        Elige el paquete que mejor se adapte a tu boda. Nos encargamos de toda
+                        la configuración técnica y preparación del equipo.
+                    </p>
+                </div>
+
+                <div class="proceso-item">
+                    <div class="proceso-numero">02</div>
+                    <div class="proceso-label">COMPARTIMOS</div>
+                    <p class="proceso-desc">
+                        Recibe un link único y código QR personalizado para compartir con tus
+                        invitados virtuales días antes del evento.
+                    </p>
+                </div>
+
+                <div class="proceso-item">
+                    <div class="proceso-numero">03</div>
+                    <div class="proceso-label">LO VIVEN</div>
+                    <p class="proceso-desc">
+                        El día del evento, transmitimos en alta calidad. Tus invitados pueden
+                        ver y comentar en tiempo real desde cualquier dispositivo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LA SALA VIRTUAL -->
+    <section style="padding:80px 48px;background:#0a0a0a;">
+      <div style="max-width:1200px;margin:0 auto;">
+        <div style="font-size:10px;letter-spacing:4px;color:#c9a96e;margin-bottom:16px;">
+          LA SALA VIRTUAL
+        </div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:44px;
+          font-weight:300;color:#fff;margin-bottom:64px;">
+          No es un link de YouTube.<br>
+          Es <em style="font-style:italic;color:#c9a96e;">su sala.</em>
+        </h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
+
+          <!-- Mockup sala -->
+          <div style="background:#0f0f0f;border:1px solid #1a1a1a;
+            border-top:2px solid #c9a96e;padding:32px;">
+            <div style="border-bottom:1px solid #1a1a1a;
+              padding-bottom:20px;margin-bottom:20px;text-align:center;">
+              <div style="display:flex;gap:6px;justify-content:center;margin-bottom:12px;">
+                <div style="width:12px;height:12px;border-radius:50%;background:#8B6A8A;"></div>
+                <div style="width:12px;height:12px;border-radius:50%;background:#C4A882;"></div>
+                <div style="width:12px;height:12px;border-radius:50%;background:#F5F0E8;"></div>
+              </div>
+              <div style="font-family:'Cormorant Garamond',serif;
+                font-size:22px;font-weight:300;color:#c9a96e;margin-bottom:4px;">
+                Ana &amp; Carlos
+              </div>
+              <div style="font-size:10px;letter-spacing:2px;color:#444;">
+                15 · NOV · 2025 · PUERTO VALLARTA
+              </div>
+            </div>
+            <div style="background:#0a0a0a;aspect-ratio:16/9;
+              display:flex;align-items:center;justify-content:center;
+              margin-bottom:16px;border:1px solid #1a1a1a;">
+              <div style="text-align:center;">
+                <div style="font-size:28px;margin-bottom:8px;color:#333;">▶</div>
+                <div style="font-size:10px;letter-spacing:2px;color:#222;">EN VIVO</div>
+              </div>
+            </div>
+            <div style="background:#0a0a0a;padding:12px;border:1px solid #1a1a1a;">
+              <div style="font-size:10px;color:#222;letter-spacing:1px;margin-bottom:10px;">
+                MENSAJES EN VIVO
+              </div>
+              <div style="font-size:11px;color:#333;line-height:2;">
+                <span style="color:#c9a96e;">María desde CDMX:</span>
+                ¡Qué hermosa la novia! 😍<br>
+                <span style="color:#c9a96e;">Roberto desde España:</span>
+                Los quiero mucho ❤️
+              </div>
+            </div>
+          </div>
+
+          <!-- Diferenciadores -->
+          <div style="display:flex;flex-direction:column;gap:28px;">
+            <div style="display:flex;gap:16px;">
+              <div style="width:1px;height:40px;background:#c9a96e;flex-shrink:0;margin-top:4px;"></div>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:6px;">
+                  Colores de su boda
+                </div>
+                <div style="font-size:12px;color:#555;line-height:1.7;">
+                  La sala se configura con la paleta exacta de colores de su boda. Cada sala es única.
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;gap:16px;">
+              <div style="width:1px;height:40px;background:#c9a96e;flex-shrink:0;margin-top:4px;"></div>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:6px;">
+                  Sus nombres y fecha
+                </div>
+                <div style="font-size:12px;color:#555;line-height:1.7;">
+                  No es un canal genérico. Es una página creada exclusivamente para su boda.
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;gap:16px;">
+              <div style="width:1px;height:40px;background:#c9a96e;flex-shrink:0;margin-top:4px;"></div>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:6px;">
+                  Chat en tiempo real
+                </div>
+                <div style="font-size:12px;color:#555;line-height:1.7;">
+                  Los invitados envían mensajes durante la transmisión. Sin apps, sin cuentas.
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;gap:16px;">
+              <div style="width:1px;height:40px;background:#c9a96e;flex-shrink:0;margin-top:4px;"></div>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:6px;">
+                  Queda disponible después
+                </div>
+                <div style="font-size:12px;color:#555;line-height:1.7;">
+                  El video permanece en la sala para quienes no pudieron conectarse en vivo.
+                </div>
+              </div>
+            </div>
+            <a href="/live/sala/" style="font-size:10px;letter-spacing:2px;
+              text-transform:uppercase;color:#c9a96e;text-decoration:none;
+              border-bottom:1px solid #c9a96e;padding-bottom:2px;
+              display:inline-block;margin-top:8px;">
+              Ver sala de ejemplo en vivo →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- QUÉ INCLUYE -->
+    <section>
+        <div class="container">
+            <div class="section-label">QUÉ INCLUYE</div>
+            <h2 class="section-title">El servicio completo</h2>
+
+            <div class="incluye-grid">
+                <div class="incluye-card">
+                    <div class="incluye-linea"></div>
+                    <h3 class="incluye-titulo">Transmisión continua</h3>
+                    <p class="incluye-desc">
+                        Conexión estable y profesional con monitoreo constante durante todo
+                        el evento. Sin interrupciones.
+                    </p>
+                </div>
+
+                <div class="incluye-card">
+                    <div class="incluye-linea"></div>
+                    <h3 class="incluye-titulo">Sala virtual propia</h3>
+                    <p class="incluye-desc">
+                        Página exclusiva con tus nombres, fecha y mensaje personalizado.
+                        Elegante y fácil de usar.
+                    </p>
+                </div>
+
+                <div class="incluye-card">
+                    <div class="incluye-linea"></div>
+                    <h3 class="incluye-titulo">Comentarios en vivo</h3>
+                    <p class="incluye-desc">
+                        Sistema de chat en tiempo real para que tus invitados envíen
+                        felicitaciones durante la transmisión.
+                    </p>
+                </div>
+
+                <div class="incluye-card">
+                    <div class="incluye-linea"></div>
+                    <h3 class="incluye-titulo">Multi-dispositivo</h3>
+                    <p class="incluye-desc">
+                        Compatible con celular, tablet y computadora. Sin necesidad de
+                        descargar apps ni crear cuentas.
+                    </p>
+                </div>
+
+                <div class="incluye-card">
+                    <div class="incluye-linea"></div>
+                    <h3 class="incluye-titulo">Link + QR</h3>
+                    <p class="incluye-desc">
+                        Link personalizado fácil de compartir y código QR para imprimir
+                        en invitaciones o tarjetas.
+                    </p>
+                </div>
+
+                <div class="incluye-card">
+                    <div class="incluye-linea"></div>
+                    <h3 class="incluye-titulo">Video guardado</h3>
+                    <p class="incluye-desc">
+                        Después del evento, el video queda disponible para que lo vean
+                        quienes se lo perdieron o quieran revivirlo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAQUETES -->
+    <section class="bg-crema">
+        <div class="container">
+            <div class="section-label">PAQUETES</div>
+            <h2 class="section-title">Elige el tuyo</h2>
+
+            <div class="paquetes-grid">
+                <!-- CEREMONIA -->
+                <div class="paquete">
+                    <h3 class="paquete-nombre">Ceremonia</h3>
+                    <p style="font-size:11px;color:#666;letter-spacing:1px;margin-bottom:20px;">
+                      Hasta 2 horas · 1 cámara
+                    </p>
+                    <div class="paquete-linea"></div>
+                    <ul class="paquete-items">
+                        <li>Solo la ceremonia en vivo</li>
+                        <li>Duración: hasta 2 horas</li>
+                        <li>1 cámara principal</li>
+                        <li>Sala virtual personalizada</li>
+                        <li>Link + código QR</li>
+                    </ul>
+                    <button class="paquete-link abrir-modal"
+                      data-paquete="Ceremonia (hasta 2 horas)"
+                      style="background:none;border:none;cursor:pointer;
+                      font-family:inherit;font-size:inherit;
+                      text-transform:uppercase;letter-spacing:2px;">
+                      Cotizar →
+                    </button>
+                </div>
+
+                <!-- CEREMONIA + RECEPCIÓN (DESTACADO) -->
+                <div class="paquete destacado">
+                    <div class="paquete-badge">★ MÁS POPULAR</div>
+                    <h3 class="paquete-nombre">Ceremonia + Recepción</h3>
+                    <p style="font-size:11px;color:#555;letter-spacing:1px;margin-bottom:20px;">
+                      Hasta 6 horas · Multi-cámara
+                    </p>
+                    <div class="paquete-linea"></div>
+                    <ul class="paquete-items">
+                        <li>Cobertura completa de la celebración</li>
+                        <li>Duración: hasta 6 horas</li>
+                        <li>Múltiples cámaras</li>
+                        <li>Sala virtual personalizada</li>
+                        <li>Comentarios en tiempo real</li>
+                        <li>Link + código QR</li>
+                        <li>Video guardado</li>
+                    </ul>
+                    <button class="paquete-link abrir-modal"
+                      data-paquete="Ceremonia + Recepción (hasta 6 horas)"
+                      style="background:none;border:none;cursor:pointer;
+                      font-family:inherit;font-size:inherit;
+                      text-transform:uppercase;letter-spacing:2px;">
+                      Cotizar →
+                    </button>
+                </div>
+
+                <!-- DÍA COMPLETO -->
+                <div class="paquete">
+                    <h3 class="paquete-nombre">Día Completo</h3>
+                    <p style="font-size:11px;color:#666;letter-spacing:1px;margin-bottom:20px;">
+                      Sin límite de tiempo · Soporte dedicado
+                    </p>
+                    <div class="paquete-linea"></div>
+                    <ul class="paquete-items">
+                        <li>Preparativos hasta despedida</li>
+                        <li>Sin límite de tiempo</li>
+                        <li>Múltiples cámaras + drone</li>
+                        <li>Sala virtual personalizada</li>
+                        <li>Comentarios en tiempo real</li>
+                        <li>Link + código QR</li>
+                        <li>Video guardado</li>
+                        <li>Soporte técnico dedicado</li>
+                    </ul>
+                    <button class="paquete-link abrir-modal"
+                      data-paquete="Día Completo (sin límite)"
+                      style="background:none;border:none;cursor:pointer;
+                      font-family:inherit;font-size:inherit;
+                      text-transform:uppercase;letter-spacing:2px;">
+                      Cotizar →
+                    </button>
+                </div>
+            </div>
+            <p style="text-align:center;font-size:12px;color:#555;
+              margin-top:32px;letter-spacing:1px;font-style:italic;">
+              Los precios varían según fecha, locación y duración.
+              Cotización personalizada en menos de 2 horas.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2 class="cta-title">
+            ¿Lista para compartir <span class="cta-title-italic">tu boda con el mundo</span>?
+        </h2>
+        <button class="btn btn-whatsapp abrir-modal" data-paquete="" style="cursor:pointer;">
+          Contáctanos por WhatsApp
+        </button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-texto">© CREAFILMS · estudiocreafilms.com</div>
+        <div class="footer-links">
+            <a href="/" class="footer-link">INICIO</a>
+            <a href="/live/" class="footer-link">LIVE</a>
+            <a href="/live/bodas/" class="footer-link">BODAS</a>
+            <a href="/live/eventos/" class="footer-link">EVENTOS</a>
+            <a href="/estudio/" class="footer-link">ESTUDIO</a>
+        </div>
+    </footer>
+
+    <!-- Modal de cotización -->
+    <div id="modal-cotizacion" style="
+      display:none;position:fixed;inset:0;z-index:9999;
+      background:rgba(0,0,0,.88);
+      align-items:center;justify-content:center;padding:20px;
+    ">
+      <div style="
+        background:#111;border:1px solid #2a2a2a;
+        border-top:2px solid #c9a96e;
+        max-width:520px;width:100%;padding:48px 40px;
+        position:relative;max-height:90vh;overflow-y:auto;
+      ">
+        <button id="cerrar-modal" style="
+          position:absolute;top:16px;right:20px;
+          background:none;border:none;color:#555;
+          font-size:22px;cursor:pointer;
+        ">×</button>
+
+        <div style="font-size:9px;letter-spacing:4px;color:#c9a96e;margin-bottom:12px;">
+          COTIZACIÓN PERSONALIZADA
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif;
+          font-weight:300;font-size:28px;color:#fff;margin-bottom:8px;">
+          Cuéntanos sobre tu boda
+        </h3>
+        <p style="font-size:12px;color:#555;margin-bottom:32px;line-height:1.7;">
+          Completa los datos y te enviamos cotización por WhatsApp en menos de 2 horas.
+        </p>
+
+        <div style="display:flex;flex-direction:column;gap:16px;">
+
+          <div>
+            <label style="font-size:10px;letter-spacing:2px;color:#666;display:block;margin-bottom:6px;">
+              TU NOMBRE</label>
+            <input id="f-nombre" type="text" placeholder="Ej: Ana Martínez"
+              style="width:100%;background:#1a1a1a;border:1px solid #2a2a2a;
+              color:#fff;padding:12px 14px;font-size:13px;
+              font-family:'Lato',sans-serif;outline:none;"
+              onfocus="this.style.borderColor='#c9a96e'"
+              onblur="this.style.borderColor='#2a2a2a'">
+          </div>
+
+          <div>
+            <label style="font-size:10px;letter-spacing:2px;color:#666;display:block;margin-bottom:6px;">
+              FECHA DE LA BODA</label>
+            <input id="f-fecha" type="date"
+              style="width:100%;background:#1a1a1a;border:1px solid #2a2a2a;
+              color:#fff;padding:12px 14px;font-size:13px;
+              font-family:'Lato',sans-serif;outline:none;"
+              onfocus="this.style.borderColor='#c9a96e'"
+              onblur="this.style.borderColor='#2a2a2a'">
+          </div>
+
+          <div>
+            <label style="font-size:10px;letter-spacing:2px;color:#666;display:block;margin-bottom:6px;">
+              VENUE O LOCACIÓN</label>
+            <input id="f-venue" type="text"
+              placeholder="Ej: Hotel Marriott, Nuevo Vallarta"
+              style="width:100%;background:#1a1a1a;border:1px solid #2a2a2a;
+              color:#fff;padding:12px 14px;font-size:13px;
+              font-family:'Lato',sans-serif;outline:none;"
+              onfocus="this.style.borderColor='#c9a96e'"
+              onblur="this.style.borderColor='#2a2a2a'">
+          </div>
+
+          <div>
+            <label style="font-size:10px;letter-spacing:2px;color:#666;display:block;margin-bottom:6px;">
+              INVITADOS VIRTUALES (ESTIMADO)</label>
+            <select id="f-invitados"
+              style="width:100%;background:#1a1a1a;border:1px solid #2a2a2a;
+              color:#fff;padding:12px 14px;font-size:13px;
+              font-family:'Lato',sans-serif;outline:none;appearance:none;"
+              onfocus="this.style.borderColor='#c9a96e'"
+              onblur="this.style.borderColor='#2a2a2a'">
+              <option value="" style="background:#1a1a1a;">Selecciona un rango</option>
+              <option value="Menos de 10" style="background:#1a1a1a;">Menos de 10 personas</option>
+              <option value="10 a 30" style="background:#1a1a1a;">10 a 30 personas</option>
+              <option value="30 a 100" style="background:#1a1a1a;">30 a 100 personas</option>
+              <option value="Más de 100" style="background:#1a1a1a;">Más de 100 personas</option>
+              <option value="No lo sé aún" style="background:#1a1a1a;">No lo sé aún</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size:10px;letter-spacing:2px;color:#666;display:block;margin-bottom:6px;">
+              PAQUETE DE INTERÉS</label>
+            <select id="f-paquete"
+              style="width:100%;background:#1a1a1a;border:1px solid #2a2a2a;
+              color:#fff;padding:12px 14px;font-size:13px;
+              font-family:'Lato',sans-serif;outline:none;appearance:none;"
+              onfocus="this.style.borderColor='#c9a96e'"
+              onblur="this.style.borderColor='#2a2a2a'">
+              <option value="" style="background:#1a1a1a;">Selecciona un paquete</option>
+              <option value="Ceremonia (hasta 2 horas)" style="background:#1a1a1a;">Ceremonia</option>
+              <option value="Ceremonia + Recepción (hasta 6 horas)" style="background:#1a1a1a;">Ceremonia + Recepción</option>
+              <option value="Día Completo (sin límite)" style="background:#1a1a1a;">Día Completo</option>
+              <option value="No estoy seguro/a aún" style="background:#1a1a1a;">No estoy seguro/a aún</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size:10px;letter-spacing:2px;color:#666;display:block;margin-bottom:6px;">
+              ¿ALGO MÁS QUE DEBAMOS SABER?
+              <span style="color:#333;">(opcional)</span></label>
+            <textarea id="f-mensaje" rows="3"
+              placeholder="Ej: Mis papás están en España y quiero que vean la ceremonia..."
+              style="width:100%;background:#1a1a1a;border:1px solid #2a2a2a;
+              color:#fff;padding:12px 14px;font-size:13px;
+              font-family:'Lato',sans-serif;outline:none;resize:vertical;"
+              onfocus="this.style.borderColor='#c9a96e'"
+              onblur="this.style.borderColor='#2a2a2a'"></textarea>
+          </div>
+
+          <div id="form-error" style="
+            display:none;font-size:12px;color:#c0392b;
+            padding:10px 14px;background:rgba(192,57,43,.1);
+            border:1px solid rgba(192,57,43,.3);
+          "></div>
+
+          <button id="btn-enviar-cotizacion" style="
+            background:#c9a96e;color:#0a0a0a;padding:16px;
+            font-size:11px;font-weight:700;letter-spacing:2px;
+            text-transform:uppercase;border:none;cursor:pointer;
+            width:100%;font-family:'Lato',sans-serif;margin-top:8px;
+          "
+            onmouseover="this.style.background='#d4b580'"
+            onmouseout="this.style.background='#c9a96e'">
+            Enviar por WhatsApp →
+          </button>
+
+          <p style="font-size:11px;color:#333;text-align:center;letter-spacing:.5px;">
+            Te redirige a WhatsApp con tus datos listos para enviar
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Config -->
+    <script src="/live/config.js"></script>
+
+    <script>
+    (function(){
+
+      // Abrir modal
+      document.querySelectorAll('.abrir-modal').forEach(function(btn){
+        btn.addEventListener('click', function(e){
+          e.preventDefault();
+          var paq = this.dataset.paquete || '';
+          if(paq){
+            var sel = document.getElementById('f-paquete');
+            for(var i=0;i<sel.options.length;i++){
+              if(sel.options[i].value === paq){ sel.selectedIndex=i; break; }
+            }
+          }
+          document.getElementById('modal-cotizacion').style.display='flex';
+          document.body.style.overflow='hidden';
+        });
+      });
+
+      // Cerrar modal
+      function cerrar(){
+        document.getElementById('modal-cotizacion').style.display='none';
+        document.body.style.overflow='';
+      }
+      document.getElementById('cerrar-modal').addEventListener('click',cerrar);
+      document.getElementById('modal-cotizacion').addEventListener('click',function(e){
+        if(e.target===this) cerrar();
+      });
+      document.addEventListener('keydown',function(e){
+        if(e.key==='Escape') cerrar();
+      });
+
+      // Enviar por WhatsApp
+      document.getElementById('btn-enviar-cotizacion').addEventListener('click',function(){
+        var nombre    = document.getElementById('f-nombre').value.trim();
+        var fecha     = document.getElementById('f-fecha').value;
+        var venue     = document.getElementById('f-venue').value.trim();
+        var invitados = document.getElementById('f-invitados').value;
+        var paquete   = document.getElementById('f-paquete').value;
+        var mensaje   = document.getElementById('f-mensaje').value.trim();
+        var error     = document.getElementById('form-error');
+
+        if(!nombre || !fecha || !paquete){
+          error.textContent='Por favor completa nombre, fecha de la boda y paquete de interés.';
+          error.style.display='block';
+          return;
+        }
+        error.style.display='none';
+
+        var p=fecha.split('-');
+        var meses=['enero','febrero','marzo','abril','mayo','junio',
+                   'julio','agosto','septiembre','octubre','noviembre','diciembre'];
+        var fl=p[2]+' de '+meses[parseInt(p[1])-1]+' de '+p[0];
+
+        var msg='¡Hola! Me interesa cotizar la transmisión en vivo de mi boda. 📡\n\n';
+        msg+='👤 *Nombre:* '+nombre+'\n';
+        msg+='📅 *Fecha de la boda:* '+fl+'\n';
+        if(venue) msg+='📍 *Venue:* '+venue+'\n';
+        if(invitados) msg+='👥 *Invitados virtuales:* '+invitados+'\n';
+        msg+='📦 *Paquete:* '+paquete+'\n';
+        if(mensaje) msg+='💬 *Notas:* '+mensaje+'\n';
+        msg+='\n¿Me pueden enviar la cotización?';
+
+        window.open('https://wa.me/523223550795?text='+encodeURIComponent(msg),'_blank');
+        cerrar();
+      });
+
+    })();
+    </script>
+
+</body>
+</html>

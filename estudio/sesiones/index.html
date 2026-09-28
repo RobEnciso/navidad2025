@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sesiones Fotográficas Puerto Vallarta | Retratos, Parejas y Bautizos | Crea Films</title>
+  <meta name="description" content="Sesiones fotográficas en Puerto Vallarta: retratos, parejas, bautizos y casuales. Estudio propio o exterior. Sin pretexto, solo tú y una buena foto.">
+  <link rel="canonical" href="https://estudiocreafilms.com/estudio/sesiones/">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://estudiocreafilms.com/estudio/sesiones/">
+  <meta property="og:title"       content="Sesiones Fotográficas Puerto Vallarta | Retratos, Parejas y Bautizos | Crea Films">
+  <meta property="og:description" content="Sesiones fotográficas en Puerto Vallarta: retratos, parejas, bautizos y casuales. Estudio propio o exterior.">
+  <meta property="og:site_name"   content="Crea Films">
+
+  <!-- Schema: Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Sesiones Fotográficas Puerto Vallarta",
+    "provider": {
+      "@id": "https://estudiocreafilms.com/#business"
+    },
+    "areaServed": "Puerto Vallarta, Riviera Nayarit",
+    "serviceType": "Sesiones fotográficas: retratos, parejas, bautizos y casuales",
+    "offers": {
+      "@type": "Offer",
+      "price": "1800",
+      "priceCurrency": "MXN"
+    }
+  }
+  </script>
+
+  <!-- Schema: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Necesito experiencia frente a la cámara?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. La mayoría de clientes se sienten nerviosos al principio — es completamente normal. Trabajamos contigo para que te sientas cómodo y las fotos salgan naturales. Nunca forzamos poses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo llevar más personas a la sesión?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Claro. Puedes traer pareja, amigos o familia. Si son más de 3 personas cotizamos un paquete grupal. Escríbenos y lo organizamos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Dónde puedo hacer la sesión en Puerto Vallarta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "En nuestro estudio, en playa, en el Centro Histórico, el Malecón, la Zona Romántica o cualquier locación de Riviera Nayarit. Tú eliges y nosotros conocemos los mejores spots."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto tiempo tardan mis fotos editadas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Entregamos la galería privada en 7 días hábiles. Si necesitas las fotos antes (para un evento por ejemplo), pregunta por entrega express en 3 días."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Pueden incluir video en la sesión?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, ofrecemos video como add-on. Un reel de 30–60 segundos editado con música por $1,000 MXN adicionales. Ideal para redes sociales."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/estudio.css">
+
+  <style>
+    /* ── PALETTE & ACCENT ── */
+    :root {
+      --space:    #1E1E24;
+      --mid:      #3A3A42;
+      --mist:     #7A7A85;
+      --silver:   #C8C8D0;
+      --smoke:    #F0EEF2;
+      --white:    #FAFAFA;
+      --mauve:    #B89EA8;
+      --mauve-l:  #D9C8D0;
+      --mauve-d:  #8A7080;
+      --accent:   #8A7080;
+      --accent-l: #E8D8DC;
+      --green-wa: #25D366;
+      --font-title: 'Cormorant Garamond', Georgia, serif;
+      --font-body:  'Outfit', system-ui, sans-serif;
+    }
+
+    /* ── BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--space);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    .ses-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      padding: 1.1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: background .3s ease;
+    }
+    .ses-nav.scrolled {
+      background: rgba(30,30,36,.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(255,255,255,.06);
+    }
+    .ses-nav__logo {
+      font-family: var(--font-title);
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--white);
+    }
+    .ses-nav__logo span { color: var(--mauve-l); }
+    .ses-nav__breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .75rem;
+      color: rgba(250,250,250,.5);
+    }
+    .ses-nav__breadcrumb a {
+      color: rgba(250,250,250,.65);
+      transition: color .2s;
+    }
+    .ses-nav__breadcrumb a:hover { color: var(--accent-l); }
+    .ses-nav__breadcrumb .sep { color: rgba(250,250,250,.28); }
+    .ses-nav__breadcrumb .cur { color: var(--accent-l); }
+    .ses-nav__cta {
+      display: inline-block;
+      padding: .6rem 1.4rem;
+      background: var(--accent);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      border-radius: 4px;
+      transition: filter .2s, transform .2s;
+      white-space: nowrap;
+    }
+    .ses-nav__cta:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    @media (max-width: 640px) {
+      .ses-nav__breadcrumb { display: none; }
+      .ses-nav { padding: 1rem 1.25rem; }
+    }
+
+    /* ── HERO ── */
+    .ses-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: linear-gradient(145deg, #B0A0B8 0%, #706070 35%, #382838 70%, #1E1E24 100%);
+    }
+    .ses-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(20,18,24,.88) 0%, rgba(20,18,24,.38) 55%, transparent 100%);
+    }
+    .ses-hero__content {
+      position: relative;
+      z-index: 2;
+      padding: 0 2rem 5rem;
+      max-width: 900px;
+    }
+    .ses-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent-l);
+      margin-bottom: 1rem;
+    }
+    .ses-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .ses-hero h1 {
+      font-family: var(--font-title);
+      font-size: clamp(3.25rem, 8vw, 6rem);
+      font-weight: 300;
+      line-height: 1.02;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .ses-hero h1 em { font-style: italic; color: var(--accent-l); }
+    .ses-hero__sub {
+      font-family: var(--font-title);
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.375rem);
+      color: rgba(250,250,250,.45);
+      margin-bottom: 1rem;
+    }
+    .ses-hero__body {
+      font-size: .8125rem;
+      color: rgba(250,250,250,.5);
+      max-width: 500px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .ses-hero__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .btn-accent {
+      display: inline-block;
+      padding: .75rem 2rem;
+      background: var(--accent);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .07em;
+      border-radius: 4px;
+      transition: filter .25s, transform .25s;
+    }
+    .btn-accent:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .link-ghost {
+      font-size: .82rem;
+      font-weight: 500;
+      color: rgba(250,250,250,.5);
+      transition: color .2s;
+    }
+    .link-ghost:hover { color: rgba(250,250,250,.85); }
+    @media (max-width: 640px) {
+      .ses-hero__content { padding: 0 1.25rem 3.5rem; }
+    }
+
+    /* ── STRIP ── */
+    .ses-strip {
+      background: var(--space);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .4rem 0;
+    }
+    .ses-strip__item {
+      font-family: var(--font-body);
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: rgba(250,250,250,.38);
+      padding: 0 1rem;
+    }
+    .ses-strip__item b { color: var(--mauve-l); font-weight: 400; }
+    .ses-strip__dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: rgba(184,158,168,.22);
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .ses-section {
+      padding: 4.5rem 2rem;
+    }
+    .ses-section--smoke { background: var(--smoke); }
+    .ses-section--white { background: var(--white); }
+    .ses-section--dark  { background: var(--space); }
+    .ses-container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .ses-hdr {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .ses-hdr h2 {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.12;
+      color: var(--space);
+    }
+    .ses-hdr h2 em { font-style: italic; color: var(--accent); }
+    .ses-hdr--dark h2 { color: var(--white); }
+    .ses-hdr--dark h2 em { color: var(--mauve-l); }
+    .ses-hdr p {
+      font-size: .88rem;
+      color: var(--mist);
+      margin-top: .5rem;
+      line-height: 1.6;
+    }
+
+    /* ── TIPOS GRID 2×2 ── */
+    .ses-tipos-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 640px) { .ses-tipos-grid { grid-template-columns: 1fr; } }
+    .ses-tipo-card {
+      background: var(--white);
+      border: 1px solid var(--silver);
+      border-radius: 10px;
+      padding: 1.75rem 1.5rem;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .ses-tipo-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,.07);
+      transform: translateY(-2px);
+    }
+    .ses-tipo-card__icon { font-size: 1.75rem; margin-bottom: .75rem; }
+    .ses-tipo-card__title {
+      font-family: var(--font-title);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--space);
+      margin-bottom: .5rem;
+    }
+    .ses-tipo-card__desc {
+      font-size: .86rem;
+      color: var(--mist);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .ses-tipo-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+    .ses-tag {
+      display: inline-block;
+      padding: .25rem .75rem;
+      background: var(--accent-l);
+      color: var(--accent);
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .07em;
+      border-radius: 2rem;
+    }
+
+    /* ── INCLUYE GRID 3-col ── */
+    .ses-inc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 900px) { .ses-inc-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px)  { .ses-inc-grid { grid-template-columns: 1fr; } }
+    .ses-inc-card {
+      background: var(--white);
+      border: 1px solid var(--silver);
+      border-radius: 10px;
+      padding: 1.5rem 1.25rem;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .ses-inc-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.06); transform: translateY(-2px); }
+    .ses-inc-card.accent {
+      border-color: var(--accent);
+      background: var(--accent-l);
+    }
+    .ses-inc-card__icon { font-size: 1.5rem; margin-bottom: .6rem; }
+    .ses-inc-card__title {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--space);
+      margin-bottom: .35rem;
+    }
+    .ses-inc-card.accent .ses-inc-card__title { color: var(--accent); }
+    .ses-inc-card__desc {
+      font-size: .82rem;
+      color: var(--mist);
+      line-height: 1.6;
+    }
+
+    /* ── PRECIOS ── */
+    .ses-prices-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      align-items: start;
+    }
+    @media (max-width: 860px) { .ses-prices-grid { grid-template-columns: 1fr; } }
+    .ses-pack {
+      background: var(--white);
+      border: 1px solid var(--silver);
+      border-radius: 8px;
+      padding: 2rem 1.75rem;
+    }
+    .ses-pack.star {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .ses-pack__badge {
+      display: inline-block;
+      padding: .25rem .8rem;
+      background: var(--accent);
+      color: var(--white);
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-radius: 2rem;
+      margin-bottom: 1.1rem;
+    }
+    .ses-pack__name {
+      font-family: var(--font-title);
+      font-size: 1.65rem;
+      font-weight: 400;
+      color: var(--space);
+      margin-bottom: .25rem;
+    }
+    .ses-pack__price {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--space);
+      margin-bottom: .15rem;
+    }
+    .ses-pack__sub {
+      font-size: .78rem;
+      font-style: italic;
+      color: var(--mist);
+      margin-bottom: 1.25rem;
+    }
+    .ses-pack__list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    .ses-pack__list li {
+      font-size: .83rem;
+      color: var(--mist);
+      padding: .38rem 0;
+      border-bottom: 1px solid var(--smoke);
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      line-height: 1.4;
+    }
+    .ses-pack__list li::before {
+      content: '✓';
+      color: var(--accent);
+      font-size: .75rem;
+      margin-top: .1rem;
+      flex-shrink: 0;
+    }
+    .btn-outline {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: .72rem 1.5rem;
+      background: transparent;
+      color: var(--space);
+      font-family: var(--font-body);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      border: 1px solid var(--silver);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-accent-solid {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: .72rem 1.5rem;
+      background: var(--accent);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: filter .2s, transform .2s;
+    }
+    .btn-accent-solid:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .ses-prices-note {
+      text-align: center;
+      font-size: .78rem;
+      font-style: italic;
+      color: var(--mist);
+      margin-top: 1.75rem;
+    }
+
+    /* ── LOCACIONES SCROLL ── */
+    .ses-locs-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: .5rem;
+    }
+    .ses-locs-wrap::-webkit-scrollbar { display: none; }
+    .ses-locs-row {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+    }
+    .ses-loc-card {
+      width: 180px;
+      height: 240px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: .9rem;
+      transition: transform .25s;
+    }
+    .ses-loc-card:hover { transform: translateY(-3px); }
+    .ses-loc-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 55%);
+    }
+    .ses-loc-card__icon {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      opacity: .14;
+    }
+    .ses-loc-card__name {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      color: var(--white);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .ses-loc--playa   { background: linear-gradient(155deg, #9AC4C0 0%, #2A5058 100%); }
+    .ses-loc--centro  { background: linear-gradient(155deg, #C0A890 0%, #583820 100%); }
+    .ses-loc--malecon { background: linear-gradient(155deg, #A0A8C8 0%, #283058 100%); }
+    .ses-loc--estudio { background: linear-gradient(155deg, #B0A0B8 0%, #4A3858 100%); }
+    .ses-loc--romantica { background: linear-gradient(155deg, #C8A0A0 0%, #583038 100%); }
+
+    /* ── CTA FINAL ── */
+    .ses-cta-wrap {
+      padding: 0 2rem 4.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    @media (max-width: 640px) { .ses-cta-wrap { padding: 0 1.25rem 3rem; } }
+    .ses-cta {
+      background: var(--space);
+      border-radius: 2px;
+      padding: 3.25rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2.5rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (max-width: 640px) {
+      .ses-cta { grid-template-columns: 1fr; padding: 2.25rem 1.5rem; }
+      .ses-cta-right { align-items: flex-start !important; }
+    }
+    .ses-cta::before {
+      content: '';
+      position: absolute;
+      top: -70px; right: -70px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(138,112,128,.07);
+      pointer-events: none;
+    }
+    .ses-cta h3 {
+      font-family: var(--font-title);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: .5rem;
+    }
+    .ses-cta h3 em { font-style: italic; color: var(--mauve-l); }
+    .ses-cta__desde {
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      font-weight: 300;
+      color: rgba(250,250,250,.4);
+    }
+    .ses-cta-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: .75rem;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-wha {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .8rem 1.75rem;
+      background: var(--green-wa);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: .85rem;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: filter .2s, transform .2s;
+      white-space: nowrap;
+    }
+    .btn-wha:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .ses-cta__note {
+      font-size: .7rem;
+      color: rgba(255,255,255,.25);
+    }
+
+    /* ── FAQ ── */
+    .ses-faq-hdr {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .ses-faq-hdr h2 {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 400;
+      color: var(--space);
+    }
+    .ses-faq-hdr h2 em { font-style: italic; color: var(--mauve); }
+    /* Override FAQ icon color to accent */
+    .ses-faq .e-faq-icon { color: var(--accent); }
+    .ses-faq .e-faq-q:hover { color: var(--accent); }
+
+    /* ── FOOTER ── */
+    .ses-footer {
+      background: #141418;
+      padding: 2rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .ses-footer__logo {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
+      color: var(--mauve-l);
+    }
+    .ses-footer__links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+    .ses-footer__links a {
+      font-size: .78rem;
+      color: var(--silver);
+      transition: color .2s;
+    }
+    .ses-footer__links a:hover { color: var(--accent-l); }
+    .ses-footer__copy {
+      width: 100%;
+      text-align: center;
+      font-size: .7rem;
+      color: var(--mist);
+      margin-top: .75rem;
+      padding-top: .75rem;
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════
+       NAV
+  ══════════════════════════════ -->
+  <nav class="ses-nav" id="sesNav">
+    <a href="/" class="ses-nav__logo">CREA<span style="color:var(--mauve-l);">FILMS</span></a>
+
+    <div class="ses-nav__breadcrumb">
+      <a href="/">Inicio</a>
+      <span class="sep">›</span>
+      <a href="/estudio/">Estudio</a>
+      <span class="sep">›</span>
+      <span class="cur">Sesiones</span>
+    </div>
+
+    <a href="https://wa.me/523223550795?text=Hola%2C%20quisiera%20cotizar%20una%20sesi%C3%B3n%20fotogr%C3%A1fica"
+       class="ses-nav__cta" target="_blank" rel="noopener">Cotizar</a>
+  </nav>
+
+  <!-- ══════════════════════════════
+       HERO
+  ══════════════════════════════ -->
+  <section class="ses-hero">
+    <div class="ses-hero__overlay"></div>
+    <div class="ses-hero__content">
+      <p class="ses-eyebrow">Sesiones Fotográficas · Puerto Vallarta</p>
+      <h1>Sin pretexto.<br>Solo tú y una<br><em>buena foto</em></h1>
+      <p class="ses-hero__sub">Retratos · Parejas · Bautizos · Casuales · Estudio o Exterior</p>
+      <p class="ses-hero__body">
+        No necesitas una ocasión especial para tener fotos que te encanten.
+        Estudio en Puerto Vallarta o locación exterior — tú eliges dónde
+        y nosotros nos encargamos del resto.
+      </p>
+      <div class="ses-hero__ctas">
+        <a href="https://wa.me/523223550795?text=Hola%2C%20quisiera%20agendar%20una%20sesi%C3%B3n%20fotogr%C3%A1fica"
+           class="btn-accent" target="_blank" rel="noopener">Agendar sesión</a>
+        <a href="#incluye" class="link-ghost">¿Qué incluye? ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       STRIP
+  ══════════════════════════════ -->
+  <div class="ses-strip">
+    <span class="ses-strip__item">Estudio propio <b>PV</b></span>
+    <span class="ses-strip__dot"></span>
+    <span class="ses-strip__item">Exterior <b>disponible</b></span>
+    <span class="ses-strip__dot"></span>
+    <span class="ses-strip__item"><b>15+</b> fotos editadas</span>
+    <span class="ses-strip__dot"></span>
+    <span class="ses-strip__item">Galería privada <b>7 días</b></span>
+    <span class="ses-strip__dot"></span>
+    <span class="ses-strip__item">Riviera <b>Nayarit</b></span>
+  </div>
+
+  <!-- ══════════════════════════════
+       TIPOS DE SESIÓN
+  ══════════════════════════════ -->
+  <section class="ses-section ses-section--white">
+    <div class="ses-container">
+      <div class="ses-hdr">
+        <p class="ses-eyebrow" style="justify-content:center;color:var(--mauve-d);">Tipos de sesión</p>
+        <h2>Una sesión para<br>cada <em>momento</em></h2>
+      </div>
+      <div class="ses-tipos-grid">
+
+        <div class="ses-tipo-card">
+          <div class="ses-tipo-card__icon">🧍</div>
+          <h3 class="ses-tipo-card__title">Retrato Individual</h3>
+          <p class="ses-tipo-card__desc">
+            Para tu perfil profesional, redes sociales o simplemente
+            porque mereces fotos que te hagan sentir increíble.
+          </p>
+          <div class="ses-tipo-card__tags">
+            <span class="ses-tag">1–2 personas</span>
+            <span class="ses-tag">1 hora</span>
+            <span class="ses-tag">Estudio o exterior</span>
+          </div>
+        </div>
+
+        <div class="ses-tipo-card">
+          <div class="ses-tipo-card__icon">💑</div>
+          <h3 class="ses-tipo-card__title">Parejas</h3>
+          <p class="ses-tipo-card__desc">
+            Aniversario, compromiso, o simplemente porque sí.
+            Capturamos su conexión de forma natural, sin poses forzadas.
+          </p>
+          <div class="ses-tipo-card__tags">
+            <span class="ses-tag">2 personas</span>
+            <span class="ses-tag">1–1.5 horas</span>
+            <span class="ses-tag">Locación a elegir</span>
+          </div>
+        </div>
+
+        <div class="ses-tipo-card">
+          <div class="ses-tipo-card__icon">🕊️</div>
+          <h3 class="ses-tipo-card__title">Bautizo &amp; Comunión</h3>
+          <p class="ses-tipo-card__desc">
+            Cobertura completa del evento o sesión previa en estudio.
+            Fotos que la familia atesorará por generaciones.
+          </p>
+          <div class="ses-tipo-card__tags">
+            <span class="ses-tag">Evento completo</span>
+            <span class="ses-tag">Sesión previa</span>
+            <span class="ses-tag">Paquetes disponibles</span>
+          </div>
+        </div>
+
+        <div class="ses-tipo-card">
+          <div class="ses-tipo-card__icon">✨</div>
+          <h3 class="ses-tipo-card__title">Casual &amp; Lifestyle</h3>
+          <p class="ses-tipo-card__desc">
+            Sesión relajada donde tú eres tú. Sin formalismos,
+            sin poses. El mejor retrato es el que parece espontáneo.
+          </p>
+          <div class="ses-tipo-card__tags">
+            <span class="ses-tag">Estudio</span>
+            <span class="ses-tag">Playa</span>
+            <span class="ses-tag">Centro histórico</span>
+            <span class="ses-tag">Jardín</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       QUÉ INCLUYE
+  ══════════════════════════════ -->
+  <section class="ses-section ses-section--smoke" id="incluye">
+    <div class="ses-container">
+      <div class="ses-hdr">
+        <p class="ses-eyebrow" style="justify-content:center;color:var(--mauve-d);">Lo que obtienes</p>
+        <h2>Todo en una<br><em>sola sesión</em></h2>
+      </div>
+      <div class="ses-inc-grid">
+
+        <div class="ses-inc-card accent">
+          <div class="ses-inc-card__icon">📸</div>
+          <h4 class="ses-inc-card__title">15+ fotos editadas en alta resolución</h4>
+          <p class="ses-inc-card__desc">Seleccionadas y retocadas profesionalmente. Listas para imprimir o publicar.</p>
+        </div>
+
+        <div class="ses-inc-card">
+          <div class="ses-inc-card__icon">⏱️</div>
+          <h4 class="ses-inc-card__title">Sesión de 1–2 horas</h4>
+          <p class="ses-inc-card__desc">El tiempo adecuado para que te relajes, te acomodes y salgan fotos naturales.</p>
+        </div>
+
+        <div class="ses-inc-card">
+          <div class="ses-inc-card__icon">🎨</div>
+          <h4 class="ses-inc-card__title">Asesoría de locación y outfits previa</h4>
+          <p class="ses-inc-card__desc">Hablamos antes de la sesión para que llegues con todo listo y sin dudas.</p>
+        </div>
+
+        <div class="ses-inc-card accent">
+          <div class="ses-inc-card__icon">🖼️</div>
+          <h4 class="ses-inc-card__title">Galería digital privada</h4>
+          <p class="ses-inc-card__desc">Acceso online para descargar y compartir. Lista en 7 días hábiles.</p>
+        </div>
+
+        <div class="ses-inc-card">
+          <div class="ses-inc-card__icon">💡</div>
+          <h4 class="ses-inc-card__title">Iluminación profesional en estudio</h4>
+          <p class="ses-inc-card__desc">Equipo de luces continuas y flash para resultados limpios y consistentes.</p>
+        </div>
+
+        <div class="ses-inc-card">
+          <div class="ses-inc-card__icon">🌅</div>
+          <h4 class="ses-inc-card__title">Exterior: playa, malecón, centro histórico</h4>
+          <p class="ses-inc-card__desc">Conocemos los mejores spots de Vallarta para cada estilo de sesión.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       PRECIOS
+  ══════════════════════════════ -->
+  <section class="ses-section ses-section--white">
+    <div class="ses-container">
+      <div class="ses-hdr">
+        <p class="ses-eyebrow" style="justify-content:center;color:var(--mauve-d);">Paquetes</p>
+        <h2>Inversión<br><em>sin sorpresas</em></h2>
+        <p>Precios base · personaliza tu sesión al cotizar</p>
+      </div>
+      <div class="ses-prices-grid">
+
+        <!-- BÁSICA -->
+        <div class="ses-pack">
+          <h3 class="ses-pack__name">Básica</h3>
+          <p class="ses-pack__price">Desde $1,800 <sup style="font-size:.9rem;">MXN</sup></p>
+          <p class="ses-pack__sub">1 hora · 1 locación</p>
+          <ul class="ses-pack__list">
+            <li>15 fotos editadas</li>
+            <li>Galería privada</li>
+            <li>1 outfit</li>
+          </ul>
+          <a href="https://wa.me/523223550795?text=Hola%2C%20me%20interesa%20la%20sesi%C3%B3n%20B%C3%A1sica"
+             class="btn-outline" target="_blank" rel="noopener">Cotizar</a>
+        </div>
+
+        <!-- COMPLETA — DESTACADA -->
+        <div class="ses-pack star">
+          <span class="ses-pack__badge">Más solicitada</span>
+          <h3 class="ses-pack__name">Completa</h3>
+          <p class="ses-pack__price">Desde $2,800 <sup style="font-size:.9rem;">MXN</sup></p>
+          <p class="ses-pack__sub">1.5 horas · 2 locaciones</p>
+          <ul class="ses-pack__list">
+            <li>25+ fotos editadas</li>
+            <li>Galería privada</li>
+            <li>2 outfits</li>
+            <li>Asesoría previa incluida</li>
+          </ul>
+          <a href="https://wa.me/523223550795?text=Hola%2C%20me%20interesa%20la%20sesi%C3%B3n%20Completa"
+             class="btn-accent-solid" target="_blank" rel="noopener">Cotizar</a>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="ses-pack">
+          <h3 class="ses-pack__name">Premium</h3>
+          <p class="ses-pack__price">Desde $4,200 <sup style="font-size:.9rem;">MXN</sup></p>
+          <p class="ses-pack__sub">2 horas · locación a elegir</p>
+          <ul class="ses-pack__list">
+            <li>40+ fotos editadas</li>
+            <li>Galería privada</li>
+            <li>Outfits ilimitados</li>
+            <li>Foto + video opcional</li>
+            <li>Riviera Nayarit incluida</li>
+          </ul>
+          <a href="https://wa.me/523223550795?text=Hola%2C%20me%20interesa%20la%20sesi%C3%B3n%20Premium"
+             class="btn-outline" target="_blank" rel="noopener">Cotizar</a>
+        </div>
+
+      </div>
+      <p class="ses-prices-note">
+        Para bautizos y eventos completos, cotiza directamente por WhatsApp.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       LOCACIONES
+  ══════════════════════════════ -->
+  <section class="ses-section ses-section--smoke">
+    <div class="ses-container">
+      <div class="ses-hdr">
+        <p class="ses-eyebrow" style="justify-content:center;color:var(--mauve-d);">Dónde sesionamos</p>
+        <h2>Puerto Vallarta es<br>tu <em>estudio</em></h2>
+      </div>
+      <div class="ses-locs-wrap">
+        <div class="ses-locs-row">
+
+          <div class="ses-loc-card ses-loc--playa">
+            <div class="ses-loc-card__overlay"></div>
+            <div class="ses-loc-card__icon">🏖️</div>
+            <span class="ses-loc-card__name">Playa</span>
+          </div>
+
+          <div class="ses-loc-card ses-loc--centro">
+            <div class="ses-loc-card__overlay"></div>
+            <div class="ses-loc-card__icon">🏛️</div>
+            <span class="ses-loc-card__name">Centro Histórico</span>
+          </div>
+
+          <div class="ses-loc-card ses-loc--malecon">
+            <div class="ses-loc-card__overlay"></div>
+            <div class="ses-loc-card__icon">🌊</div>
+            <span class="ses-loc-card__name">Malecón</span>
+          </div>
+
+          <div class="ses-loc-card ses-loc--estudio">
+            <div class="ses-loc-card__overlay"></div>
+            <div class="ses-loc-card__icon">📷</div>
+            <span class="ses-loc-card__name">Estudio Propio</span>
+          </div>
+
+          <div class="ses-loc-card ses-loc--romantica">
+            <div class="ses-loc-card__overlay"></div>
+            <div class="ses-loc-card__icon">🌺</div>
+            <span class="ses-loc-card__name">Zona Romántica</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       CTA FINAL
+  ══════════════════════════════ -->
+  <div class="ses-cta-wrap">
+    <div class="ses-cta">
+      <div>
+        <h3>Tu sesión ideal<br><em>empieza aquí</em></h3>
+        <p class="ses-cta__desde">Desde $1,800 MXN</p>
+      </div>
+      <div class="ses-cta-right">
+        <a href="https://wa.me/523223550795?text=Hola%2C%20quisiera%20agendar%20una%20sesi%C3%B3n%20fotogr%C3%A1fica%20en%20Puerto%20Vallarta"
+           class="btn-wha" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+          </svg>
+          Agendar por WhatsApp
+        </a>
+        <span class="ses-cta__note">Respuesta en menos de 2 horas · Lun–Sáb</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       FAQ
+  ══════════════════════════════ -->
+  <section class="ses-section ses-section--smoke">
+    <div class="ses-container">
+      <div class="ses-faq-hdr">
+        <p class="ses-eyebrow" style="justify-content:center;color:var(--mauve-d);">Preguntas frecuentes</p>
+        <h2>Lo que más<br><em>nos preguntan</em></h2>
+      </div>
+
+      <div class="e-faq-wrap ses-faq">
+
+        <div class="e-faq-item">
+          <button class="e-faq-q" onclick="toggleFaq(this)">
+            ¿Necesito experiencia frente a la cámara?
+            <span class="e-faq-icon">+</span>
+          </button>
+          <div class="e-faq-a">
+            No. La mayoría de clientes se sienten nerviosos al principio — es completamente normal.
+            Trabajamos contigo para que te sientas cómodo y las fotos salgan naturales.
+            Nunca forzamos poses.
+          </div>
+        </div>
+
+        <div class="e-faq-item">
+          <button class="e-faq-q" onclick="toggleFaq(this)">
+            ¿Puedo llevar más personas a la sesión?
+            <span class="e-faq-icon">+</span>
+          </button>
+          <div class="e-faq-a">
+            Claro. Puedes traer pareja, amigos o familia. Si son más de 3 personas
+            cotizamos un paquete grupal. Escríbenos y lo organizamos.
+          </div>
+        </div>
+
+        <div class="e-faq-item">
+          <button class="e-faq-q" onclick="toggleFaq(this)">
+            ¿Dónde puedo hacer la sesión en Puerto Vallarta?
+            <span class="e-faq-icon">+</span>
+          </button>
+          <div class="e-faq-a">
+            En nuestro estudio, en playa, en el Centro Histórico, el Malecón,
+            la Zona Romántica o cualquier locación de Riviera Nayarit. Tú eliges
+            y nosotros conocemos los mejores spots.
+          </div>
+        </div>
+
+        <div class="e-faq-item">
+          <button class="e-faq-q" onclick="toggleFaq(this)">
+            ¿Cuánto tiempo tardan mis fotos editadas?
+            <span class="e-faq-icon">+</span>
+          </button>
+          <div class="e-faq-a">
+            Entregamos la galería privada en <strong>7 días hábiles</strong>. Si necesitas las fotos
+            antes (para un evento por ejemplo), pregunta por entrega express en 3 días.
+          </div>
+        </div>
+
+        <div class="e-faq-item">
+          <button class="e-faq-q" onclick="toggleFaq(this)">
+            ¿Pueden incluir video en la sesión?
+            <span class="e-faq-icon">+</span>
+          </button>
+          <div class="e-faq-a">
+            Sí, ofrecemos video como add-on. Un reel de 30–60 segundos editado con música
+            por <strong>$1,000 MXN adicionales</strong>. Ideal para redes sociales.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       FOOTER
+  ══════════════════════════════ -->
+  <footer class="ses-footer">
+    <span class="ses-footer__logo">CREAFILMS</span>
+    <ul class="ses-footer__links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/estudio/sesiones/">Sesiones</a></li>
+      <li><a href="/estudio/xv-anos/">XV Años</a></li>
+      <li><a href="/estudio/cake-smash/">Cake Smash</a></li>
+      <li><a href="/estudio/familias/">Familias</a></li>
+      <li><a href="/estudio/temporada/">Temporada</a></li>
+      <li><a href="/experiencias-digitales/">Experiencias Digitales</a></li>
+    </ul>
+    <p class="ses-footer__copy">© 2025 Crea Films · Puerto Vallarta, Jalisco · Todos los derechos reservados</p>
+  </footer>
+
+  <script src="/js/estudio.js"></script>
+  <script>
+    (function () {
+      var nav = document.getElementById('sesNav');
+      if (!nav) return;
+      function onScroll() {
+        nav.classList.toggle('scrolled', window.scrollY > 80);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+
+</body>
+</html>

@@ -3,29 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transmisión en vivo de bodas | CreaFilms</title>
-    <meta name="description" content="Transmisión en vivo profesional de bodas en Puerto Vallarta. Comparte tu día especial con el mundo.">
+    <title>Transmisiones en Vivo Profesionales Puerto Vallarta | CreaFilms Live</title>
+    <meta name="description" content="Transmisiones en vivo profesionales en Puerto Vallarta. Bodas, eventos corporativos, congresos, eventos deportivos y circuito cerrado. Señal estable · Multi-cámara · Sala virtual personalizada.">
+    <link rel="canonical" href="https://estudiocreafilms.com/live/">
+
+    <!-- Schema: Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "CreaFilms Live",
+      "description": "Transmisiones en vivo profesionales en Puerto Vallarta. Bodas, eventos corporativos, congresos y circuito cerrado.",
+      "serviceType": "Transmisiones en vivo profesionales",
+      "provider": {
+        "@id": "https://estudiocreafilms.com/#business"
+      },
+      "brand": {
+        "@type": "Brand",
+        "name": "CreaFilms Live"
+      },
+      "url": "https://estudiocreafilms.com/live/",
+      "areaServed": "Puerto Vallarta, Riviera Nayarit"
+    }
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --negro: #0a0a0a;
-            --crema: #faf9f7;
-            --dorado: #c9a96e;
-            --gris: #666;
+            --negro:      #0a0a0a;
+            --dorado:     #c9a96e;
+            --gris:       #666;
             --gris-claro: #999;
-            --borde-oscuro: #2a2516;
-            --destaque: #0f0e0b;
+            --borde:      #151515;
+            --azul-live:  #4A9AC8;
         }
 
         body {
@@ -35,17 +51,16 @@
             overflow-x: hidden;
         }
 
-        /* NAV */
+        a { text-decoration: none; color: inherit; }
+
+        /* ── NAV ── */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 1000;
             background: var(--negro);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
-
         .nav-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -54,433 +69,411 @@
             align-items: center;
             justify-content: space-between;
         }
-
         .nav-logo {
             font-family: 'Cormorant Garamond', serif;
             font-size: 16px;
             font-weight: 300;
-            letter-spacing: 6px;
+            letter-spacing: 5px;
             color: #fff;
-            text-decoration: none;
         }
-
         .nav-links {
             display: flex;
             gap: 40px;
             list-style: none;
         }
-
         .nav-link {
             font-size: 11px;
             letter-spacing: 2px;
             color: var(--gris-claro);
-            text-decoration: none;
             transition: color 0.2s;
         }
-
         .nav-link:hover,
-        .nav-link.active {
-            color: var(--dorado);
+        .nav-link.active { color: var(--dorado); }
+
+        @media (max-width: 640px) {
+            .nav-container { padding: 20px 24px; }
+            .nav-links { gap: 20px; }
         }
 
-        /* HERO */
+        /* ── HERO ── */
         .hero {
+            position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 120px 48px 80px;
-            background: var(--negro);
+            overflow: hidden;
+            background: linear-gradient(145deg, #0A1828 0%, #1A2A3A 40%, #0A0A0A 100%);
         }
-
-        .hero-badge {
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(to top,
+                rgba(0,0,0,.88) 0%,
+                rgba(0,0,0,.3) 60%,
+                transparent 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 2rem;
+            max-width: 860px;
+            width: 100%;
+        }
+        .hero-eyebrow {
             font-size: 10px;
-            letter-spacing: 6px;
-            color: var(--dorado);
-            margin-bottom: 32px;
+            letter-spacing: 5px;
+            color: var(--azul-live);
+            text-transform: uppercase;
+            margin-bottom: 28px;
         }
-
-        .hero-title {
+        .hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 88px;
+            font-size: clamp(52px, 8vw, 96px);
             font-weight: 300;
-            letter-spacing: 2px;
-            color: #fff;
-            margin-bottom: 24px;
-            line-height: 1;
+            color: #FAFAFA;
+            line-height: 1.05;
+            margin-bottom: 20px;
         }
-
-        .hero-tagline {
+        .hero h1 em { font-style: italic; color: var(--dorado); }
+        .hero-sub {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
+            font-size: clamp(16px, 2vw, 22px);
             font-style: italic;
-            color: var(--gris);
-            margin-bottom: 32px;
+            color: rgba(250,250,250,.45);
+            margin-bottom: 20px;
         }
-
-        .hero-line {
-            width: 40px;
-            height: 1px;
-            background: var(--dorado);
-            margin: 0 auto 40px;
-        }
-
-        .hero-description {
+        .hero-desc {
             font-size: 14px;
-            line-height: 1.8;
-            color: #555;
-            max-width: 500px;
-            margin: 0 auto 48px;
+            color: rgba(250,250,250,.55);
+            max-width: 560px;
+            margin: 0 auto 32px;
+            line-height: 1.75;
         }
-
-        .hero-buttons {
+        .hero-chips {
             display: flex;
-            gap: 16px;
+            flex-wrap: wrap;
             justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
         }
-
-        .btn {
-            padding: 16px 40px;
+        .hero-chip {
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 100px;
+            padding: 8px 18px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            color: rgba(250,250,250,.7);
+        }
+        .hero-ctas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+        }
+        .btn-azul {
+            display: inline-block;
+            padding: 15px 36px;
+            background: var(--azul-live);
+            color: #fff;
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.2s;
+            border-radius: 2px;
+            transition: filter .2s, transform .2s;
+        }
+        .btn-azul:hover { filter: brightness(1.15); transform: translateY(-1px); }
+        .btn-ghost-hero {
             display: inline-block;
-        }
-
-        .btn-primary {
-            background: var(--dorado);
-            color: var(--negro);
-        }
-
-        .btn-primary:hover {
-            background: #d4b580;
-        }
-
-        .btn-secondary {
+            padding: 15px 36px;
             background: transparent;
-            color: #fff;
-            border: 1px solid #2a2a2a;
+            color: rgba(250,250,250,.75);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 2px;
+            transition: border-color .2s, color .2s;
         }
+        .btn-ghost-hero:hover { border-color: rgba(255,255,255,.5); color: #fff; }
 
-        .btn-secondary:hover {
-            border-color: var(--dorado);
-            color: var(--dorado);
-        }
-
-        /* SECCIONES */
-        section {
-            padding: 120px 48px;
-        }
-
-        .bg-crema {
-            background: var(--crema);
-            color: var(--negro);
-        }
-
-        .section-label {
+        /* ── SECCIÓN BASE ── */
+        .sec { padding: 100px 48px; }
+        .sec-inner { max-width: 1200px; margin: 0 auto; }
+        .sec-eyebrow {
             font-size: 10px;
             letter-spacing: 4px;
             color: var(--dorado);
+            text-transform: uppercase;
             margin-bottom: 16px;
         }
-
-        .section-title {
+        .sec-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 44px;
             font-weight: 300;
-            margin-bottom: 80px;
+            color: #FAFAFA;
+            line-height: 1.12;
         }
+        .sec-title em { font-style: italic; color: var(--dorado); }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* CÓMO FUNCIONA */
-        .proceso-grid {
+        /* ── SERVICIOS ── */
+        .servicios-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 60px;
-        }
-
-        .proceso-item {
-            position: relative;
-        }
-
-        .proceso-numero {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 120px;
-            font-weight: 300;
-            color: #e8e4df;
-            position: absolute;
-            top: -40px;
-            left: -20px;
-            z-index: 0;
-        }
-
-        .proceso-label {
-            font-size: 10px;
-            letter-spacing: 3px;
-            color: var(--dorado);
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .proceso-desc {
-            font-size: 13px;
-            line-height: 1.8;
-            color: #888;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* QUÉ INCLUYE */
-        .incluye-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 2px;
+            margin-top: 64px;
         }
-
-        .incluye-card {
+        @media (max-width: 760px) {
+            .servicios-grid { grid-template-columns: 1fr; }
+        }
+        .serv-card {
+            padding: 48px 40px;
+            position: relative;
+        }
+        .serv-card--bodas {
+            background: #0d0d0d;
+            border-top: 2px solid var(--dorado);
+        }
+        .serv-card--eventos {
             background: #111;
-            padding: 32px;
-            border-top: 1px solid var(--dorado);
+            border-top: 2px solid var(--azul-live);
         }
-
-        .incluye-linea {
-            width: 20px;
-            height: 1px;
-            background: var(--dorado);
-            margin-bottom: 16px;
-        }
-
-        .incluye-titulo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
-            font-weight: 300;
-            color: #fff;
-            margin-bottom: 12px;
-        }
-
-        .incluye-desc {
-            font-size: 12px;
-            line-height: 1.7;
-            color: #555;
-        }
-
-        /* PAQUETES */
-        .paquetes-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-        }
-
-        .paquete {
-            background: #fff;
-            border: 1px solid #e8e4df;
-            padding: 48px 32px;
-            position: relative;
-        }
-
-        .paquete.destacado {
-            background: #1a1a1a;
-            border: none;
-        }
-
-        .paquete-badge {
+        .serv-chip {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            font-size: 9px;
+            top: 24px;
+            right: 24px;
+            font-size: 10px;
             letter-spacing: 2px;
-            color: var(--dorado);
         }
-
-        .paquete-nombre {
+        .serv-chip--bodas   { color: var(--dorado); }
+        .serv-chip--eventos { color: var(--azul-live); }
+        .serv-num {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
+            font-size: 80px;
             font-weight: 300;
+            position: absolute;
+            top: 24px;
+            left: 32px;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+        .serv-num--bodas   { color: rgba(201,169,110,.08); }
+        .serv-num--eventos { color: rgba(74,154,200,.08); }
+        .serv-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 300;
+            color: #FAFAFA;
+            margin-top: 32px;
             margin-bottom: 16px;
         }
-
-        .paquete .paquete-nombre {
-            color: var(--negro);
+        .serv-desc {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 28px;
         }
-
-        .paquete.destacado .paquete-nombre {
-            color: var(--dorado);
-        }
-
-        .paquete-precio {
-            font-size: 14px;
-            color: var(--dorado);
-            margin-bottom: 24px;
-        }
-
-        .paquete-linea {
-            width: 100%;
-            height: 1px;
-            background: #e8e4df;
-            margin-bottom: 24px;
-        }
-
-        .paquete.destacado .paquete-linea {
-            background: #222;
-        }
-
-        .paquete-items {
+        .serv-lista {
             list-style: none;
-            margin-bottom: 32px;
+            margin-bottom: 36px;
         }
-
-        .paquete-items li {
+        .serv-lista li {
             font-size: 12px;
-            line-height: 2;
+            color: #444;
+            line-height: 2.2;
             padding-left: 16px;
             position: relative;
         }
-
-        .paquete .paquete-items li {
-            color: #666;
-        }
-
-        .paquete.destacado .paquete-items li {
-            color: #888;
-        }
-
-        .paquete-items li::before {
+        .serv-lista li::before {
             content: '—';
             position: absolute;
             left: 0;
         }
-
-        .paquete-link {
+        .serv-link {
             font-size: 10px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            text-decoration: none;
+            padding-bottom: 2px;
+            transition: opacity .2s;
+            display: inline-block;
         }
-
-        .paquete .paquete-link {
-            color: var(--negro);
-        }
-
-        .paquete.destacado .paquete-link {
+        .serv-link--bodas {
             color: var(--dorado);
+            border-bottom: 1px solid var(--dorado);
+        }
+        .serv-link--eventos {
+            color: var(--azul-live);
+            border-bottom: 1px solid var(--azul-live);
+        }
+        .serv-link:hover { opacity: .65; }
+
+        /* ── DIFERENCIADORES ── */
+        .dif-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 64px;
+        }
+        @media (max-width: 760px) {
+            .dif-grid { grid-template-columns: 1fr; gap: 48px; }
+            .sec { padding: 80px 24px; }
+            .sec-title { font-size: 32px; }
+        }
+        .dif-item { position: relative; }
+        .dif-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 72px;
+            font-weight: 300;
+            color: rgba(201,169,110,.1);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .dif-titulo {
+            font-size: 15px;
+            font-weight: 700;
+            color: #FAFAFA;
+            margin-bottom: 12px;
+        }
+        .dif-texto {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.8;
         }
 
-        /* CTA */
-        .cta {
+        /* ── VER SALA ── */
+        .sala-sec {
+            padding: 80px 48px;
+            background: #000;
+            text-align: center;
+            border-top: 1px solid #111;
+            border-bottom: 1px solid #111;
+        }
+        .sala-eyebrow {
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: var(--dorado);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .sala-titulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 300;
+            color: #FAFAFA;
+            margin-bottom: 12px;
+        }
+        .sala-desc {
+            font-size: 13px;
+            color: #555;
+            max-width: 480px;
+            margin: 0 auto 32px;
+            line-height: 1.75;
+        }
+        .btn-dorado {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--dorado);
+            color: var(--negro);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: filter .2s, transform .2s;
+        }
+        .btn-dorado:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+        /* ── CTA FINAL ── */
+        .cta-sec {
+            padding: 100px 48px;
             background: var(--negro);
             text-align: center;
-            padding: 120px 48px;
         }
-
-        .cta-title {
+        .cta-titulo {
             font-family: 'Cormorant Garamond', serif;
             font-size: 48px;
             font-weight: 300;
-            color: #fff;
-            margin-bottom: 16px;
+            color: #FAFAFA;
+            margin-bottom: 12px;
         }
-
-        .cta-title-italic {
+        .cta-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
             font-style: italic;
             color: var(--dorado);
+            margin-bottom: 24px;
         }
-
-        .btn-whatsapp {
+        .cta-desc {
+            font-size: 14px;
+            color: #555;
+            max-width: 480px;
+            margin: 0 auto 40px;
+            line-height: 1.75;
+        }
+        .btn-wha {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
             background: #25D366;
             color: #fff;
-            margin-top: 40px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: filter .2s, transform .2s;
+        }
+        .btn-wha:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .cta-nota {
+            font-size: 11px;
+            color: #333;
+            margin-top: 14px;
+            letter-spacing: .5px;
         }
 
-        .btn-whatsapp:hover {
-            background: #1ebd59;
-        }
-
-        /* FOOTER */
+        /* ── FOOTER ── */
         footer {
             background: var(--negro);
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding: 40px 48px;
-            text-align: center;
+            border-top: 1px solid rgba(255,255,255,.06);
+            padding: 32px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
         }
-
-        .footer-texto {
+        .footer-logo {
             font-size: 11px;
-            letter-spacing: 2px;
-            color: var(--gris);
+            letter-spacing: 3px;
+            color: #333;
         }
-
         .footer-links {
-            margin-top: 16px;
             display: flex;
             gap: 24px;
-            justify-content: center;
+            list-style: none;
         }
-
-        .footer-link {
+        .footer-links a {
             font-size: 10px;
             letter-spacing: 2px;
-            color: var(--gris);
-            text-decoration: none;
-            transition: color 0.2s;
+            color: #333;
+            transition: color .2s;
         }
-
-        .footer-link:hover {
-            color: var(--dorado);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 20px 24px;
-            }
-
-            .nav-links {
-                gap: 20px;
-            }
-
-            .hero {
-                padding: 100px 24px 60px;
-            }
-
-            .hero-title {
-                font-size: 48px;
-            }
-
-            .hero-tagline {
-                font-size: 18px;
-            }
-
-            section {
-                padding: 80px 24px;
-            }
-
-            .section-title {
-                font-size: 32px;
-            }
-
-            .proceso-grid,
-            .incluye-grid,
-            .paquetes-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .proceso-numero {
-                font-size: 80px;
-            }
-
-            .cta-title {
-                font-size: 32px;
-            }
-        }
+        .footer-links a:hover { color: var(--dorado); }
     </style>
 </head>
 <body>
@@ -488,7 +481,7 @@
     <!-- NAV -->
     <nav>
         <div class="nav-container">
-            <a href="/" class="nav-logo">CREAFILMS</a>
+            <a href="/" class="nav-logo">CREAFILMS LIVE</a>
             <ul class="nav-links">
                 <li><a href="/bodas/" class="nav-link">01 BODAS</a></li>
                 <li><a href="/live/" class="nav-link active">02 LIVE</a></li>
@@ -499,216 +492,182 @@
 
     <!-- HERO -->
     <section class="hero">
-        <div>
-            <div class="hero-badge">CREAFILMS LIVE</div>
-            <h1 class="hero-title">Tu boda en vivo</h1>
-            <p class="hero-tagline">Para quienes no pudieron estar</p>
-            <div class="hero-line"></div>
-            <p class="hero-description">
-                Comparte tu día especial con familiares y amigos en cualquier parte del mundo.
-                Transmisión profesional con sala virtual personalizada.
+        <video class="hero-video" autoplay muted loop playsinline preload="auto">
+            <source src="/live/assets/live-hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">CREAFILMS LIVE · PUERTO VALLARTA</p>
+            <h1>Transmisiones en vivo<br><em>que conectan al mundo</em></h1>
+            <p class="hero-sub">Bodas · Eventos Corporativos · Congresos · Circuito Cerrado</p>
+            <p class="hero-desc">
+                Transmitimos cualquier evento con señal estable y calidad profesional.
+                Desde la ceremonia más íntima hasta el congreso más grande de Vallarta.
             </p>
-            <div class="hero-buttons">
-                <a href="#" class="btn btn-primary" id="btn-cotizar">Cotizar ahora</a>
-                <a href="/live/sala/" class="btn btn-secondary">Ver ejemplo en vivo</a>
+            <div class="hero-chips">
+                <span class="hero-chip">📡 Señal estable</span>
+                <span class="hero-chip">🎥 Multi-cámara</span>
+                <span class="hero-chip">💻 Sala virtual</span>
+                <span class="hero-chip">🌐 Cualquier plataforma</span>
+            </div>
+            <div class="hero-ctas">
+                <a href="#servicios" class="btn-azul">Ver servicios ↓</a>
+                <a href="https://wa.me/523223550795?text=Hola,%20me%20interesa%20cotizar%20una%20transmisi%C3%B3n%20en%20vivo%20%F0%9F%93%A1"
+                   class="btn-ghost-hero" target="_blank" rel="noopener">
+                    Cotizar por WhatsApp →
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- CÓMO FUNCIONA -->
-    <section class="bg-crema">
-        <div class="container">
-            <div class="section-label">EL PROCESO</div>
-            <h2 class="section-title">Así de simple</h2>
+    <!-- SERVICIOS -->
+    <section class="sec" style="background:#000;" id="servicios">
+        <div class="sec-inner">
+            <p class="sec-eyebrow">¿Qué transmitimos?</p>
+            <h2 class="sec-title">Un servicio para<br><em>cada tipo de evento</em></h2>
 
-            <div class="proceso-grid">
-                <div class="proceso-item">
-                    <div class="proceso-numero">01</div>
-                    <div class="proceso-label">CONTRATAS</div>
-                    <p class="proceso-desc">
-                        Elige el paquete que mejor se adapte a tu boda. Nos encargamos de toda
-                        la configuración técnica y preparación del equipo.
+            <div class="servicios-grid">
+
+                <!-- BODAS -->
+                <div class="serv-card serv-card--bodas">
+                    <span class="serv-chip serv-chip--bodas">💍 Bodas</span>
+                    <span class="serv-num serv-num--bodas">01</span>
+                    <h3 class="serv-titulo">Transmisión de bodas</h3>
+                    <p class="serv-desc">
+                        Sala virtual personalizada con los colores de su boda.
+                        Link y código QR para invitados. Chat en tiempo real.
+                        Video guardado después del evento.
                     </p>
-                </div>
-
-                <div class="proceso-item">
-                    <div class="proceso-numero">02</div>
-                    <div class="proceso-label">COMPARTIMOS</div>
-                    <p class="proceso-desc">
-                        Recibe un link único y código QR personalizado para compartir con tus
-                        invitados virtuales días antes del evento.
-                    </p>
-                </div>
-
-                <div class="proceso-item">
-                    <div class="proceso-numero">03</div>
-                    <div class="proceso-label">LO VIVEN</div>
-                    <p class="proceso-desc">
-                        El día del evento, transmitimos en alta calidad. Tus invitados pueden
-                        ver y comentar en tiempo real desde cualquier dispositivo.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- QUÉ INCLUYE -->
-    <section>
-        <div class="container">
-            <div class="section-label">QUÉ INCLUYE</div>
-            <h2 class="section-title">El servicio completo</h2>
-
-            <div class="incluye-grid">
-                <div class="incluye-card">
-                    <div class="incluye-linea"></div>
-                    <h3 class="incluye-titulo">Transmisión continua</h3>
-                    <p class="incluye-desc">
-                        Conexión estable y profesional con monitoreo constante durante todo
-                        el evento. Sin interrupciones.
-                    </p>
-                </div>
-
-                <div class="incluye-card">
-                    <div class="incluye-linea"></div>
-                    <h3 class="incluye-titulo">Sala virtual propia</h3>
-                    <p class="incluye-desc">
-                        Página exclusiva con tus nombres, fecha y mensaje personalizado.
-                        Elegante y fácil de usar.
-                    </p>
-                </div>
-
-                <div class="incluye-card">
-                    <div class="incluye-linea"></div>
-                    <h3 class="incluye-titulo">Comentarios en vivo</h3>
-                    <p class="incluye-desc">
-                        Sistema de chat en tiempo real para que tus invitados envíen
-                        felicitaciones durante la transmisión.
-                    </p>
-                </div>
-
-                <div class="incluye-card">
-                    <div class="incluye-linea"></div>
-                    <h3 class="incluye-titulo">Multi-dispositivo</h3>
-                    <p class="incluye-desc">
-                        Compatible con celular, tablet y computadora. Sin necesidad de
-                        descargar apps ni crear cuentas.
-                    </p>
-                </div>
-
-                <div class="incluye-card">
-                    <div class="incluye-linea"></div>
-                    <h3 class="incluye-titulo">Link + QR</h3>
-                    <p class="incluye-desc">
-                        Link personalizado fácil de compartir y código QR para imprimir
-                        en invitaciones o tarjetas.
-                    </p>
-                </div>
-
-                <div class="incluye-card">
-                    <div class="incluye-linea"></div>
-                    <h3 class="incluye-titulo">Video guardado</h3>
-                    <p class="incluye-desc">
-                        Después del evento, el video queda disponible para que lo vean
-                        quienes se lo perdieron o quieran revivirlo.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PAQUETES -->
-    <section class="bg-crema">
-        <div class="container">
-            <div class="section-label">PAQUETES</div>
-            <h2 class="section-title">Elige el tuyo</h2>
-
-            <div class="paquetes-grid">
-                <!-- CEREMONIA -->
-                <div class="paquete">
-                    <h3 class="paquete-nombre">Ceremonia</h3>
-                    <div class="paquete-precio">$[PRECIO]</div>
-                    <div class="paquete-linea"></div>
-                    <ul class="paquete-items">
-                        <li>Solo la ceremonia en vivo</li>
-                        <li>Duración: hasta 2 horas</li>
-                        <li>1 cámara principal</li>
-                        <li>Sala virtual personalizada</li>
-                        <li>Link + código QR</li>
+                    <ul class="serv-lista">
+                        <li>Sala virtual con paleta de color de la boda</li>
+                        <li>Link personalizado + código QR</li>
+                        <li>Chat en vivo para invitados virtuales</li>
+                        <li>Video guardado después</li>
+                        <li>Sin apps · Sin registros · Multi-dispositivo</li>
                     </ul>
-                    <a href="#" class="paquete-link btn-cotizar-paquete">Cotizar →</a>
+                    <a href="/live/bodas/" class="serv-link serv-link--bodas">
+                        Ver más sobre bodas en vivo →
+                    </a>
                 </div>
 
-                <!-- CEREMONIA + RECEPCIÓN (DESTACADO) -->
-                <div class="paquete destacado">
-                    <div class="paquete-badge">★ MÁS POPULAR</div>
-                    <h3 class="paquete-nombre">Ceremonia + Recepción</h3>
-                    <div class="paquete-precio">$[PRECIO]</div>
-                    <div class="paquete-linea"></div>
-                    <ul class="paquete-items">
-                        <li>Cobertura completa de la celebración</li>
-                        <li>Duración: hasta 6 horas</li>
-                        <li>Múltiples cámaras</li>
-                        <li>Sala virtual personalizada</li>
-                        <li>Comentarios en tiempo real</li>
-                        <li>Link + código QR</li>
-                        <li>Video guardado</li>
+                <!-- EVENTOS -->
+                <div class="serv-card serv-card--eventos">
+                    <span class="serv-chip serv-chip--eventos">🏢 Eventos &amp; Corporativos</span>
+                    <span class="serv-num serv-num--eventos">02</span>
+                    <h3 class="serv-titulo">Eventos · Congresos · Corporativos</h3>
+                    <p class="serv-desc">
+                        Transmisiones profesionales para cualquier tipo de evento.
+                        Congresos, convenciones, eventos deportivos, presentaciones
+                        de producto y circuito cerrado.
+                    </p>
+                    <ul class="serv-lista">
+                        <li>Congresos y convenciones</li>
+                        <li>Eventos corporativos y de producto</li>
+                        <li>Eventos deportivos</li>
+                        <li>Circuito cerrado (CCTV)</li>
+                        <li>Transmisión a plataformas: YouTube · Zoom · Teams</li>
                     </ul>
-                    <a href="#" class="paquete-link btn-cotizar-paquete">Cotizar →</a>
+                    <a href="/live/eventos/" class="serv-link serv-link--eventos">
+                        Ver más sobre eventos →
+                    </a>
                 </div>
 
-                <!-- DÍA COMPLETO -->
-                <div class="paquete">
-                    <h3 class="paquete-nombre">Día Completo</h3>
-                    <div class="paquete-precio">$[PRECIO]</div>
-                    <div class="paquete-linea"></div>
-                    <ul class="paquete-items">
-                        <li>Preparativos hasta despedida</li>
-                        <li>Sin límite de tiempo</li>
-                        <li>Múltiples cámaras + drone</li>
-                        <li>Sala virtual personalizada</li>
-                        <li>Comentarios en tiempo real</li>
-                        <li>Link + código QR</li>
-                        <li>Video guardado</li>
-                        <li>Soporte técnico dedicado</li>
-                    </ul>
-                    <a href="#" class="paquete-link btn-cotizar-paquete">Cotizar →</a>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta">
-        <h2 class="cta-title">
-            ¿Lista para compartir <span class="cta-title-italic">tu boda con el mundo</span>?
-        </h2>
-        <a href="#" class="btn btn-whatsapp" id="btn-whatsapp">Contáctanos por WhatsApp</a>
+    <!-- DIFERENCIADORES -->
+    <section class="sec" style="background:#080808;">
+        <div class="sec-inner">
+            <p class="sec-eyebrow">¿Por qué CreaFilms Live?</p>
+            <h2 class="sec-title">No es un link de YouTube.<br><em>Es tu transmisión.</em></h2>
+
+            <div class="dif-grid">
+
+                <div class="dif-item">
+                    <div class="dif-num">01</div>
+                    <h4 class="dif-titulo">Sala virtual propia</h4>
+                    <p class="dif-texto">
+                        Cada evento tiene su propia sala con nombre, fecha,
+                        paleta de colores y mensaje personalizado. No es un
+                        canal genérico — es el tuyo.
+                    </p>
+                </div>
+
+                <div class="dif-item">
+                    <div class="dif-num">02</div>
+                    <h4 class="dif-titulo">Señal profesional estable</h4>
+                    <p class="dif-texto">
+                        Usamos equipo de transmisión profesional con respaldo de
+                        señal. Evaluamos el venue con anticipación para garantizar
+                        conexión sin interrupciones.
+                    </p>
+                </div>
+
+                <div class="dif-item">
+                    <div class="dif-num">03</div>
+                    <h4 class="dif-titulo">Sin complicaciones para tus invitados</h4>
+                    <p class="dif-texto">
+                        Solo necesitan el link. Sin apps, sin cuentas, sin
+                        contraseñas. Funciona en cualquier celular, tablet
+                        o computadora.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- VER SALA EN VIVO -->
+    <div class="sala-sec">
+        <p class="sala-eyebrow">Sala virtual de ejemplo</p>
+        <h3 class="sala-titulo">Mira cómo se ve desde el lado del invitado</h3>
+        <p class="sala-desc">
+            Cada boda o evento tiene su propia sala. Aquí puedes
+            explorar un ejemplo real de cómo la experimentan tus invitados.
+        </p>
+        <a href="/live/sala/" class="btn-dorado">Abrir sala de ejemplo →</a>
+    </div>
+
+    <!-- CTA FINAL -->
+    <section class="cta-sec">
+        <h2 class="cta-titulo">¿Tienes un evento próximo?</h2>
+        <p class="cta-sub">Hablemos.</p>
+        <p class="cta-desc">
+            Cuéntanos la fecha, el tipo de evento y la locación.
+            Te enviamos cotización en menos de 2 horas.
+        </p>
+        <a id="btn-cta-wha"
+           href="https://wa.me/523223550795?text=Hola,%20me%20interesa%20cotizar%20una%20transmisi%C3%B3n%20en%20vivo%20%F0%9F%93%A1"
+           class="btn-wha" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+            </svg>
+            Cotizar por WhatsApp
+        </a>
+        <p class="cta-nota">Respondemos Lun–Sáb · Menos de 2 horas</p>
     </section>
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-texto">© CREAFILMS · estudiocreafilms.com</div>
-        <div class="footer-links">
-            <a href="/" class="footer-link">INICIO</a>
-            <a href="/bodas/" class="footer-link">BODAS</a>
-            <a href="/live/" class="footer-link">LIVE</a>
-        </div>
+        <span class="footer-logo">CREAFILMS LIVE</span>
+        <ul class="footer-links">
+            <li><a href="/">INICIO</a></li>
+            <li><a href="/bodas/">BODAS</a></li>
+            <li><a href="/live/">LIVE</a></li>
+            <li><a href="/estudio/">ESTUDIO</a></li>
+        </ul>
     </footer>
 
-    <!-- Config -->
+    <!-- Config + JS -->
     <script src="/live/config.js"></script>
-
-    <!-- JavaScript -->
     <script>
-        // WhatsApp links
-        const whatsappUrl = CONFIG.getWhatsAppURL();
-
-        document.getElementById('btn-cotizar').href = whatsappUrl;
-        document.getElementById('btn-whatsapp').href = whatsappUrl;
-
-        document.querySelectorAll('.btn-cotizar-paquete').forEach(btn => {
-            btn.href = whatsappUrl;
-        });
+    (function(){
+        var btn = document.getElementById('btn-cta-wha');
+        if(btn && typeof CONFIG !== 'undefined' && CONFIG.getWhatsAppURL){
+            btn.href = CONFIG.getWhatsAppURL();
+        }
+    })();
     </script>
 
 </body>
