@@ -9,12 +9,57 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize video background
     initVideoBackground();
 
-    // Initialize smooth interactions
-    initSmoothInteractions();
+    // Initialize the direct Studio service selector
+    initStudioSelector();
 
     // Performance: Pause video when tab not visible
     handleVisibilityChange();
 });
+
+/**
+ * Direct Studio Service Selector
+ */
+function initStudioSelector() {
+    const selector = document.querySelector('.studio-selector');
+
+    if (!selector) return;
+
+    const trigger = selector.querySelector('.studio-trigger');
+    const options = selector.querySelector('.studio-options');
+    const serviceLinks = selector.querySelectorAll('.studio-option');
+
+    const setOpen = (open) => {
+        selector.classList.toggle('is-open', open);
+        trigger.setAttribute('aria-expanded', String(open));
+        options.setAttribute('aria-hidden', String(!open));
+    };
+
+    trigger.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const willOpen = !selector.classList.contains('is-open');
+
+        setOpen(willOpen);
+
+        if (!willOpen) trigger.blur();
+    });
+
+    serviceLinks.forEach((link) => {
+        link.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!selector.contains(event.target)) setOpen(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape' || !selector.classList.contains('is-open')) return;
+
+        setOpen(false);
+        trigger.focus();
+    });
+
+    window.addEventListener('pageshow', () => setOpen(false));
+}
 
 /**
  * Video Background Handler with Elegant Fallback
@@ -53,75 +98,6 @@ function initVideoBackground() {
         }
     }, { once: true });
 }
-
-/**
- * Smooth Interactions & Hover Effects
- */
-function initSmoothInteractions() {
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    navLinks.forEach(link => {
-        // Add ripple effect on click (optional)
-        link.addEventListener('click', (e) => {
-            createRipple(e, link);
-        });
-
-        // Subtle parallax on hover
-        link.addEventListener('mouseenter', function() {
-            this.style.transform = this.classList.contains('nav-bc')
-                ? 'translateX(-50%) translateY(-2px)'
-                : 'translateY(-2px)';
-        });
-
-        link.addEventListener('mouseleave', function() {
-            this.style.transform = this.classList.contains('nav-bc')
-                ? 'translateX(-50%) translateY(0)'
-                : 'translateY(0)';
-        });
-    });
-}
-
-/**
- * Create Ripple Effect (Luxury Touch)
- */
-function createRipple(event, element) {
-    const ripple = document.createElement('span');
-    const rect = element.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
-
-    ripple.style.cssText = `
-        position: absolute;
-        width: ${size}px;
-        height: ${size}px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.3);
-        top: ${y}px;
-        left: ${x}px;
-        pointer-events: none;
-        transform: scale(0);
-        animation: rippleEffect 0.6s ease-out;
-    `;
-
-    element.style.position = 'relative';
-    element.style.overflow = 'hidden';
-    element.appendChild(ripple);
-
-    setTimeout(() => ripple.remove(), 600);
-}
-
-// Ripple animation
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes rippleEffect {
-        to {
-            transform: scale(2);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
 
 /**
  * Handle Page Visibility (Performance)
@@ -170,8 +146,7 @@ function initSmoothScroll() {
  */
 function preloadAssets() {
     const criticalImages = [
-        'assets/hero1.jpg',
-        'assets/hero2.jpg'
+        'assets/hero1.jpg'
     ];
 
     criticalImages.forEach(src => {
