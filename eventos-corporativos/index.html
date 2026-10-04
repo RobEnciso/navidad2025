@@ -74,8 +74,11 @@
           <a class="text-link text-link-light" href="#formulario">Cuéntanos sobre tu evento <span aria-hidden="true">↗</span></a>
           <p class="hero-location">Puerto Vallarta <span aria-hidden="true">·</span> Proyectos disponibles en México</p>
         </div>
-        <div class="hero-media media-slot" data-media-slot="hero" aria-label="Espacio preparado para video real de producción corporativa">
-          <!-- Cuando exista video aprobado, insertar <video poster="..." playsinline muted autoplay loop> aquí. -->
+        <div class="hero-media media-slot has-video" data-media-slot="hero" aria-label="Espacio preparado para video real de producción corporativa">
+          <video class="hero-media-video" autoplay muted loop playsinline preload="metadata" poster="/assets/video/eventos-corporativos/hero-corporativos-poster.webp" aria-hidden="true" tabindex="-1">
+            <source src="/assets/video/eventos-corporativos/hero-corporativos-720.mp4" type="video/mp4" media="(max-width: 760px) and (prefers-reduced-motion: no-preference)">
+            <source src="/assets/video/eventos-corporativos/hero-corporativos-1080.mp4" type="video/mp4" media="(min-width: 761px) and (prefers-reduced-motion: no-preference)">
+          </video>
           <div class="hero-media-art" aria-hidden="true">
             <span class="hero-media-rule"></span>
             <span class="hero-media-type">La historia<br>continúa.</span>
